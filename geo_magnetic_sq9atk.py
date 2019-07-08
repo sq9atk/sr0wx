@@ -3,6 +3,7 @@
 
 import logging, re, subprocess
 import urllib2
+from pprint import pprint
 
 from sr0wx_module import SR0WXModule
 
@@ -13,7 +14,7 @@ class GeoMagneticSq9atk(SR0WXModule):
         self.__language = language
         self.__service_url = service_url
         self.__logger = logging.getLogger(__name__)
-    
+
         self.__days = ['dzis','jutro','po_jutrze']
         self.__conditions = {
             0:' ',
@@ -43,16 +44,14 @@ class GeoMagneticSq9atk(SR0WXModule):
 
         return response.read()
 
-        
+
     def getDataParsedHtmlData(self):
         self.__logger.info("::: Pobieram informacje...")
-        
+
         html = self.downloadDataFromUrl(self.__service_url)
-         
-        
-        r = re.compile(r'<td class="gm_td gm-(.*?)">\n(.*?)(\d)\n(.*?)</td>') #pobieramy listę wartości
-        
-        
+
+        r = re.compile(r'<div class="widget__value w_gm__value(.*?)">(\d)</div>')
+
         return r.findall(html)
 
     def groupValuesByDays(self, data):
@@ -63,7 +62,7 @@ class GeoMagneticSq9atk(SR0WXModule):
 
         for i, val in enumerate(data):
             if dayNum > 1 or hour > current_hour: # omijamy godziny z przeszłości
-                value = data[i][2]
+                value = data[i][1]
                 output[dayNum][hour] = value
 
             hour += 3
@@ -77,7 +76,7 @@ class GeoMagneticSq9atk(SR0WXModule):
             'value':0,
             'at':0,
         }
-        for key, row in data.iteritems():    
+        for key, row in data.iteritems():
             if row > maxValue['value']:
                 maxValue['value'] = row
                 maxValue['at'] = key
@@ -86,22 +85,22 @@ class GeoMagneticSq9atk(SR0WXModule):
     def getDailyFluctuation(self, data):
         values = data.values()
         return int(max(values)) - int(min(values))
-    
+
     def get_data(self):
         values = self.getDataParsedHtmlData()
 
         daysValues = self.groupValuesByDays(values)
-        
+
         message = ' _ sytuacja_geomagnetyczna_w_regionie ';
-        
+
         self.__logger.info("::: Przetwarzam dane...\n")
         for d, day in daysValues.iteritems():
-            
+
             if len(day) > 0:
-                a=1    
+                a=1
                 message += " _ "+self.__days[d-1] + " "
-                condition = self.getStrongestConditionOfDay(day) 
-                
+                condition = self.getStrongestConditionOfDay(day)
+
                 message += self.__seasons[condition['at']] + " "
                 message += self.__conditions[int(condition['value'])] + " "
 
