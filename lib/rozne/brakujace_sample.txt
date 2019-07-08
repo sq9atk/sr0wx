@@ -1,0 +1,21 @@
+/* miasta >50 tys mieszk. w mianowniku */
+
+Bełchatów, Będzin, Biała Podlaska, Białystok, Bielsko Biała, Bydgoszcz, Bytom, Chełm, Chorzów, Częstochowa, Dąbrowa Górnicza, Elbląg, Ełk, Gdańsk, Gdynia, Gliwice, Głogów, Gniezno, Gorzów Wielkopolski, Grudziądz, Inowrocław, Jastrzębie Zdrój, Jaworzno,  Jelenia Góra, Kalisz, Katowice, Kędzierzyn Koźle, Kielce, Konin, Koszalin, Kraków, Kutno, Legionowo, Legnica, Leszno, Lubin, Lublin, Łomża, Łódź, Mielec, Mysłowice, Nowy Sącz, Olsztyn, Opole, Ostrołęka, Ostrowiec Świętokrzyski,  Ostrów Wielkopolski, Pabianice, Piekary Śląskie, Piła, Piotrków Trybunalski, Płock, Poznań, Pruszków, Przemyśl, Puławy, Racibórz, Radom, Radomsko, Rybnik, Ruda Śląska, Rzeszów, Siedlce, Siemianowice, Skarżysko Kamienna, Słupsk, Sosnowiec, Stalowa Wola, Starachowice, Stargard Szczeciński, Starogard Gdański, Suwałki, Szczecin, Świdnica, Swiętochłowice, Tarnobrzeg, Tarnowskie Góry, Tarnów, Tczew, Tomaszów Mazowiecki, Toruń, Tychy, Wałbrzych, Warszawa, Włocławek, Wodzisław Sląski, Wrocław, Zabrze, Zamość, Zawiercie, Zgierz, Zielona Góra, Żory
+
+/* miasta >50 tys mieszk. w dopełniaczu */
+
+Bełchatowa, Będzina, Białej Podlaskiej, Białegostoku, Bielska Białej, Bydgoszczy, Bytomia, Chełma, Chorzowa, Częstochowy, Dąbrowy Górniczej, Elbląga, Ełku, Gdańska, Gdyni, Gliwic, Głogowa, Gniezna, Gorzowa Wielkopolskiego, Grudziądza, Inowrocławia, Jastrzębia Zdrój, Jaworzna,  Jeleniej Góry, Kalisza, Katowic, Kędzierzyna Koźle, Kielc, Konina, Koszalina, Krakowa, Kutna, Legionowa, Legnicy, Leszna, Lubina, Lublina, Łomży, Łodzi, Mielca, Mysłowic, Nowego Sącza, Olsztyna, Opola, Ostrołęki, Ostrowca Świętokrzyskiego,  Ostrowa Wielkopolskiego, Pabianic, Piekar Śląskich, Piły, Piotrkowa Trybunalskiego, Płocka, Poznania, Pruszkowa, Przemyśla, Puław, Raciborza, Radomia, Radomska, Rybnika, Rudy Śląskiej, Rzeszowa, Siedlec, Siemianowic, Skarżyska Kamiennej, Słupska, Sosnowca, Stalowej Wola, Starachowic, Stargard Szczecińskiego, Starogardu Gdańskiego, Suwałk, Szczecina, Świdnicy, Swiętochłowic, Tarnobrzegu, Tarnowskich Gór, Tarnówa, Tczewa, Tomaszówa Mazowieckiego, Torunia, Tych, Wałbrzycha, Warszawy, Włocławka, Wodzisławia Sląskiego, Wrocławia, Zabrza, Zamościa, Zawiercia, Zgierza, Zielonej Góry, Żor
+
+
+
+/* dot. dozwolony użytek */
+
+źródło ... IMGW meteoalarm.eu aviationweather.gov
+
+/* dot. imgw_pogoda */
+
+"temperatura odczuwalna", 
+
+/* wschdy i zachody słońca */
+
+wschod słońca, zachód słońca, godzin, jedna minuta, dwie minuty, pięć minut
