@@ -1,0 +1,5 @@
+*.pyc
+
+imgwpodest_data/*
+
+sr0wx.log
