@@ -1,9 +1,9 @@
 <?php
 
-include('debug.php'); 
+include('debug.php');
 
 include('slownik.php'); // $slownik
-#include('slownik_rzeki.php'); // $slownik rzeki 
+#include('slownik_rzeki.php'); // $slownik rzeki
 #include('slownik_wodowskazy.php'); // $slownik wodowskazy
 
 function file_get_contents_curl( $url ) {
@@ -30,10 +30,6 @@ function azAZ09($string)
 
     return $string;
 }
-
-
-
-https://code.responsivevoice.org/getvoice.php?text=gfdgfg&lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=WGciAW2s&gender=female
 
 function getMpg($word, $filename)
 {
