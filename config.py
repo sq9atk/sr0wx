@@ -30,7 +30,7 @@ log_handlers = [{
             'backupCount': 30,
             'delay': True,
             'utc': True,
-        } 
+        }
     }]
 
 serial_port = '/dev/ttyS0'
@@ -53,7 +53,7 @@ from activity_map import ActivityMap
 activitymap = ActivityMap(
     service_url="http://wx.ostol.pl/map_requests?base=",
     callsign="TEST",
-    latitude=54.655245, 
+    latitude=54.655245,
     longitude=19.268097,
     hour_quarter=10,
     above_sea_level=225,
@@ -70,7 +70,7 @@ activitymap = ActivityMap(
 from openweather_sq9atk import OpenWeatherSq9atk
 openweathersq9atk = OpenWeatherSq9atk(
     language = pl_google,
-    api_key = 'ee78911a0fb560b58144230f46e0d4b2',   
+    api_key = 'ee78911a0fb560b58144230f46e0d4b2',
     lat = 50,
     lon = 20,
     service_url = 'http://api.openweathermap.org/data/2.5/'
@@ -289,14 +289,14 @@ from air_pollution_sq9atk import AirPollutionSq9atk
 airpollutionsq9atk = AirPollutionSq9atk(
     language=pl_google,
     service_url="http://api.gios.gov.pl/pjp-api/rest/",
-    station_id = 402, 
+    station_id = 402,
 
         # LISTA STACJI Z NUMERAMI Z CAŁEJ POLSKI
         # http://api.gios.gov.pl/pjp-api/rest/station/findAll
-        
+
         # poniższe TYLKO DLA KRAKOWA!!!!!
         # do station_id wpada co 20 minut inna cyfra z przedziału 0,1,2
-        # dzięki czemu za każdym razem wybieramy inną stację pomiarową    
+        # dzięki czemu za każdym razem wybieramy inną stację pomiarową
         # station_id = 400 + (int(datetime.now().strftime('%M')))/20,
         # 400 Kraków, Aleja Krasińskiego
         # 401 Kraków, ul. Bujaka
@@ -342,6 +342,17 @@ radioactivesq9atk = RadioactiveSq9atk(
     ## więcej czujników na stronie http://radioactiveathome.org/map/
 )
 
+
+# ---------------
+# propagation_sq9atk
+# ---------------
+from propagation_sq9atk import PropagationSq9atk
+propagationsq9atk = PropagationSq9atk(
+    language=pl_google,
+    service_url="https://rigreference.com/solar/img/tall",
+)
+
+
 # ---------------
 # calendar_sq9atk
 # ---------------
@@ -372,13 +383,14 @@ calendarsq9atk = CalendarSq9atk(
 # WŁĄCZONE MODUŁY
 modules = [
 	activitymap,
-    #openweathersq9atk,
-	meteosq9atk, # ten moduł jest zastąpiony przez openweathersq9atk
-	#meteoalarmsq9atk,
-	#imgwpodestsq9atk, 
-	#airpollutionsq9atk, 
-	#geomagneticsq9atk,
-	#radioactivesq9atk,
-	#calendarsq9atk,
+    openweathersq9atk,
+	#meteosq9atk, # pogoda z onet-u, ten moduł jest zastąpiony przez openweathersq9atk
+	meteoalarmsq9atk,
+	imgwpodestsq9atk,
+	airpollutionsq9atk,
+    propagationsq9atk,
+	geomagneticsq9atk,
+	radioactivesq9atk,
+	calendarsq9atk,
 ]
 

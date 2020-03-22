@@ -1,21 +1,53 @@
 <?php
 
 
+    // TYLKO Z TEJ TABLICY GENEROWANE SĄ SAMPLE
+    // URUCHOMIENIE W KONSOLI:
+    // php index.php
     $slownik = array(
-                array('lekkie zachmurzenie','lekkie_zachmurzenie'),
+            array('słowa do przeczytania','nazwa_pliku_wynikowego'),
     );
 
 
-	/// OPEN WEATHER MAP 
+
+    // TABLICE Z SAMPLAMI DO MODUŁÓW
+
+    /// PROPAGACJA
+    $slownikPropagacja = array(
+        array('rigreferens','rigreference'),
+        array('rigreferens kom','rigreference_com'),
+        array('noaa','noaa'),
+
+        array('dzień ','dzien'),
+        array('noc','noc'),
+
+        array('informacje o propagacji','informacje_o_propagacji'),
+        array('pasma','pasma'),
+
+        array('warunki podwyższone','warunki_podwyzszone'),
+        array('warunki normalne','warunki_normalne'),
+        array('warunki obniżone','warunki_obnizone'),
+        array('pasmo zamknięte','pasmo_zamkniete'),
+
+        array('160 metrów','160_metrow'),
+        array('80 metrów','80_metrow'),
+        array('40 metrów','40_metrow'),
+        array('20 metrów','20_metrow'),
+        array('10 metrów','10_metrow'),
+        array('6 metrów','6_metrow'),
+    );
+
+
+	/// OPEN WEATHER MAP
     $slownikOpenWeathermap = array(
         array('ołpenłeder map','open_weather_map'),
         array('burza z lekkimi opadami deszczu'),
         array('burza z opadami deszczu'),
-        array('burza z silnymi opadami deszczu'), 
+        array('burza z silnymi opadami deszczu'),
         array('niewielka burza'),
         array('burza'),
         array('silna burza'),
-        array('przelotna burza'),                   
+        array('przelotna burza'),
         array('burza z lekką mżawką','burza_z_lekka_mzawka'),
         array('burza z mżawką','burza_z_mzawka'),
         array('burza z silną mżawką','burza_z_silna_mzawka'),
@@ -31,10 +63,10 @@
         array('ulewa z mżawką','ulewa_z_mzawka'),
 
         array('lekkie opady deszczu'),
-        array('umiarkowane opady deszczu'),       
+        array('umiarkowane opady deszczu'),
         array('intensywne opady deszczu'),
-        array('bardzo intensywne opady deszczu'),  
-        array('oberwanie chmury'),        
+        array('bardzo intensywne opady deszczu'),
+        array('oberwanie chmury'),
         array('marznący deszcz','marznacy_deszcz'),
         array('lekka ulewa'),
         array('ulewa'),
@@ -54,7 +86,7 @@
 
         array('zamglenia'),
         array('zadymienie'),
-        array('mgła','mgla'),  
+        array('mgła','mgla'),
         array('kusz i piach','kurz_i_piach'),
         array('mgła','mgla'),
         array('piasek','piasek'),
@@ -73,7 +105,7 @@
 
 
 
-        
+
     $slownikSDFSD = array(
          array('wiatr'),
         array('stacja pomiarowa'),
@@ -84,7 +116,7 @@
         array('pył zawieszony Pe eM 2.5','pyl__zawieszony_pm25'),
         array('dwutlenek siarki','dwutlenek_siarki'),
         array('ozon','ozon'),
- 
+
 		array('Wrocław - Bartnicza','wrocl_aw___bartnicza'),
 		array('Wrocław - Korzeniowskiego','wrocl_aw___korzeniowskiego'),
 		array('Wrocław - Wiśniowa','wrocl_aw___wis_niowa'),
@@ -269,11 +301,11 @@
 
         array('mikrosjiwerta'),
         array('na godzinę'),
-        
+
         array('setna'),
         array('setne'),
         array('setnych'),
-        
+
         array('dziesiąta'),
         array('dziesiąte'),
         array('dziesiątych'),
@@ -308,18 +340,18 @@
 
         array('mikrosjiwerta'),
         array('na godzinę'),
-        
+
         array('setna'),
         array('setne'),
         array('setnych'),
-        
+
         array('dziesiąta'),
         array('dziesiąte'),
         array('dziesiątych'),
-		
-		
+
+
         #geomagnetic sq9atk
-        array('sytuacja geomagnetyczna w regionie'), 
+        array('sytuacja geomagnetyczna w regionie'),
 
         array('po jutrze'),
 
@@ -345,7 +377,7 @@
         array('niezauważalne'),
         array('znikome'),
         array('lekkie'),
-        array('podwyższone'), 
+        array('podwyższone'),
         array('umiarkowane'),
         array('duże'),
         array('bardzo duże'),
