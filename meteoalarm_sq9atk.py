@@ -47,7 +47,7 @@ class MeteoalarmSq9atk(SR0WXModule):
             'PL011':"łódzkiego",            'PL012':"wielkopolskiego",
             'PL013':"kujawsko_pomorskiego", 'PL014':"warminsko_mazurskiego", 
             'PL015':"lubelskiego",          'PL016':"podlaskiego",
-            'IT003':"Lombardia",
+            'IT003':"lombardia",
         }
 
     def getDataFromUrl(self, url):
