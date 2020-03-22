@@ -47,7 +47,7 @@ class MeteoalarmSq9atk(SR0WXModule):
             'PL011':"łódzkiego",            'PL012':"wielkopolskiego",
             'PL013':"kujawsko_pomorskiego", 'PL014':"warminsko_mazurskiego", 
             'PL015':"lubelskiego",          'PL016':"podlaskiego",
-            'IE003':"dolnoslaskiego",
+            'IT003':"Lombardia",
         }
 
     def getDataFromUrl(self, url):
@@ -67,11 +67,13 @@ class MeteoalarmSq9atk(SR0WXModule):
         for line in self.downloadFile(url).split('\n'):
             matches = r.findall(line)
             if len(matches) is not 0 and int(matches[0][0])!=0:
-                result = [
+                warn = " ".join([
                     self.warnings[ int(matches[0][0]) ],
                     self.warningsLevel,
                     self.warningsLevels[ int(matches[0][1]) ],
-                ]
+                ])
+                result.append(warn)
+                result.append("_")
         return " ".join(result)
 
 

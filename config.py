@@ -115,7 +115,8 @@ openweathersq9atk = OpenWeatherSq9atk(
 # meteoalarm_sq9atk
 # -----------------
 from meteoalarm_sq9atk import MeteoalarmSq9atk
-meteoalarmsq9atk = MeteoalarmSq9atk(region="PL008")
+#meteoalarmsq9atk = MeteoalarmSq9atk(region="PL008")
+meteoalarmsq9atk = MeteoalarmSq9atk(region="IT003") # testowo Lombardia
 		# PL001-Mazowieckie
 		# PL002-Lubuskie
 		# PL003-Zachodniopomorskie
@@ -134,6 +135,7 @@ meteoalarmsq9atk = MeteoalarmSq9atk(region="PL008")
 		# PL016-Podlaskie
 		# PL801-Pomorze Wschodnie
 		# PL802-Pomorze Zachodnie
+		# IT003-Lombardia
 
 
 # -------------
@@ -334,7 +336,7 @@ from radioactive_sq9atk import RadioactiveSq9atk
 radioactivesq9atk = RadioactiveSq9atk(
     language=pl_google,
     service_url="http://radioactiveathome.org/map/",
-    sensor_id=6314
+    sensor_id=635 #czujnik w centrum Krakowa
     ## więcej czujników na stronie http://radioactiveathome.org/map/
 )
 
