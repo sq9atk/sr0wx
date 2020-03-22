@@ -137,7 +137,7 @@ class ImgwPodestSq9atk(SR0WXModule):
                     a=1
                     #s.__logger.info("Przetwarzam wodowskaz:    " + wodowskaz + " - " + rzeka + ' - ' + w['nazwa_org'])
             except:
-                s.__logger.info("::: Brak danych!!! "+ wodowskaz+" - " + rzeka + ' - ' + w['nazwa_org'])
+                s.__logger.info("::: Brak danych!!! "+ wodowskaz )
                 pass
 
         message = "";

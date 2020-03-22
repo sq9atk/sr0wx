@@ -21,8 +21,17 @@ class MeteoSq9atk(SR0WXModule):
         self.__logger = logging.getLogger(__name__)
 
     def downloadFile(self, url):
-        webFile = urllib2.urlopen(url) 
-        return webFile.read()
+        self.__logger.info("::: Odpytuję adres: " + url)
+        try:
+            webFile = urllib2.urlopen(url, None, 30)
+            return webFile.read()
+        except URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return ""
+        
+        
 
     def getHour(self):
         time =  ":".join([str(datetime.now().hour), str(datetime.now().minute)])

@@ -20,6 +20,7 @@ import urllib2
 import re
 import logging
 import json
+import socket
 
 from sr0wx_module import SR0WXModule
 
@@ -51,14 +52,28 @@ class MeteoalarmSq9atk(SR0WXModule):
         }
 
     def getDataFromUrl(self, url):
-        dane = urllib2.urlopen(url)
-        self.__logger.info("Przetwarzam...\n")
-        zagrozenia = json.load(dane)
-        return zagrozenia
+        self.__logger.info("::: Odpytuję adres: " + url)
+        dane = ''
+        try:
+            dane = urllib2.urlopen(url, None, 30);
+            return json.load(dane)
+        except URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return {}
     
     def downloadFile(self, url):
-        webFile = urllib2.urlopen(url)
-        return webFile.read()
+        
+        try:
+            self.__logger.info("::: Odpytuję adres: " + url)
+            webFile = urllib2.urlopen(url, None, 30)
+            return webFile.read()
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return ""
 
     def getWarnings(self, region, tomorrow=False):
         r = re.compile('pictures/aw(\d[01]?)([0234]).jpg')
@@ -96,7 +111,7 @@ class MeteoalarmSq9atk(SR0WXModule):
             message += " ".join([self.warningsPrefix," ",self.regions[self.__region],"_", "dzis","_", today,"_","jutro","_",tomorrow])
 
         message += " _ "
-
+        print "\n"
         return {
             "message": message,
             "source": "meteoalarm_eu",

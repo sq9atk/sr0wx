@@ -35,6 +35,7 @@ class GeoMagneticSq9atk(SR0WXModule):
         }
 
     def downloadDataFromUrl(self, url):
+        self.__logger.info("::: Odpytuję adres: " + url)
         opener = urllib2.build_opener()
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:10.0.1) Gecko/20100101 Firefox/10.0.1',

@@ -41,7 +41,7 @@ Parameters:
     """
     def __init__(self, callsign, latitude, longitude, hour_quarter,
                  above_sea_level, above_ground_level, station_range,
-                 additional_info="", service_url="http://test.ostol.pl"):
+                 additional_info="", service_url=""):
         self.__callsign = callsign
         self.__latitude = latitude
         self.__longitude = longitude
@@ -74,6 +74,7 @@ Parameters:
         dump = json.dumps(station_info, separators=(',', ':'))
         b64data = base64.urlsafe_b64encode(dump)
         request = self.__service_url + b64data
+        self.__logger.info("::: Odpytuję adres: " + request)
         response = urllib.urlopen(request).read()
 
         if response == 'OK':

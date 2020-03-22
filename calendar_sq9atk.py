@@ -5,6 +5,7 @@ import urllib2
 import re
 import logging
 import pytz
+import socket
 
 from datetime import datetime
 from sr0wx_module import SR0WXModule
@@ -20,8 +21,15 @@ class CalendarSq9atk(SR0WXModule):
 
 
     def downloadFile(self, url):
-        webFile = urllib2.urlopen(url)
-        return webFile.read()
+        try:
+            self.__logger.info("::: Odpytuję adres: " + url)
+            webFile = urllib2.urlopen(url, None, 30)
+            return webFile.read()
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return ""
 
     def getSunsetSunrise(self):
         self.__logger.info("::: Pobieram dane o wschodzie i zachodzie słońca")

@@ -148,12 +148,12 @@ imgwpodestsq9atk = ImgwPodestSq9atk(
 ## MAPA WSZYSTKICH WODOWSKAZÓW W POLSCE Z NUMERAMI
 ## http://wx.ostol.pl/wodowskazy/
 
-        '2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
-        '2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
+        #'2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
+        #'2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
         '2.149200370',   # Nazwa: Okocim, rzeka: Uszwica            - zrypany wodowskaz / tylko do testów
         '2.149190350',   # Nazwa: Krzczonów, rzeka: Krzczonówka     - zrypany wodowskaz / tylko do testów
         '2.150210200',   # Nazwa: Grebów, rzeka: Łęg                - zrypany wodowskaz / tylko do testów
-        '2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
+        #'2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
 
         '2.149210050',   # Nazwa: Krajowice, rzeka: Wisłoka
         '2.149200110',   # Nazwa: Trybsz, rzeka: Białka

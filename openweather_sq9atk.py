@@ -5,6 +5,7 @@ import urllib2
 import logging
 from datetime import datetime
 import json as JSON
+import socket
 
 from sr0wx_module import SR0WXModule
 
@@ -84,8 +85,14 @@ class OpenWeatherSq9atk(SR0WXModule):
         }
 
     def downloadFile(self, url):
-        webFile = urllib2.urlopen(url)
-        return webFile.read()
+        try:
+            webFile = urllib2.urlopen(url, None, 30)
+            return webFile.read()
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return ""
 
     def getHour(self):
         time =  ":".join([str(datetime.now().hour), str(datetime.now().minute)])

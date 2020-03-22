@@ -4,7 +4,9 @@
 import urllib2
 import logging
 import json
+import socket
 
+from pprint import pprint
 
 # LISTA STACJI Z NUMERAMI
 # http://api.gios.gov.pl/pjp-api/rest/station/findAll
@@ -26,9 +28,17 @@ class AirPollutionSq9atk(SR0WXModule):
         self.__index_url = "aqindex/getIndex/"
 
     def getJson(self, url):
-        data = urllib2.urlopen(url)
-        jsonArr = json.load(data)
-        return jsonArr
+        self.__logger.info("::: Odpytuję adres: " + url)
+        
+        try:
+            data = urllib2.urlopen(url, None, 45)
+            return json.load(data)
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+
+        return {}
 
     def getStationName(self):
         url = self.__service_url + self.__stations_url
@@ -103,7 +113,7 @@ class AirPollutionSq9atk(SR0WXModule):
         valuesMessage = self.prepareMessage(sensorsData)
 
         message += valuesMessage
-
+        print "\n"
         return {
             "message": message,
             # "source": "powietrze_malopolska_pl",

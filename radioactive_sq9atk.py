@@ -5,6 +5,7 @@ import urllib2
 import re
 import logging
 import pytz
+import socket
 
 from datetime import datetime
 from sr0wx_module import SR0WXModule
@@ -19,8 +20,15 @@ class RadioactiveSq9atk(SR0WXModule):
         self.__logger = logging.getLogger(__name__)
 
     def downloadFile(self, url):
-        webFile = urllib2.urlopen(url)
-        return webFile.read()
+        try:
+            self.__logger.info("::: Odpytuję adres: " + url)
+            webFile = urllib2.urlopen(url, None, 30)
+            return webFile.read()
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+        return ""
 
     def isSensorMatchedById(self, sensorId, string):
         pos = string.find(","+str(sensorId)+", ")
