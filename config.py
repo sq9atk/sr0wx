@@ -78,16 +78,16 @@ openweathersq9atk = OpenWeatherSq9atk(
 
 # STARY MODUŁ ZACIĄGAJĄCY POGODĘ Z ONETU
 # NA DOLE W KONFIGURACJI MA BYC JUŻ WYŁĄCZONY
-# DOCELOWO BĘDZIE USUNIĘTY Z PROJEKTU I ZASTĘPUJE GO MODUŁ OpenWeatherSq9atk
 # ---------------
 # meteo_sq9atk
 # ---------------
 
-#   from meteo_sq9atk import MeteoSq9atk
-#   meteosq9atk = MeteoSq9atk(
-#       language=pl_google,
-#       service_url="https://pogoda.onet.pl/prognoza-pogody/krakow-306020",
-#   )
+#from meteo_sq9atk import MeteoSq9atk
+#meteosq9atk = MeteoSq9atk(
+#    language=pl_google,
+#    service_url="https://pogoda.onet.pl/prognoza-pogody/krakow-306020",
+#)
+
 
 		# Warszawa:	    https://pogoda.onet.pl/prognoza-pogody/warszawa-357732
 		# Kraków:	    https://pogoda.onet.pl/prognoza-pogody/krakow-306020
@@ -148,12 +148,12 @@ imgwpodestsq9atk = ImgwPodestSq9atk(
 ## MAPA WSZYSTKICH WODOWSKAZÓW W POLSCE Z NUMERAMI
 ## http://wx.ostol.pl/wodowskazy/
 
-        #'2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
-        #'2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
+        '2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
+        '2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
         '2.149200370',   # Nazwa: Okocim, rzeka: Uszwica            - zrypany wodowskaz / tylko do testów
         '2.149190350',   # Nazwa: Krzczonów, rzeka: Krzczonówka     - zrypany wodowskaz / tylko do testów
         '2.150210200',   # Nazwa: Grebów, rzeka: Łęg                - zrypany wodowskaz / tylko do testów
-        #'2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
+        '2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
 
         '2.149210050',   # Nazwa: Krajowice, rzeka: Wisłoka
         '2.149200110',   # Nazwa: Trybsz, rzeka: Białka
@@ -289,24 +289,23 @@ from air_pollution_sq9atk import AirPollutionSq9atk
 airpollutionsq9atk = AirPollutionSq9atk(
     language=pl_google,
     service_url="http://api.gios.gov.pl/pjp-api/rest/",
-
     station_id = 402, 
 
-    # poniższe TYLKO DLA KRAKOWA!!!!!
-    # do station_id wpada co 20 minut inna cyfra z przedziału 0,1,2
-    # dzięki czemu za każdym razem wybieramy inną stację pomiarową    
-    # station_id = 400 + (int(datetime.now().strftime('%M')))/20,
-    # 400 Kraków, Aleja Krasińskiego
-    # 401 Kraków, ul. Bujaka
-    # 402 Kraków, ul. Bulwarowa
-    # 10121 Kraków, ul. Dietla
-    # 10123 Kraków, ul. Złoty Róg
-    # 10139 Kraków, os. Piastów
-    # 10435 Kraków, ul. Telimeny
-    # 10447 Kraków, os. Wadów
-    
-    # LISTA STACJI Z NUMERAMI Z CAŁEJ POLSKI
-    # http://api.gios.gov.pl/pjp-api/rest/station/findAll
+        # LISTA STACJI Z NUMERAMI Z CAŁEJ POLSKI
+        # http://api.gios.gov.pl/pjp-api/rest/station/findAll
+        
+        # poniższe TYLKO DLA KRAKOWA!!!!!
+        # do station_id wpada co 20 minut inna cyfra z przedziału 0,1,2
+        # dzięki czemu za każdym razem wybieramy inną stację pomiarową    
+        # station_id = 400 + (int(datetime.now().strftime('%M')))/20,
+        # 400 Kraków, Aleja Krasińskiego
+        # 401 Kraków, ul. Bujaka
+        # 402 Kraków, ul. Bulwarowa
+        # 10121 Kraków, ul. Dietla
+        # 10123 Kraków, ul. Złoty Róg
+        # 10139 Kraków, os. Piastów
+        # 10435 Kraków, ul. Telimeny
+        # 10447 Kraków, os. Wadów
 )
 
 
@@ -318,16 +317,19 @@ geomagneticsq9atk = GeoMagneticSq9atk(
     language=pl_google,
     service_url="https://www.gismeteo.pl/weather-krakow-3212/gm/",
 )
-# https://www.gismeteo.pl/weather-warsaw-3196/gm/
-# https://www.gismeteo.pl/weather-gdansk-3046/gm/
-# https://www.gismeteo.pl/weather-szczecin-3101/gm/
-# https://www.gismeteo.pl/weather-krakow-3212/gm/
-# https://www.gismeteo.pl/weather-rzeszow-3215/gm/
-# https://www.gismeteo.pl/weather-suwaki-269290/gm/
-# https://www.gismeteo.pl/weather-jelenia-gora-3206/gm/
-# https://www.gismeteo.pl/weather-poznan-3194/gm/
-# https://www.gismeteo.pl/weather-lublin-3205/gm/
-
+        # https://www.gismeteo.pl/weather-warsaw-3196/gm/
+        # https://www.gismeteo.pl/weather-gdansk-3046/gm/
+        # https://www.gismeteo.pl/weather-szczecin-3101/gm/
+        # https://www.gismeteo.pl/weather-krakow-3212/gm/
+        # https://www.gismeteo.pl/weather-rzeszow-3215/gm/
+        # https://www.gismeteo.pl/weather-suwaki-269290/gm/
+        # https://www.gismeteo.pl/weather-jelenia-gora-3206/gm/
+        # https://www.gismeteo.pl/weather-poznan-3194/gm/
+        # https://www.gismeteo.pl/weather-lublin-3205/gm/
+        # https://www.gismeteo.pl/weather-gorzow-wielkopolski-3192/gm/
+        # https://www.gismeteo.pl/weather-tarnowskie-gory-3152/gm/
+        # https://www.gismeteo.pl/weather-ptakowice-280575/gm/
+        # więcej miejscowości po wejściu na dowolny z powyższych adresów w przeglądarce...
 
 # ---------------
 # radioactive_sq9atk
@@ -349,34 +351,34 @@ calendarsq9atk = CalendarSq9atk(
     service_url="http://calendar.zoznam.sk/sunset-pl.php?city=",
     city_id=3094802, # Kraków
 )
-		# 776069 Białystok
-		# 3102014 Bydgoszcz
-		# 3100946 Częstochowa
-		# 3099434 Gdańsk
-		# 3099424 Gdynia
-		# 3096472 Katowice
-		# 3094802 Kraków
-		# 3093133 Lodz
-		# 765876 Lublin
-		# 3088171 Poznań
-		# 760778 Radom
-		# 3085128 Sosnowiec
-		# 3083829 Szczecin
-		# 756135 Warsaw
-		# 3081368 Wrocław
+        # 776069 Białystok
+        # 3102014 Bydgoszcz
+        # 3100946 Częstochowa
+        # 3099434 Gdańsk
+        # 3099424 Gdynia
+        # 3096472 Katowice
+        # 3094802 Kraków
+        # 3093133 Lodz
+        # 765876 Lublin
+        # 3088171 Poznań
+        # 760778 Radom
+        # 3085128 Sosnowiec
+        # 3083829 Szczecin
+        # 756135 Warsaw
+        # 3081368 Wrocław
 
 
 
 # WŁĄCZONE MODUŁY
 modules = [
 	activitymap,
-    openweathersq9atk,
-#	meteosq9atk, # ten moduł jest zastąpiony przez openweathersq9atk
-	meteoalarmsq9atk,
-	imgwpodestsq9atk, 
-	airpollutionsq9atk, 
-	geomagneticsq9atk,
-	radioactivesq9atk,
-	calendarsq9atk,
+    #openweathersq9atk,
+	meteosq9atk, # ten moduł jest zastąpiony przez openweathersq9atk
+	#meteoalarmsq9atk,
+	#imgwpodestsq9atk, 
+	#airpollutionsq9atk, 
+	#geomagneticsq9atk,
+	#radioactivesq9atk,
+	#calendarsq9atk,
 ]
 
