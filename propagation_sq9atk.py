@@ -1,7 +1,7 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-import urllib2
+import urllib
 import logging
 import socket
 
@@ -37,18 +37,17 @@ class PropagationSq9atk(SR0WXModule):
     def rgb2hex(self, rgb):
         return '#%02x%02x%02x' % rgb
 
-
     def downloadImage(self, url):
         try:
             self.__logger.info("::: Odpytuję adres: " + url)
-            webFile = urllib2.urlopen(url, None, 30)
-            return Image.open(webFile)
+            webFile = urllib.URLopener()
+            webFile.retrieve(url, "propagacja.png")
+            return Image.open("propagacja.png",'r')
         except urllib2.URLError, e:
             print e
         except socket.timeout:
             print "Timed out!"
         return ""
-
 
     def collectBandConditionsFromImage(self, image, dayTime):
         imageData = image.load()
