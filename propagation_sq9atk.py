@@ -43,39 +43,42 @@ class PropagationSq9atk(SR0WXModule):
             webFile = urllib.URLopener()
             webFile.retrieve(url, "propagacja.png")
             return Image.open("propagacja.png",'r')
-        except urllib2.URLError, e:
-            print e
         except socket.timeout:
             print "Timed out!"
-        return ""
+        except:
+            print "Data download error!"
+        return
 
     def collectBandConditionsFromImage(self, image, dayTime):
-        imageData = image.load()
-        data = list()
-        for band in sorted(self.__pixels):
-            x = self.__pixels[band][dayTime]['x']
-            y = self.__pixels[band][dayTime]['y']
-            rgba = imageData[x,y]
-            color = self.rgb2hex(( rgba[0],rgba[1],rgba[2] ));
+        try:
+            imageData = image.load()
+            data = list()
+            for band in sorted(self.__pixels):
+                x = self.__pixels[band][dayTime]['x']
+                y = self.__pixels[band][dayTime]['y']
+                rgba = imageData[x,y]
+                color = self.rgb2hex(( rgba[0],rgba[1],rgba[2] ));
 
-            # można zaremowac wybraną grupę aby nie podawać info o konkretnych warunkach
-            if self.__levels[color] == 'warunki_podwyzszone':
-                string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                data[:0] = [string]
+                # można zaremowac wybraną grupę aby nie podawać info o konkretnych warunkach
+                if self.__levels[color] == 'warunki_podwyzszone':
+                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
+                    data[:0] = [string]
 
-            if self.__levels[color] == 'warunki_normalne':
-                string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                data[:0] = [string]
+                if self.__levels[color] == 'warunki_normalne':
+                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
+                    data[:0] = [string]
 
-            if self.__levels[color] == 'warunki_obnizone':
-                string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                data[:0] = [string]
+                if self.__levels[color] == 'warunki_obnizone':
+                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
+                    data[:0] = [string]
 
-            if self.__levels[color] == 'pasmo_zamkniete':
-                string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                data[:0] = [string]
+                if self.__levels[color] == 'pasmo_zamkniete':
+                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
+                    data[:0] = [string]
 
-        return data
+            return data
+        except:
+            return list()
 
 
     def get_data(self):
