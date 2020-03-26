@@ -7,10 +7,15 @@
 #
 # sudo pluma /etc/apt/sources.list
 #
-# z pliku usuwamy wszystko i wstawiamy dwie poniższe linijki (oczywiście bez hashów na poczatku),
+# z pliku usuwamy wszystko i wstawiamy poniższe linijki (oczywiście bez hashów na poczatku),
 #
+#
+# deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
 # deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
 # deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+# #Optional
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+#
 #
 # zapisujemy plik CTRL+S
 # 
