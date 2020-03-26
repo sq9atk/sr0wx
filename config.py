@@ -1,6 +1,26 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
+# uwaga mint 13!
+# z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
+# odpalamy w konsoli:
+#
+# sudo pluma /etc/apt/sources.list
+#
+# z pliku usuwamy wszystko i wstawiamy dwie poniższe linijki (oczywiście bez hashów na poczatku),
+#
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+#
+# zapisujemy plik CTRL+S
+# 
+# następnie aktualizujemy źródła oprogramowania komendą:
+#
+# sudo apt-get update
+#
+# Teraz wszystko co poniżej ładnie nam się zainstaluje:
+
+
 #           WYMAGANE DODATKOWE PAKIETY:
 #
 #           sudo apt-get install python-pygame
@@ -393,4 +413,3 @@ modules = [
 	radioactivesq9atk,
 	calendarsq9atk,
 ]
-
