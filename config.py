@@ -1,29 +1,6 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-# uwaga mint 13!
-# z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
-# odpalamy w konsoli:
-#
-# sudo pluma /etc/apt/sources.list
-#
-# z pliku usuwamy wszystko i wstawiamy poniższe linijki (oczywiście bez hashów na poczatku),
-#
-#
-# deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
-# #Optional
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
-#
-#
-# zapisujemy plik CTRL+S
-# 
-# następnie aktualizujemy źródła oprogramowania komendą:
-#
-# sudo apt-get update
-#
-# Teraz wszystko co poniżej ładnie nam się zainstaluje:
 
 
 #           WYMAGANE DODATKOWE PAKIETY:
@@ -34,8 +11,46 @@
 #           sudo apt-get install python-tz
 #           sudo apt-get install python-bs4
 #           sudo apt-get install php5
+#           sudo apt-get install php5-cli
 #           sudo apt-get install php5-curl
 #           sudo apt-get install ffmpeg
+
+
+
+
+
+# UWAGA MINT 13
+# z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
+# odpalamy w konsoli:
+#
+# 		sudo pluma /etc/apt/sources.list
+#
+# z pliku usuwamy wszystko i wstawiamy poniższe linijki (oczywiście bez hashów na poczatku),
+#
+# deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+# #Optional
+# deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+#
+# zapisujemy plik CTRL+S
+#
+# następnie aktualizujemy źródła oprogramowania komendą:
+#
+# 		sudo apt-get update
+#
+# Teraz wszystko co poniżej ładnie nam się zainstaluje:
+
+
+# UWAGA MINT 17
+# jeśli nie możesz zainstalowac ffmpg odpal w konsoli:
+#
+# 		sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next
+# potem
+# 		sudo apt-get update
+# i potem ma się zainstalować ffmpg
+
+
 
 
 import logging, logging.handlers
