@@ -16,9 +16,6 @@
 #           sudo apt-get install ffmpeg
 
 
-
-
-
 # UWAGA MINT 13
 # z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
 # odpalamy w konsoli:
@@ -27,11 +24,11 @@
 #
 # z pliku usuwamy wszystko i wstawiamy poniższe linijki (oczywiście bez hashów na poczatku),
 #
-# deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
-# #Optional
-# deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+# 		deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
+# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
+# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
+# 		#Optional
+# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
 #
 # zapisujemy plik CTRL+S
 #
@@ -51,6 +48,18 @@
 # i potem ma się zainstalować ffmpg
 
 
+# UWAGA!
+# Jeśli ptt sterujesz przez port COM i otrzymujesz błąd: 
+# Failed to open serial port /dev/ttyS0@9600
+#
+# Dodaj aktualnego użytkownika na którym odpalasz pogodynkędo grupy dialout 
+#        sudo gpasswd --add ${USER} dialout
+# oraz
+# w config.py zaraz po:
+#		serial_port = '/dev/ttyS0'
+#		serial_baud_rate = 9600
+# dopisz:
+#		serial_signal = 'DTR'
 
 
 import logging, logging.handlers
@@ -75,13 +84,12 @@ log_handlers = [{
 
 serial_port = '/dev/ttyS0'
 serial_baud_rate = 9600
+serial_signal = 'DTR'
 
 
 import pl_google.pl_google as pl_google
 lang = "pl_google"
 pygame_bug = 0
-
-
 
 hello_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
 goodbye_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
@@ -127,8 +135,6 @@ openweathersq9atk = OpenWeatherSq9atk(
 #    language=pl_google,
 #    service_url="https://pogoda.onet.pl/prognoza-pogody/krakow-306020",
 #)
-
-
 		# Warszawa:	    https://pogoda.onet.pl/prognoza-pogody/warszawa-357732
 		# Kraków:	    https://pogoda.onet.pl/prognoza-pogody/krakow-306020
 		# Wrocław:	    https://pogoda.onet.pl/prognoza-pogody/wroclaw-362450
@@ -149,7 +155,6 @@ openweathersq9atk = OpenWeatherSq9atk(
 		# Szczecin:	    https://pogoda.onet.pl/prognoza-pogody/szczecin-351892
 		# Gdynia:	    https://pogoda.onet.pl/prognoza-pogody/gdynia-287798
 		# Częstochowa:	https://pogoda.onet.pl/prognoza-pogody/czestochowa-280687
-
 
 # -----------------
 # meteoalarm_sq9atk
@@ -176,7 +181,6 @@ meteoalarmsq9atk = MeteoalarmSq9atk(region="IT003") # testowo Lombardia
 		# PL801-Pomorze Wschodnie
 		# PL802-Pomorze Zachodnie
 		# IT003-Lombardia
-
 
 # -------------
 # imgw_podest_sq9atk
@@ -348,7 +352,6 @@ airpollutionsq9atk = AirPollutionSq9atk(
         # 10447 Kraków, os. Wadów
 )
 
-
 # --------------------
 # geomagnetic_sq9atk
 # --------------------
@@ -382,7 +385,6 @@ radioactivesq9atk = RadioactiveSq9atk(
     ## więcej czujników na stronie http://radioactiveathome.org/map/
 )
 
-
 # ---------------
 # propagation_sq9atk
 # ---------------
@@ -391,7 +393,6 @@ propagationsq9atk = PropagationSq9atk(
     language=pl_google,
     service_url="https://rigreference.com/solar/img/tall",
 )
-
 
 # ---------------
 # calendar_sq9atk
@@ -418,8 +419,6 @@ calendarsq9atk = CalendarSq9atk(
         # 756135 Warsaw
         # 3081368 Wrocław
 
-
-
 # WŁĄCZONE MODUŁY
 modules = [
 	activitymap,
@@ -431,5 +430,5 @@ modules = [
     propagationsq9atk,
 	geomagneticsq9atk,
 	radioactivesq9atk,
-	calendarsq9atk,
+    calendarsq9atk,
 ]
