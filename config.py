@@ -1,8 +1,6 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-
-
 #           WYMAGANE DODATKOWE PAKIETY:
 #
 #           sudo apt-get install python-pygame
@@ -10,11 +8,14 @@
 #           sudo apt-get install python-six
 #           sudo apt-get install python-tz
 #           sudo apt-get install python-bs4
-#           sudo apt-get install php5
+#           sudo apt-get install python-imaging
+#           sudo apt-get install python-serial
+#           sudo apt-get install ffmpeg
+#           sudo apt-get install php5 
 #           sudo apt-get install php5-cli
 #           sudo apt-get install php5-curl
-#           sudo apt-get install ffmpeg
-
+#
+#           lub php5.6 php7.0 albo dowolna inna wersja php
 
 # UWAGA MINT 13
 # z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
@@ -38,7 +39,6 @@
 #
 # Teraz wszystko co poniżej ładnie nam się zainstaluje:
 
-
 # UWAGA MINT 17
 # jeśli nie możesz zainstalowac ffmpg odpal w konsoli:
 #
@@ -47,19 +47,23 @@
 # 		sudo apt-get update
 # i potem ma się zainstalować ffmpg
 
-
 # UWAGA!
-# Jeśli ptt sterujesz przez port COM i otrzymujesz błąd: 
-# Failed to open serial port /dev/ttyS0@9600
-#
-# Dodaj aktualnego użytkownika na którym odpalasz pogodynkędo grupy dialout 
-#        sudo gpasswd --add ${USER} dialout
-# oraz
-# w config.py zaraz po:
+# Jeśli otrzymujesz błąd: 
+# 	    Failed to open serial port /dev/ttyS0@9600
+# w pliku config.py dopisz:
+#		serial_signal = 'DTR'
+# zaraz po linijkach:
 #		serial_port = '/dev/ttyS0'
 #		serial_baud_rate = 9600
-# dopisz:
-#		serial_signal = 'DTR'
+
+# UWAGA!
+# Jeśli otrzymujesz błąd: 
+# 	    [Errno 13] could not open port /dev/ttyS0: 
+# 	    [Errno 13] Permission denied: '/dev/ttyS0'
+# dodaj do grupy dialout aktualnego użytkownika na którym odpalasz pogodynkę 
+#       sudo gpasswd --add ${USER} dialout
+# i zrestartuj system operacyjny
+
 
 
 import logging, logging.handlers
@@ -381,7 +385,7 @@ from radioactive_sq9atk import RadioactiveSq9atk
 radioactivesq9atk = RadioactiveSq9atk(
     language=pl_google,
     service_url="http://radioactiveathome.org/map/",
-    sensor_id=635 #czujnik w centrum Krakowa
+    sensor_id=35167 #czujnik w centrum Krakowa
     ## więcej czujników na stronie http://radioactiveathome.org/map/
 )
 
