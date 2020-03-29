@@ -233,7 +233,7 @@ if config.serial_port is not None:
     import serial
     #try:
     ser = serial.Serial(config.serial_port, config.serial_baud_rate)
-    if config.serial_signal == 'DTR':
+    if config.serial_signal == 'RTS':
         logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
         ser.setDTR(0)
         ser.setRTS(1)
