@@ -231,19 +231,19 @@ for el in message:
 if config.serial_port is not None:
     
     import serial
-    #try:
-    ser = serial.Serial(config.serial_port, config.serial_baud_rate)
-    if config.serial_signal == 'DTR':
-        logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
-        ser.setDTR(0)
-        ser.setRTS(1)
-    else:
-        logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
-        ser.setDTR(1)
-        ser.setRTS(0)
-    #except:
-    #    log = COLOR_FAIL + "Failed to open serial port %s@%i\n" + COLOR_ENDC
-    #    logger.error(log, config.serial_port, config.serial_baud_rate)
+    try:
+		ser = serial.Serial(config.serial_port, config.serial_baud_rate)
+		if config.serial_signal == 'DTR':
+		    logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
+		    ser.setDTR(0)
+		    ser.setRTS(1)
+		else:
+		    logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
+		    ser.setDTR(1)
+		    ser.setRTS(0)
+    except:
+        log = COLOR_FAIL + "Failed to open serial port %s@%i\n" + COLOR_ENDC
+        logger.error(log, config.serial_port, config.serial_baud_rate)
 
 
 pygame.time.delay(1000)
