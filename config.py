@@ -88,7 +88,7 @@ log_handlers = [{
 
 serial_port = '/dev/ttyS0'
 serial_baud_rate = 9600
-serial_signal = 'DTR'
+serial_signal = 'DTR' # lub 'RTS'
 
 
 import pl_google.pl_google as pl_google
