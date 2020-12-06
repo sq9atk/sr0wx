@@ -3,3 +3,6 @@
 imgwpodest_data/*
 propagacja.png
 sr0wx.log
+
+audio_generator/ogg/*
+audio_generator/mpg/*
