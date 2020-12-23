@@ -1,68 +1,35 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-#           WYMAGANE DODATKOWE PAKIETY:
-#
-#           sudo apt-get install python-pygame
-#           sudo apt-get install python-serial
-#           sudo apt-get install python-six
-#           sudo apt-get install python-tz
-#           sudo apt-get install python-bs4
-#           sudo apt-get install python-imaging
-#           sudo apt-get install python-serial
-#           sudo apt-get install ffmpeg
-#           sudo apt-get install php5 
-#           sudo apt-get install php5-cli
-#           sudo apt-get install php5-curl
-#
-#           lub php5.6 php7.0 albo dowolna inna wersja php
+# AKTUALNIE ZALECANE JEST UBUNTU 16.04 MATE
+# Poniższy opis dotyczy tej dystrybucji
 
-# UWAGA MINT 13
-# z uwagi na fakt zakończenia wsparcia do mint 13 należy przepiąć źródła oprogramowania:
-# odpalamy w konsoli:
+# WYMAGANE DODATKOWE PAKIETY:
+#   sudo apt-get install git
+#   sudo apt-get install python-pygame
+#   sudo apt-get install python-tz
+#   sudo apt-get install python-imaging
+#   sudo apt-get install python-serial
+#   sudo apt-get install curl
+#   sudo apt-get install php7.0
+#   sudo apt-get install php7.0-curl
+#   sudo apt-get install ffmpeg
 #
-# 		sudo pluma /etc/apt/sources.list
-#
-# z pliku usuwamy wszystko i wstawiamy poniższe linijki (oczywiście bez hashów na poczatku),
-#
-# 		deb http://old-releases.ubuntu.com/ubuntu/ precise main restricted universe multiverse
-# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-updates main restricted universe multiverse
-# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-security main restricted universe multiverse
-# 		#Optional
-# 		deb http://old-releases.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
-#
-# zapisujemy plik CTRL+S
-#
-# następnie aktualizujemy źródła oprogramowania komendą:
-#
-# 		sudo apt-get update
-#
-# Teraz wszystko co poniżej ładnie nam się zainstaluje:
+# LUB WSZYSTKO NA RAZ
+#   sudo apt-get install git python-pygame python-tz python-imaging python-serial curl php7.0 php7.0-curl ffmpeg
 
-# UWAGA MINT 17
-# jeśli nie możesz zainstalowac ffmpg odpal w konsoli:
+# UPRAWNIENIA USERA DO PORTU COM
+#   sudo gpasswd --add ${USER} dialout
+
+# GENEROWANIE SAMPLI
+# Będąc w katalogu audio_generator:
+#   php index.php
 #
-# 		sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next
-# potem
-# 		sudo apt-get update
-# i potem ma się zainstalować ffmpg
+# Generowane są sample z tablicy $słownik z pliku slownik.php. 
+# Pozostałe tablice to tylko przechowalnia fraz go wygenerowania.
 
-# UWAGA!
-# Jeśli otrzymujesz błąd: 
-# 	    Failed to open serial port /dev/ttyS0@9600
-# w pliku config.py dopisz:
-#		serial_signal = 'DTR'
-# zaraz po linijkach:
-#		serial_port = '/dev/ttyS0'
-#		serial_baud_rate = 9600
 
-# UWAGA!
-# Jeśli otrzymujesz błąd: 
-# 	    [Errno 13] could not open port /dev/ttyS0: 
-# 	    [Errno 13] Permission denied: '/dev/ttyS0'
-# dodaj do grupy dialout aktualnego użytkownika na którym odpalasz pogodynkę 
-#       sudo gpasswd --add ${USER} dialout
-# i zrestartuj system operacyjny
+
 
 
 
