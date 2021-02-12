@@ -53,23 +53,16 @@
 
         $tmp_river = explode(' (',$subdata->status->river);
 
-        $trends = array(2 => 0, 3 => -1, 4 => 1);
-
+        $trends = array('const' => 0, 'unknown' => 0, 'down' => -1, 'up' => 1);
         $result[$row->i] = array(
             'id'                        => $row->i,
             'nazwa'                     => $subdata->status->description,
             'rzeka'                     => $tmp_river[0],
-            'rzeka_id'                  => str_replace(')','',$tmp_river[1]),
             'region'                    => $subdata->status->province,
-            'tendencja'                 => @$trends[$subdata->status->trend],
-            'stan'                      => $subdata->status->state,
-            'stan_cm'                   => $subdata->status->currentValue,
-            'stan_cm_old'               => $subdata->status->previousValue,
+            'tendencja'                 => $trends[$subdata->trend],
+            'stan_cm'                   => isset($subdata->status->currentState) ?  $subdata->status->currentState->value : null,
             'poziom_ostrzegawczy'       => $subdata->status->warningValue,
             'poziom_alarmowy'           => $subdata->status->alarmValue,
-            'water_gauge_zero_ordinate' => $subdata->status->waterGaugeZeroOrdinate,
-            'lat'                       => $row->la,
-            'lon'                       => $row->lo
         );
     }
 
