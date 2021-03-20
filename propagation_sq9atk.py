@@ -31,7 +31,7 @@ class PropagationSq9atk(SR0WXModule):
             '#17e624':'warunki_podwyzszone', # zielony
             '#e6bc17':'warunki_normalne', # żółty
             '#e61717':'warunki_obnizone', # czerwony
-            '#5817e6':'pasmo_zamkniete', #fioletowy
+            '#5717e6':'pasmo_zamkniete', #fioletowy
         }
 
     def rgb2hex(self, rgb):
