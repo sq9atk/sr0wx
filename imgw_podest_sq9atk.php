@@ -47,9 +47,14 @@
             $json = shell_exec("curl  --silent 'https://hydro.imgw.pl/api/station/hydro/?id=".$row->i."' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0' -H 'Accept: application/json, text/javascript, */*; q=0.01' -H 'Accept-Language: pl,en-US;q=0.7,en;q=0.3' --compressed -H 'X-Requested-With: XMLHttpRequest' -H 'Connection: keep-alive' -H 'Referer: https://hydro.imgw.pl/' -H 'Cookie: SRV_=shsrv01.imgw.pl_SRV' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache'");
 
             file_put_contents('imgwpodest_data/'.$row->i.'.json', $json);
-       }
+        }
 
+        //file_put_contents('imgwpodest_data/'.$row->i.'.txt', print_r($subdata, true));
         $subdata = json_decode(file_get_contents('imgwpodest_data/'.$row->i.'.json'));
+
+        if (isset($subdata->exception) || !isset($subdata->status)) {
+            continue;
+        }
 
         $tmp_river = explode(' (',$subdata->status->river);
 
@@ -65,6 +70,9 @@
             'poziom_alarmowy'           => $subdata->status->alarmValue,
         );
     }
+
+    //file_put_contents('imgwpodest_data/result.txt', print_r($result, true));
+    //file_put_contents('imgwpodest_data/result.json', print_r(json_encode($result), true));
 
     echo json_encode($result);
     echo "\n";
