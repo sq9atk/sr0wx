@@ -306,7 +306,7 @@ airlysq9atk = AirlySq9atk(
     lat = 50.079242,
     lon = 18.516138,
     maxDistanceKM = 5,
-    installationId = 204,
+    installationId = 8077, # Mikołajska Kraków
 )
 
 # --------------------

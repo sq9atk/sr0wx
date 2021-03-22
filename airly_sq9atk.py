@@ -78,8 +78,8 @@ class AirlySq9atk(SR0WXModule):
     def prepareApiServiceUrl(self):
         api_url = 'https://airapi.airly.eu/v2/measurements/'
         urls = {
-            'installationId': api_url + 'measurements/installation?installationId=' + self.__installationId,
-            'point':          api_url + 'measurements/point?lat=' + self.__lat + '&lng=' + self.__lon,
+            'installationId': api_url + 'installation?installationId=' + self.__installationId,
+            'point':          api_url + 'point?lat=' + self.__lat + '&lng=' + self.__lon,
             'nearest':        api_url + 'nearest?lat=' + self.__lat + '&lng=' + self.__lon + '&maxDistanceKM=' + self.__maxDistanceKM,
         };
         return urls[self.__mode]
