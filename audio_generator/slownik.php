@@ -11,7 +11,25 @@
 
 
     // TABLICE Z SAMPLAMI DO MODUŁÓW
+    $airly = array(
+        array('pył zawieszony Pe eM 1','pyl__zawieszony_pm1'),
+        array('pył zawieszony Pe eM 10','pyl__zawieszony_pm10'),
+        array('pył zawieszony Pe eM 2 i pięć dziesiątych','pyl__zawieszony_pm25'),
 
+        array('bardzo dobry','bardzo_dobry'),
+        array('dobry','dobry'),
+        array('umiarkowany','umiarkowany'),
+        array('zly','zły'),
+        array('bardzo zły','bardzo_zly'),
+
+        array('stan_ogólny ','stan_ogolny'),
+
+        array('airly','airly'),
+        array('godzina','godzina'),
+    );
+
+
+    
     /// PROPAGACJA
     $slownikPropagacja = array(
         array('rigreferens','rigreference'),

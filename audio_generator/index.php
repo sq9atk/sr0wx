@@ -34,14 +34,14 @@ function azAZ09($string)
 function getMpg($word, $filename)
 {
 //    $url = 'https://code.responsivevoice.org/getvoice.php?lang=pl-GB&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=WGciAW2s&gender=female&text='.urlencode($word);
-    $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=uu8DEkxz&gender=female&text='.urlencode($word);
+    $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=WfWmvaX0&gender=female&text='.urlencode($word);
 
 
     $audio = file_get_contents_curl($url);
 
     file_put_contents('mpg/'.$filename.'.mpg', $audio);
 
-    shell_exec ( "ffmpeg -i mpg/$filename.mpg   -ar 16000  -ab 48000 -acodec libvorbis ogg/$filename.ogg");
+    shell_exec ( "ffmpeg -y -i mpg/$filename.mpg   -ar 32000  -ab 48000 -acodec libvorbis ogg/$filename.ogg");
     unlink("mpg/$filename.mpg");
 }
 

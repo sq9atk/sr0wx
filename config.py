@@ -95,37 +95,6 @@ openweathersq9atk = OpenWeatherSq9atk(
     service_url = 'http://api.openweathermap.org/data/2.5/'
 )
 
-# STARY MODUŁ ZACIĄGAJĄCY POGODĘ Z ONETU
-# NA DOLE W KONFIGURACJI MA BYC JUŻ WYŁĄCZONY
-# ---------------
-# meteo_sq9atk
-# ---------------
-
-#from meteo_sq9atk import MeteoSq9atk
-#meteosq9atk = MeteoSq9atk(
-#    language=pl_google,
-#    service_url="https://pogoda.onet.pl/prognoza-pogody/krakow-306020",
-#)
-		# Warszawa:	    https://pogoda.onet.pl/prognoza-pogody/warszawa-357732
-		# Kraków:	    https://pogoda.onet.pl/prognoza-pogody/krakow-306020
-		# Wrocław:	    https://pogoda.onet.pl/prognoza-pogody/wroclaw-362450
-		# Poznań:	    https://pogoda.onet.pl/prognoza-pogody/poznan-335979
-		# Sopot:	    https://pogoda.onet.pl/prognoza-pogody/sopot-346875
-		# Gdańsk:     	https://pogoda.onet.pl/prognoza-pogody/gdansk-287788
-		# Białystok:	https://pogoda.onet.pl/prognoza-pogody/bialystok-270085
-		# Bydgoszcz:    https://pogoda.onet.pl/prognoza-pogody/bydgoszcz-276560
-		# Katowice:	    https://pogoda.onet.pl/prognoza-pogody/katowice-299998
-		# Kielce:	    https://pogoda.onet.pl/prognoza-pogody/kielce-300882
-		# Koszalin:	    https://pogoda.onet.pl/prognoza-pogody/koszalin-304806
-		# Lublin:     	https://pogoda.onet.pl/prognoza-pogody/lublin-311624
-		# Łódź:	        https://pogoda.onet.pl/prognoza-pogody/lodz-313660
-		# Olsztyn:	    https://pogoda.onet.pl/prognoza-pogody/olsztyn-325715
-		# Opole:	    https://pogoda.onet.pl/prognoza-pogody/opole-325985
-		# Rzeszów:	    https://pogoda.onet.pl/prognoza-pogody/rzeszow-342624
-		# Suwałki:	    https://pogoda.onet.pl/prognoza-pogody/suwalki-351446
-		# Szczecin:	    https://pogoda.onet.pl/prognoza-pogody/szczecin-351892
-		# Gdynia:	    https://pogoda.onet.pl/prognoza-pogody/gdynia-287798
-		# Częstochowa:	https://pogoda.onet.pl/prognoza-pogody/czestochowa-280687
 
 # -----------------
 # meteoalarm_sq9atk
@@ -323,6 +292,23 @@ airpollutionsq9atk = AirPollutionSq9atk(
         # 10447 Kraków, os. Wadów
 )
 
+# ---------------
+# airly_sq9atk
+# ---------------
+# https://developer.airly.org/ pod tym adresem można uzyskac klucz API
+# wystarczy sie zarejestrować
+from airly_sq9atk import AirlySq9atk
+airlysq9atk = AirlySq9atk(
+    language = pl_google,
+    api_key = '02b3a79363c3497dbb992093cd9d7779',
+    service_url = 'https://airapi.airly.eu/v2/measurements', #location
+    mode = 'nearest',  # point|nearest|installationId
+    lat = 50.079242,
+    lon = 18.516138,
+    maxDistanceKM = 5,
+    installationId = 204,
+)
+
 # --------------------
 # geomagnetic_sq9atk
 # --------------------
@@ -392,14 +378,14 @@ calendarsq9atk = CalendarSq9atk(
 
 # WŁĄCZONE MODUŁY
 modules = [
-	activitymap,
-    openweathersq9atk,
-	#meteosq9atk, # pogoda z onet-u, ten moduł jest zastąpiony przez openweathersq9atk
-	meteoalarmsq9atk,
-	imgwpodestsq9atk,
-	airpollutionsq9atk,
-    propagationsq9atk,
-	geomagneticsq9atk,
-	radioactivesq9atk,
-    calendarsq9atk,
+	activitymap,            # marker na mapie wx.ostol.pl
+    openweathersq9atk,      # prognoza pogody
+	meteoalarmsq9atk,       # zagrożenia meteo
+	imgwpodestsq9atk,       # wodowskazy
+	#airpollutionsq9atk,    # zanieczyszczenia powietrza z GIOŚ
+    airlysq9atk,            # zanieczyszczenia powietrza z Airly
+    propagationsq9atk,      # propagacja KF
+	geomagneticsq9atk,      # zaburzenia geomagnetyczne
+	radioactivesq9atk,      # promieniowanie jonizujące
+    calendarsq9atk,         # wschód słońca
 ]
