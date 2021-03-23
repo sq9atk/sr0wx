@@ -19,7 +19,8 @@
 import base64
 import logging
 import json
-import urllib
+
+import urllib2
 
 from sr0wx_module import SR0WXModule
 
@@ -73,14 +74,40 @@ Parameters:
 
         dump = json.dumps(station_info, separators=(',', ':'))
         b64data = base64.urlsafe_b64encode(dump)
-        request = self.__service_url + b64data
-        self.__logger.info("::: Odpytuję adres: " + request)
-        response = urllib.urlopen(request).read()
 
-        if response == 'OK':
-            self.__logger.info("::: Dane wysłano, status OK\n")
-        else:
-            log = "Non-OK response from %s, (%s)"
-            self.__logger.error(log, request, response)
+        url = self.__service_url + b64data
 
-        return dict()
+        self.__logger.info("::: Odpytuję adres: " + url)
+
+
+        try:
+            request = urllib2.Request(url)
+            webFile = urllib2.urlopen(request, None, 5)
+            response = webFile.read()
+
+            if response == 'OK':
+                self.__logger.info("::: Dane wysłano, status OK\n")
+            else:
+                log = "Non-OK response from %s, (%s)"
+                self.__logger.error(log, url, response)
+            return dict()
+
+        except urllib2.URLError, e:
+            print e
+        except socket.timeout:
+            print "Timed out!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
