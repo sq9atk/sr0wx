@@ -179,7 +179,11 @@ for module in modules:
 # data. Every element of returned list is actually a filename of a sample.
 
 message = config.hello_msg + message.split()
-if len(sources) > 1:
+if hasattr(config, 'read_sources_msg'):
+    if config.read_sources_msg:
+        if len(sources) > 1:
+            message += sources
+else:
     message += sources
 message += config.goodbye_msg
 

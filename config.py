@@ -64,6 +64,7 @@ pygame_bug = 0
 
 hello_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
 goodbye_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
+read_sources_msg = False
 
 # -------------
 # activity_map
@@ -382,8 +383,8 @@ modules = [
     openweathersq9atk,      # prognoza pogody
 	meteoalarmsq9atk,       # zagrożenia meteo
 	imgwpodestsq9atk,       # wodowskazy
-	#airpollutionsq9atk,    # zanieczyszczenia powietrza z GIOŚ
-    airlysq9atk,            # zanieczyszczenia powietrza z Airly
+	airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
+    #airlysq9atk,            # zanieczyszczenia powietrza z Airly
     propagationsq9atk,      # propagacja KF
 	geomagneticsq9atk,      # zaburzenia geomagnetyczne
 	radioactivesq9atk,      # promieniowanie jonizujące

@@ -116,7 +116,7 @@ class AirPollutionSq9atk(SR0WXModule):
         print "\n"
         return {
             "message": message,
-            # "source": "powietrze_malopolska_pl",
+            "source": "powietrze_malopolska_pl",
         }
 
     def mbstr2asci(self, string):
