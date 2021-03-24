@@ -1,7 +1,5 @@
 <?php
 
-include('debug.php');
-
 include('slownik.php'); // $slownik
 #include('slownik_rzeki.php'); // $slownik rzeki
 #include('slownik_wodowskazy.php'); // $slownik wodowskazy
@@ -33,9 +31,13 @@ function azAZ09($string)
 
 function getMpg($word, $filename)
 {
-//    $url = 'https://code.responsivevoice.org/getvoice.php?lang=pl-GB&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=WGciAW2s&gender=female&text='.urlencode($word);
-    $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key=WfWmvaX0&gender=female&text='.urlencode($word);
 
+    $key = 'WfWmvaX0';
+
+	# Żeński
+    $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key='.$key.'&gender=female&text='.urlencode($word);
+    # Męski
+    #$url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.56&volume=1&key='.$key.'&gender=male&text='.urlencode($word);
 
     $audio = file_get_contents_curl($url);
 
