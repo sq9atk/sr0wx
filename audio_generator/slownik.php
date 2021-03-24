@@ -5,7 +5,7 @@
 
 # TYLKO Z TEJ TABLICY GENEROWANE SĄ SAMPLE
 $slownik = array(
-    array('słowa do przeczytania','nazwa_pliku_wynikowego'),
+    array('dzień ', 'dzien'),
 );
 
 
@@ -101,7 +101,6 @@ $slownik_wszystkie = array(
     array('ulewa z mżawką', 'ulewa_z_mzawka'),
     array('silna ulewa z mżawką', 'silna_ulewa_z_mzawka'),
     array('ulewa z mżawką', 'ulewa_z_mzawka'),
-    array('lekkie opady deszczu'),
     array('umiarkowane opady deszczu'),
     array('intensywne opady deszczu'),
     array('bardzo intensywne opady deszczu'),
@@ -907,7 +906,7 @@ $slownik_wszystkie = array(
     array('lipnica murowana','lipnica_murowana'),
     array('rabka','rabka'),
     array('muszyna','muszyna'),
-    
+
     array('Annopol', 'annopol'),
     array('Babino', 'babino'),
     array('Balice', 'balice'),
