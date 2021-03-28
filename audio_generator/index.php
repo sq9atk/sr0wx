@@ -32,6 +32,9 @@ function azAZ09($string)
 function getMpg($word, $filename)
 {
 
+    @mkdir('ogg');
+    @mkdir('mpg');
+
     $key = 'WfWmvaX0';
 
 	# Żeński
