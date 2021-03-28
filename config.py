@@ -62,8 +62,8 @@ import pl_google.pl_google as pl_google
 lang = "pl_google"
 pygame_bug = 0
 
-hello_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
-goodbye_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa']
+hello_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa','sr0wx']
+goodbye_msg = ['_','tu_sr0wx']
 read_sources_msg = False
 
 # -------------
@@ -380,13 +380,13 @@ calendarsq9atk = CalendarSq9atk(
 # WŁĄCZONE MODUŁY
 modules = [
 	activitymap,            # marker na mapie wx.ostol.pl
-    openweathersq9atk,      # prognoza pogody
-	meteoalarmsq9atk,       # zagrożenia meteo
-	imgwpodestsq9atk,       # wodowskazy
-	airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
+    #openweathersq9atk,      # prognoza pogody
+	#meteoalarmsq9atk,       # zagrożenia meteo
+	#imgwpodestsq9atk,       # wodowskazy
+	#airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
     #airlysq9atk,            # zanieczyszczenia powietrza z Airly
-    propagationsq9atk,      # propagacja KF
-	geomagneticsq9atk,      # zaburzenia geomagnetyczne
-	radioactivesq9atk,      # promieniowanie jonizujące
+    #propagationsq9atk,      # propagacja KF
+	#geomagneticsq9atk,      # zaburzenia geomagnetyczne
+	#radioactivesq9atk,      # promieniowanie jonizujące
     calendarsq9atk,         # wschód słońca
 ]

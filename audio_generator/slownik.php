@@ -5,7 +5,7 @@
 
 # TYLKO Z TEJ TABLICY GENEROWANE SĄ SAMPLE
 $slownik = array(
-    array('dzień ', 'dzien'),
+    array('tekst do przeczytana ', 'nazwa_pliku_bez_rozszerzenia'),
 );
 
 
