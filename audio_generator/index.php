@@ -35,7 +35,7 @@ function getMpg($word, $filename)
     @mkdir('ogg');
     @mkdir('mpg');
 
-    $key = 'WfWmvaX0';
+    $key = 'ufdknZDi';
 
 	# Żeński
     $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key='.$key.'&gender=female&text='.urlencode($word);
