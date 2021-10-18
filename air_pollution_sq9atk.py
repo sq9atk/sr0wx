@@ -69,14 +69,15 @@ class AirPollutionSq9atk(SR0WXModule):
             value = self.getSensorValue(row['id'])
             if(value[1]>1): # czasem tu schodzi none
                 qualityIndexName = self.mbstr2asci(value[0]) + "IndexLevel"
-                index = levelIndexArray[qualityIndexName]
-                sensors.append([
-                    row['id'],
-                    qualityIndexName,
-                    self.mbstr2asci(row['param']['paramName']),
-                    value[1],
-                    self.mbstr2asci(index['indexLevelName'])
-                ])
+                if levelIndexArray.has_key(qualityIndexName):
+                    index = levelIndexArray[qualityIndexName]
+                    sensors.append([
+                        row['id'],
+                        qualityIndexName,
+                        self.mbstr2asci(row['param']['paramName']),
+                        value[1],
+                        self.mbstr2asci(index['indexLevelName'])
+                    ])
         return sensors
 
     def prepareMessage(self, data):
