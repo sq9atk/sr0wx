@@ -3,6 +3,7 @@
 
 import logging, re, subprocess
 import urllib2
+import time
 from pprint import pprint
 
 from sr0wx_module import SR0WXModule
@@ -24,10 +25,9 @@ class GeoMagneticSq9atk(SR0WXModule):
             7:'sztorm_geomagnetyczny',                      8:'duz_y_sztorm_geomagnetyczny'
         }
         self.__seasons = {
-            0:' ',
-            1:'kro_tko_po_po_l_nocy',    4:'nad_ranem',              7:'rano',
-            10:'przed_pol_udniem',      13:'wczesnym_popol_udniem', 16:'po_pol_udniu',
-            19:'wieczorem',             22:'przed_po_l_noca_',
+            0:'kro_tko_po_po_l_nocy',    3:'nad_ranem',              6:'rano',
+            9:'przed_pol_udniem',       12:'wczesnym_popol_udniem', 15:'po_pol_udniu',
+           18:'wieczorem',              21:'przed_po_l_noca_',
         }
         self.__fluctuations = {
             0:'niezauwaz_alne', 1:'znikome', 2:'lekkie',       3:'podwyz_szone',
@@ -51,25 +51,29 @@ class GeoMagneticSq9atk(SR0WXModule):
 
         html = self.downloadDataFromUrl(self.__service_url)
 
-        r = re.compile(r'<div class="widget__value w_gm__value(.*?)">(\d)</div>')
-
+        #r = re.compile(r'<div class="widget__value w_gm__value(.*?)">(\d)</div>')
+        r = re.compile(r'<div class="value item-(\d)(.*?)"><svg>(.*?)</svg>(\d)</div>')
+        
         return r.findall(html)
 
     def groupValuesByDays(self, data):
-        hour = 1
+        hour = 0
         dayNum = 1
-        current_hour = 18
+        current_hour = int(time.strftime("%H"))
+        
         output = {1:{},2:{},3:{}}
-
+    
         for i, val in enumerate(data):
-            if dayNum > 1 or hour > current_hour: # omijamy godziny z przeszłości
-                value = data[i][1]
-                output[dayNum][hour] = value
+            if dayNum > 1 or hour > current_hour-1: # omijamy godziny z przeszłości
+                if dayNum < 4 and i < 24:
+                    value = data[i+1][3]
+                    output[dayNum][hour] = value
 
             hour += 3
-            if hour > 22:
-                hour = 1
+            if hour > 21:
+                hour = 0
                 dayNum += 1
+
         return output
 
     def getStrongestConditionOfDay(self,data):
@@ -89,22 +93,20 @@ class GeoMagneticSq9atk(SR0WXModule):
 
     def get_data(self):
         values = self.getDataParsedHtmlData()
-
         daysValues = self.groupValuesByDays(values)
 
         message = ' _ sytuacja_geomagnetyczna_w_regionie ';
 
         self.__logger.info("::: Przetwarzam dane...\n")
         for d, day in daysValues.iteritems():
-
+            
             if len(day) > 0:
                 a=1
                 message += " _ "+self.__days[d-1] + " "
                 condition = self.getStrongestConditionOfDay(day)
-
+                
                 message += self.__seasons[condition['at']] + " "
                 message += self.__conditions[int(condition['value'])] + " "
-
                 message += self.__fluctuations[self.getDailyFluctuation(day)] + " wahania_dobowe "
 
         return {
