@@ -53,7 +53,7 @@ class AirPollutionSq9atk(SR0WXModule):
         data = self.getJson(url)
         return [
             data['key'],
-            data['values'][1]['value']
+            data['values'][0]['value']
         ]
 
     def getLevelIndexData(self):
@@ -78,7 +78,10 @@ class AirPollutionSq9atk(SR0WXModule):
                         value[1],
                         self.mbstr2asci(index['indexLevelName'])
                     ])
-        return sensors
+        if len(sensors) > 0:
+            return sensors
+        else:
+            raise Exception("brak danych pomiarowych")
 
     def prepareMessage(self, data):
         levels =  {
@@ -101,18 +104,14 @@ class AirPollutionSq9atk(SR0WXModule):
 
     def get_data(self):
         self.__logger.info("::: Pobieram informacje o skażeniu powietrza...")
-
-        stationName = self.mbstr2asci(self.getStationName())
-
-        message = " "
-        message = " _ informacja_o_skaz_eniu_powietrza _ "
-        message += " stacja_pomiarowa " + stationName + " _ "
-
         self.__logger.info("::: Przetwarzam dane...\n")
 
         sensorsData = self.getSensorsData()
         valuesMessage = self.prepareMessage(sensorsData)
 
+        message = " "
+        message = " _ informacja_o_skaz_eniu_powietrza _ "
+        message += " stacja_pomiarowa " + self.mbstr2asci(self.getStationName()) + " _ "
         message += valuesMessage
         print "\n"
         return {
@@ -131,12 +130,5 @@ class AirPollutionSq9atk(SR0WXModule):
             replace(u'-',u'_').replace(u'(',u'').\
             replace(u')',u'').replace(u'.',u'').\
             replace(u',',u'')
-
-
-
-
-
-
-
 
 
