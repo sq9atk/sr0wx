@@ -295,7 +295,7 @@ pygame.time.delay(1000)
 try:
     if config.serial_port is not None:
         ser.close()
-        logger.info(COLOR_OKGREEN + "RTS/PTT set to OF\n" + COLOR_ENDC)
+        logger.info(COLOR_OKGREEN + "RTS/PTT set to OFF\n" + COLOR_ENDC)
 except NameError:
     # sudo gpasswd --add ${USER} dialout 
     logger.exception(COLOR_FAIL + "Couldn't close serial port" + COLOR_ENDC)
