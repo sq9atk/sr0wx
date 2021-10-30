@@ -51,15 +51,18 @@ class AirPollutionSq9atk(SR0WXModule):
     def getSensorValue(self, sensorId):
         url = self.__service_url + self.__sensor_url + str(sensorId)
         data = self.getJson(url)
+        if data['values'][0]['value'] > 0: # czasem tu schodzi null
+            value = data['values'][0]['value'] 
+        else:
+            value = data['values'][1]['value']
         return [
             data['key'],
-            data['values'][0]['value']
+            value
         ]
 
     def getLevelIndexData(self):
         url = self.__service_url + self.__index_url + str(self.__station_id)
         return self.getJson(url)
-
 
     def getSensorsData(self):
         url = self.__service_url + self.__station_url + str(self.__station_id)
@@ -70,14 +73,16 @@ class AirPollutionSq9atk(SR0WXModule):
             if(value[1]>1): # czasem tu schodzi none
                 qualityIndexName = self.mbstr2asci(value[0]) + "IndexLevel"
                 if levelIndexArray.has_key(qualityIndexName):
-                    index = levelIndexArray[qualityIndexName]
-                    sensors.append([
-                        row['id'],
-                        qualityIndexName,
-                        self.mbstr2asci(row['param']['paramName']),
-                        value[1],
-                        self.mbstr2asci(index['indexLevelName'])
-                    ])
+                    index = levelIndexArray[qualityIndexName]['indexLevelName']
+                else:
+                    index = 'empty'
+                sensors.append([
+                    row['id'],
+                    qualityIndexName,
+                    self.mbstr2asci(row['param']['paramName']),
+                    value[1],
+                    self.mbstr2asci(index)
+                ])
         if len(sensors) > 0:
             return sensors
         else:
@@ -85,20 +90,21 @@ class AirPollutionSq9atk(SR0WXModule):
 
     def prepareMessage(self, data):
         levels =  {
-            'bardzo_dobry'  :'poziom_bardzo_dobry',
-            'dobry'         :'poziom_dobry',
-            'dostateczny'   :'poziom_dostateczny',
-            'umiarkowany'   :'poziom_umiarkowany',
-            'zly'           :'poziom_zl_y', # ten jest chyba nieuzywany
-            'zl_y'           :'poziom_zl_y',
-            'bardzo_zly'    :'poziom_bardzo_zl_y', # ten też jest chyba nieuzywany
-            'bardzo_zl_y'    :'poziom_bardzo_zl_y'
+            'bardzo_dobry'  :'poziom_bardzo_dobry _ ',
+            'dobry'         :'poziom_dobry _ ',
+            'dostateczny'   :'poziom_dostateczny _ ',
+            'umiarkowany'   :'poziom_umiarkowany _ ',
+            'zly'           :'poziom_zl_y _ ', # ten jest chyba nieuzywany
+            'zl_y'           :'poziom_zl_y _ ',
+            'bardzo_zly'    :'poziom_bardzo_zl_y _ ', # ten też jest chyba nieuzywany
+            'bardzo_zl_y'    :'poziom_bardzo_zl_y _ ',
+            'empty'          : ''
         }
         message = " "
         for row in data:
             message += " " + row[2]
             message += " " + self.__language.read_micrograms( int(row[3]) )
-            message += " " + levels[row[4]] + ' _ '
+            message += " " + levels[row[4]]
         return message
 
 
@@ -130,5 +136,4 @@ class AirPollutionSq9atk(SR0WXModule):
             replace(u'-',u'_').replace(u'(',u'').\
             replace(u')',u'').replace(u'.',u'').\
             replace(u',',u'')
-
 
