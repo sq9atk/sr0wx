@@ -76,6 +76,7 @@ import os
 import pygame
 import sys
 import logging, logging.handlers
+import numpy
 
 # ``os``, ``sys`` and ``time`` doesn't need further explanation, these are
 # syandard Python packages.
@@ -206,7 +207,13 @@ for el in message:
     else:
         playlist.append("[sndarray]")
 
-
+if hasattr(config, 'ctcss_tone'):
+    volume = 25000
+    arr = numpy.array([volume * numpy.sin(2.0 * numpy.pi * round(config.ctcss_tone) * x / 16000) for x in range(0, 16000)]).astype(numpy.int16)
+    arr2 = numpy.c_[arr,arr]
+    ctcss = pygame.sndarray.make_sound(arr2)
+    logger.info(COLOR_WARNING + "CTCSS tone %sHz" + COLOR_ENDC + "\n", "%.1f" % config.ctcss_tone)
+    ctcss.play(-1)
 
 logger.info("playlist elements: %s", " ".join(playlist)+"\n")
 logger.info("loading sound samples...")

@@ -53,6 +53,7 @@ log_handlers = [{
         }
     }]
 
+ctcss_tone = 88.5
 serial_port = '/dev/ttyS0'
 serial_baud_rate = 9600
 serial_signal = 'DTR' # lub 'RTS'
