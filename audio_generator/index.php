@@ -31,11 +31,10 @@ function azAZ09($string)
 
 function getMpg($word, $filename)
 {
-
     @mkdir('ogg');
     @mkdir('mpg');
 
-    $key = 'ufdknZDi';
+    $key = readKey();
 
 	# Żeński
     $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key='.$key.'&gender=female&text='.urlencode($word);
@@ -50,6 +49,19 @@ function getMpg($word, $filename)
     unlink("mpg/$filename.mpg");
 }
 
+function readKey() {
+
+    $dom = new DomDocument();
+    @$dom->loadHTML(file_get_contents('https://responsivevoice.org/'));
+
+    $elem = $dom->getElementById('responsive-voice-js');
+	
+	$url = $elem->getAttribute('src');
+	$parts = parse_url($url);
+	parse_str($parts['query'], $params);
+	
+	return $params['key'];
+}
 
 echo "\n-- początek generowania --\n\n";
 
