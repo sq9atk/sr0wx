@@ -13,10 +13,11 @@
 #   sudo apt-get install curl
 #   sudo apt-get install php7.0
 #   sudo apt-get install php7.0-curl
+#   sudo apt-get install php7.0-xml
 #   sudo apt-get install ffmpeg
 #
 # LUB WSZYSTKO NA RAZ
-#   sudo apt-get install git python-pygame python-tz python-imaging python-serial curl php7.0 php7.0-curl ffmpeg
+#   sudo apt-get install git python-pygame python-tz python-imaging python-serial curl php7.0 php7.0-curl php7.0-xml ffmpeg
 
 # UPRAWNIENIA USERA DO PORTU COM
 #   sudo gpasswd --add ${USER} dialout
