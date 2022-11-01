@@ -64,6 +64,7 @@ import pl_google.pl_google as pl_google
 lang = "pl_google"
 pygame_bug = 0
 
+data_sources_error_msg = ['_','zrodlo_danych_niedostepne']
 hello_msg = ['_','tu_eksperymentalna_automatyczna_stacja_pogodowa','sr0wx']
 goodbye_msg = ['_','tu_sr0wx']
 read_sources_msg = False

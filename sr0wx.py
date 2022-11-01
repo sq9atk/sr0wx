@@ -77,6 +77,7 @@ import pygame
 import sys
 import logging, logging.handlers
 import numpy
+import urllib2
 
 # ``os``, ``sys`` and ``time`` doesn't need further explanation, these are
 # syandard Python packages.
@@ -159,6 +160,18 @@ if len(args) > 0:
     modules = args[0].split(",")
 else:
     modules = config.modules
+
+try:
+    dane = urllib2.urlopen('http://google.pl', None, 30);
+except urllib2.URLError, e:
+    modules = []
+    message += " ".join(config.data_sources_error_msg)
+    logger.info(COLOR_FAIL + "Brak połączenia z internetem" + COLOR_ENDC + "\n")
+except socket.timeout:
+    modules = []
+    message += " ".join(config.data_sources_error_msg)
+    logger.info(COLOR_FAIL + "Brak połączenia z internetem" + COLOR_ENDC + "\n")
+
 
 lang = my_import('.'.join((config.lang, config.lang)))
 sources = [lang.source, ]
