@@ -77,8 +77,8 @@ class RadioactiveSq9atk(SR0WXModule):
         self.__logger.info("::: Przetwarzam dane...\n")
         data = self.getSensorData(html)
         
-        msvCurrent = int(float(data['current'])*100)
-        msvAverage = int(float(data['average'])*100)
+        msvCurrent = int(float(data['current'])*1000)
+        msvAverage = int(float(data['average'])*1000)
         
         averageValue = " ".join(["wartos_c__aktualna",self.__language.read_decimal( msvCurrent )+" ","mikrosjiwerta","na_godzine_"])
         currentValue = " ".join(["s_rednia_wartos_c__dobowa",self.__language.read_decimal( msvAverage )+" ","mikrosjiwerta","na_godzine_"])

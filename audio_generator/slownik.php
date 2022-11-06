@@ -147,12 +147,17 @@ $slownik_wszystkie = array(
     array('Średnia wartość dobowa'),
     array('mikrosjiwerta'),
     array('na godzinę'),
+    array('jedna'),
+    array('dwie'),
     array('setna'),
     array('setne'),
     array('setnych'),
     array('dziesiąta'),
     array('dziesiąte'),
     array('dziesiątych'),
+    array('tysięczna'),
+    array('tysięczne'),
+    array('tysięcznych'),
     /*
      *
      *

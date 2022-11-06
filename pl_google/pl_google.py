@@ -78,12 +78,20 @@ class PLGoogle(SR0WXLanguage):
         pass
 
     @remove_accents
-    def read_number(self, value, units=None):
+    def read_number(self, value, units=None, isFraction=None):
         """Converts numbers to text."""
         if units is None:
             retval = pyliczba.lslownie(abs(value))
         else:
             retval = pyliczba.cosslownie(abs(value), units)
+
+        if isFraction:
+            if value % 1 == 0 and retval.startswith(u("jeden ")):
+                retval = retval.replace(u("jeden "), u("jedna "))
+            if value % 2 == 0 and retval.startswith(u("dwa ")):
+                retval = retval.replace(u("dwa "), u("dwie "))
+            if value % 10 % 2 == 0:
+                retval = retval.replace(u("dwa "), u("dwie "))
 
         if retval.startswith(u("jeden tysiąc")):
             retval = retval.replace(u("jeden tysiąc"), u("tysiąc"))
@@ -142,21 +150,30 @@ class PLGoogle(SR0WXLanguage):
 
     @remove_accents
     def read_decimal(self, value):
+        deg1000 = [
+                u("tysie_czna"),
+                u("tysie_czne"),
+                u("tysie_cznych")
+            ]
+            
         deg100 = [
                 u("setna"),
                 u("setne"), 
-                u("setnych"), 
+                u("setnych"),
             ]
             
         deg10 = [
                 u("dziesia_ta"),
                 u("dziesia_te"), 
-                u("dziesia_tych"), 
+                u("dziesia_tych"),
             ]
-        if value >= 10:
-            return read_number(value, deg100)
+
+        if (value % 100 == 0 and value >= 100):
+            return read_number( value / 100, deg10, True)
+        elif (value % 10 == 0 and value > 9 ):
+            return read_number( value / 10, deg100, True)
         else:
-            return read_number(value, deg10)
+            return read_number(value, deg1000, True)
     
     @remove_accents
     def read_direction(self, value, short=False):
