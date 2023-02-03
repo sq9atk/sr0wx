@@ -60,7 +60,7 @@ class OpenWeatherSq9atk(SR0WXModule):
             602: 'intensywne_opady_sniegu',      #heavy snow 
             611: 'snieg_z_deszczem',             #sleet 
             612: 'snieg_z_deszczem',             #shower sleet 
-            615: 'snieg_z_niewielkim deszczem',  #light rain and snow 
+            615: 'snieg_z_niewielkim_deszczem',  #light rain and snow 
             616: 'snieg_z_deszczem',             #rain and snow 
             620: 'lekka_sniezyca',               #light shower snow 
             621: 'śniezyca',                     #showersnow 
