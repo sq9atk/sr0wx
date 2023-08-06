@@ -10,7 +10,7 @@
 #   sudo apt-get install python-tz
 #   sudo apt-get install python-imaging
 #   sudo apt-get install python-serial
-#   sudo apt-get install python-siz
+#   sudo apt-get install python-six
 #   sudo apt-get install curl
 #   sudo apt-get install php7.0
 #   sudo apt-get install php7.0-curl
