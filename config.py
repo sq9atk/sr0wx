@@ -10,6 +10,7 @@
 #   sudo apt-get install python-tz
 #   sudo apt-get install python-imaging
 #   sudo apt-get install python-serial
+#   sudo apt-get install python-siz
 #   sudo apt-get install curl
 #   sudo apt-get install php7.0
 #   sudo apt-get install php7.0-curl
@@ -17,7 +18,7 @@
 #   sudo apt-get install ffmpeg
 #
 # LUB WSZYSTKO NA RAZ
-#   sudo apt-get install git python-pygame python-tz python-imaging python-serial curl php7.0 php7.0-curl php7.0-xml ffmpeg
+#   sudo apt-get install git python-pygame python-tz python-imaging python-serial python-six curl php7.0 php7.0-curl php7.0-xml ffmpeg
 
 # UPRAWNIENIA USERA DO PORTU COM
 #   sudo gpasswd --add ${USER} dialout
@@ -98,33 +99,6 @@ openweathersq9atk = OpenWeatherSq9atk(
     lon = 20,
     service_url = 'http://api.openweathermap.org/data/2.5/'
 )
-
-
-# -----------------
-# meteoalarm_sq9atk
-# -----------------
-from meteoalarm_sq9atk import MeteoalarmSq9atk
-#meteoalarmsq9atk = MeteoalarmSq9atk(region="PL008")
-meteoalarmsq9atk = MeteoalarmSq9atk(region="IT003") # testowo Lombardia
-		# PL001-Mazowieckie
-		# PL002-Lubuskie
-		# PL003-Zachodniopomorskie
-		# PL004-Pomorskie
-		# PL005-Dolnośląskie
-		# PL006-Opolskie
-		# PL007-Śląskie
-		# PL008-Małopolskie
-		# PL009-Podkarpackie
-		# PL010-Świętokrzyskie
-		# PL011-Łódzkie
-		# PL012-Wielkopolskie
-		# PL013-Kujawsko-pomorskie
-		# PL014-Warmińsko-mazurskie
-		# PL015-Lubelskie
-		# PL016-Podlaskie
-		# PL801-Pomorze Wschodnie
-		# PL802-Pomorze Zachodnie
-		# IT003-Lombardia
 
 # -------------
 # imgw_podest_sq9atk
