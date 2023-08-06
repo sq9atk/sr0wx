@@ -356,14 +356,13 @@ calendarsq9atk = CalendarSq9atk(
 
 # WŁĄCZONE MODUŁY
 modules = [
-	activitymap,            # marker na mapie wx.ostol.pl
+    activitymap,            # marker na mapie wx.ostol.pl
     openweathersq9atk,      # prognoza pogody
-	meteoalarmsq9atk,       # zagrożenia meteo
-	imgwpodestsq9atk,       # wodowskazy
-	airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
+    imgwpodestsq9atk,       # wodowskazy
+    airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
     #airlysq9atk,            # zanieczyszczenia powietrza z Airly
     propagationsq9atk,      # propagacja KF
-	geomagneticsq9atk,      # zaburzenia geomagnetyczne
-	radioactivesq9atk,      # promieniowanie jonizujące
+    geomagneticsq9atk,      # zaburzenia geomagnetyczne
+    radioactivesq9atk,      # promieniowanie jonizujące
     calendarsq9atk,         # wschód słońca
 ]
