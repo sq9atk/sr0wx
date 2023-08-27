@@ -205,11 +205,10 @@ class VhfTropoSq9atk(SR0WXModule):
         }
 
 
-    def getTopDirectionsValues(self, input_table, threshold):
+    def getTopDirectionsValues(self, input_table):
         filtered_rows = []
         for key, value in input_table.iteritems():
-            if value > threshold:
-                filtered_rows.append((key, value))
+            filtered_rows.append((key, value))
 
         filtered_rows.sort(key=lambda x: x[1], reverse=True)
 
@@ -239,7 +238,7 @@ class VhfTropoSq9atk(SR0WXModule):
             message = ' vhf_uwaga vhf_warunki_podwyzszone _ ' + message
         if mainConditionValue > 0.5:
             message += ' vhf_najlepsze_warunki_w_kierunku '
-            message += " _ ".join( self.getTopDirectionsValues(directionalConditionsValues, mainConditionValue))
+            message += " _ ".join( self.getTopDirectionsValues(directionalConditionsValues))
 
         return message
 
