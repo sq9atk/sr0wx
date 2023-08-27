@@ -27,7 +27,7 @@
 # Będąc w katalogu audio_generator:
 #   php index.php
 #
-# Generowane są sample z tablicy $słownik z pliku slownik.php. 
+# Generowane są sample z tablicy $słownik z pliku slownik.php.
 # Pozostałe tablice to tylko przechowalnia fraz go wygenerowania.
 
 
@@ -42,7 +42,7 @@ log_handlers = [{
         'log_level': logging.INFO,
         'class': logging.StreamHandler,
         'config': {'stream': None},
-	},{
+    },{
         'log_level': logging.DEBUG,
         'class': logging.handlers.TimedRotatingFileHandler,
         'config': {
@@ -321,6 +321,17 @@ radioactivesq9atk = RadioactiveSq9atk(
 )
 
 # ---------------
+# vhf_propagation_sq9atk
+# ---------------
+from vhf_tropo_sq9atk import VhfTropoSq9atk
+vhftroposq9atk = VhfTropoSq9atk(
+    language=pl_google,
+    service_url="https://www.dxinfocentre.com/tropo_eur.html",
+    qthLon=20.00,
+    qthLat=50.00
+)
+
+# ---------------
 # propagation_sq9atk
 # ---------------
 from propagation_sq9atk import PropagationSq9atk
@@ -361,6 +372,7 @@ modules = [
     imgwpodestsq9atk,       # wodowskazy
     airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
     #airlysq9atk,            # zanieczyszczenia powietrza z Airly
+    vhftroposq9atk,        # vhf tropo propagacja
     propagationsq9atk,      # propagacja KF
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
     radioactivesq9atk,      # promieniowanie jonizujące

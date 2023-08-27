@@ -19,6 +19,36 @@ $slownik_wszystkie = array(
     /*
      *
      *
+     * VHF TROPO
+     */
+    array("propagacja w paśmie fał ha ef", "vhf_propagacja_w_pasmie_vhf"),
+    array("deiks info senter", "vhf_dx_info_center"),
+    array("uwaga", "vhf_uwaga"),
+    array("warunki podwyższone", "vhf_warunki_podwyzszone"),
+
+    array("brak szans na łączność troposferyczną", "vhf_brak_szans_na_lacznosc_troposferyczna"),
+    array("minimalne szanse na łączność troposferyczną", "vhf_minimalne_szanse_na_lacznosc_troposferyczna"),
+    array("niewielkie szanse na łączność troposferyczną", "vhf_niewielkie_szanse_na_lacznosc_troposferyczna"),
+    array("spore szanse na łączność troposferyczną", "vhf_spore_szanse_na_lacznosc_troposferyczna"),
+    array("duże szanse na łączność troposferyczną", "vhf_duze_szanse_na_lacznosc_troposferyczna"),
+    array("bardzo duże szanse na łączność troposferyczną", "vhf_bardzo_duze_szanse_na_lacznosc_troposferyczna"),
+    array("wyjątkowo duże szanse na łączność troposferyczną", "vhf_wyjatkowo_duze_szanse_na_lacznosc_troposferyczna"),
+
+    array("najlepsze warunki w kierunku", "vhf_najlepsze_warunki_w_kierunku"),
+    array("oraz", "vhf_oraz"),
+    array("północnym", "vhf_n"),
+    array("północno-wschodnim", "vhf_ne"),
+    array("wschodnim", "vhf_e"),
+    array("połódniowo-wschodnim", "vhf_se"),
+    array("połódniowym", "vhf_s"),
+    array("połódniowo-zachodnim", "vhf_sw"),
+    array("zachodnim", "vhf_w"),
+    array("północno-zachodnim", "vhf_nw"),
+
+
+    /*
+     *
+     *
      */
     # rozne
     array('tu eksperymentalna automatyczna stacja pogodowa'),
