@@ -140,7 +140,7 @@ class ImgwPodestSq9atk(SR0WXModule):
                 s.__logger.info("::: Brak danych!!! "+ wodowskaz )
                 pass
 
-        message = "";
+        message = "_ _ ";
         if stanyOstrzegawcze!={} or stanyAlarmowe!={}:
             message += 'komunikat_hydrologiczny_imgw _ '
 
