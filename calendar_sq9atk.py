@@ -4,7 +4,6 @@
 import urllib.request, urllib.error, urllib.parse
 import re
 import logging
-import pytz
 import socket
 
 from datetime import datetime
