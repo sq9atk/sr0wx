@@ -1,7 +1,7 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import logging
 import json
 import socket
@@ -31,12 +31,12 @@ class AirPollutionSq9atk(SR0WXModule):
         self.__logger.info("::: Odpytuję adres: " + url)
         
         try:
-            data = urllib2.urlopen(url, None, 45)
+            data = urllib.request.urlopen(url, None, 45)
             return json.load(data)
-        except urllib2.URLError, e:
-            print e
+        except urllib.error.URLError as e:
+            print(e)
         except socket.timeout:
-            print "Timed out!"
+            print("Timed out!")
 
         return {}
 
@@ -72,7 +72,7 @@ class AirPollutionSq9atk(SR0WXModule):
             value = self.getSensorValue(row['id'])
             if(value[1]>1): # czasem tu schodzi none
                 qualityIndexName = self.mbstr2asci(value[0]) + "IndexLevel"
-                if levelIndexArray.has_key(qualityIndexName):
+                if qualityIndexName in levelIndexArray:
                     index = levelIndexArray[qualityIndexName]['indexLevelName']
                 else:
                     index = 'empty'
@@ -119,7 +119,7 @@ class AirPollutionSq9atk(SR0WXModule):
         message = " _ informacja_o_skaz_eniu_powietrza _ "
         message += " stacja_pomiarowa " + self.mbstr2asci(self.getStationName()) + " _ "
         message += valuesMessage
-        print "\n"
+        print("\n")
         return {
             "message": message,
             "source": "powietrze_malopolska_pl",
@@ -128,12 +128,12 @@ class AirPollutionSq9atk(SR0WXModule):
     def mbstr2asci(self, string):
         """Zwraca "bezpieczną" nazwę dla wyrazu z polskimi znakami diakrytycznymi"""
         return string.lower().\
-            replace(u'ą',u'a_').replace(u'ć',u'c_').\
-            replace(u'ę',u'e_').replace(u'ł',u'l_').\
-            replace(u'ń',u'n_').replace(u'ó',u'o_').\
-            replace(u'ś',u's_').replace(u'ź',u'x_').\
-            replace(u'ż',u'z_').replace(u' ',u'_').\
-            replace(u'-',u'_').replace(u'(',u'').\
-            replace(u')',u'').replace(u'.',u'').\
-            replace(u',',u'')
+            replace('ą','a_').replace('ć','c_').\
+            replace('ę','e_').replace('ł','l_').\
+            replace('ń','n_').replace('ó','o_').\
+            replace('ś','s_').replace('ź','x_').\
+            replace('ż','z_').replace(' ','_').\
+            replace('-','_').replace('(','').\
+            replace(')','').replace('.','').\
+            replace(',','')
 

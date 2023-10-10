@@ -41,7 +41,7 @@ class VhfTropoSq9atk(SR0WXModule):
                 return None
 
         except requests.exceptions.RequestException as e:
-            print("HTML download error: %s" % e)
+            print(("HTML download error: %s" % e))
             return None
 
     def findMapUrlInHtml(self, html, target_id):
@@ -64,7 +64,7 @@ class VhfTropoSq9atk(SR0WXModule):
         except requests.exceptions.Timeout:
             print("Przekroczono czas oczekiwania")
         except Exception as e:
-            print("Błąd pobierania mapy: %s" % e)
+            print(("Błąd pobierania mapy: %s" % e))
         return
 
 
@@ -77,7 +77,7 @@ class VhfTropoSq9atk(SR0WXModule):
             mapCropped.save(fileName)
 
         except Exception as e:
-            print("Błąd odczytu pliku z mapą: %s" % e)
+            print(("Błąd odczytu pliku z mapą: %s" % e))
         return mapCropped
 
     def lonLatToMapXY(self, lon, lat, imgWidth, imgHeight):
@@ -136,11 +136,11 @@ class VhfTropoSq9atk(SR0WXModule):
                 frequency_dict[value] = 1
 
         percentage_frequencies = {}
-        for key, value in frequency_dict.items():
+        for key, value in list(frequency_dict.items()):
             percentage = (value / float(total_elements)) * 100
             percentage_frequencies[key] = percentage
 
-        return sorted(percentage_frequencies.items(), key=lambda item: item[1], reverse=True)
+        return sorted(list(percentage_frequencies.items()), key=lambda item: item[1], reverse=True)
 
     def getColorPunctation(self, colorHex):
         colors = {
@@ -160,7 +160,7 @@ class VhfTropoSq9atk(SR0WXModule):
         }
 
         result = False
-        for color, value in colors.iteritems():
+        for color, value in colors.items():
             if color == colorHex:
                 result = value
         return result
@@ -207,7 +207,7 @@ class VhfTropoSq9atk(SR0WXModule):
 
     def getTopDirectionsValues(self, input_table):
         filtered_rows = []
-        for key, value in input_table.iteritems():
+        for key, value in input_table.items():
             filtered_rows.append((key, value))
 
         filtered_rows.sort(key=lambda x: x[1], reverse=True)

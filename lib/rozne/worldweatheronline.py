@@ -16,8 +16,8 @@
 #   limitations under the License.
 #
 
-import debug
-import urllib2
+from . import debug
+import urllib.request, urllib.error, urllib.parse
 import json
 import datetime
 import pytz
@@ -54,7 +54,7 @@ def getData(l):
     params = {'LAT':str(config.latitude), 'LON':str(config.longitude),\
         'API_KEY':config.api_key}
 
-    weather= json.loads(urllib2.urlopen(REQ_URL.format(**params)).read())
+    weather= json.loads(urllib.request.urlopen(REQ_URL.format(**params)).read())
     
     # `w`, `f0` and `f1` are parts of big weather dictionary; we have to unpack it for further
     # formatting.

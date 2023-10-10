@@ -38,7 +38,7 @@ with open(pyliczba_init, 'w') as f:
 
 # It works!
 
-import pyliczba
+from . import pyliczba
 
 def rmv_pl_chars(string):
     return ''.join([i if ord(i) < 128 else '_' for i in string]).lower()

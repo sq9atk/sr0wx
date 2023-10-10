@@ -77,7 +77,7 @@ import pygame
 import sys
 import logging, logging.handlers
 import numpy
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 # ``os``, ``sys`` and ``time`` doesn't need further explanation, these are
 # syandard Python packages.
@@ -162,8 +162,8 @@ else:
     modules = config.modules
 
 try:
-    dane = urllib2.urlopen('http://google.pl', None, 30);
-except urllib2.URLError, e:
+    dane = urllib.request.urlopen('http://google.pl', None, 30);
+except urllib.error.URLError as e:
     modules = []
     message += " ".join(config.data_sources_error_msg)
     logger.info(COLOR_FAIL + "Brak połączenia z internetem" + COLOR_ENDC + "\n")
@@ -256,15 +256,15 @@ if config.serial_port is not None:
     
     import serial
     try:
-		ser = serial.Serial(config.serial_port, config.serial_baud_rate)
-		if config.serial_signal == 'DTR':
-		    logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
-		    ser.setDTR(1)
-		    ser.setRTS(0)
-		else:
-		    logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
-		    ser.setDTR(0)
-		    ser.setRTS(1)
+        ser = serial.Serial(config.serial_port, config.serial_baud_rate)
+        if config.serial_signal == 'DTR':
+            logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
+            ser.dtr = True
+            ser.rts = False
+        else:
+            logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
+            ser.dtr = False
+            ser.rts = True
     except:
         log = COLOR_FAIL + "Failed to open serial port %s@%i\n" + COLOR_ENDC
         logger.error(log, config.serial_port, config.serial_baud_rate)

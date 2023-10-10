@@ -1,0 +1,11 @@
+certifi
+chardet
+idna
+numpy
+Pillow
+pygame
+pyserial
+pytz
+requests
+six
+urllib3

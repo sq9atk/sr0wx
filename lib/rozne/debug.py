@@ -37,7 +37,7 @@ def log(moduleName, message, buglevel=0):
     message = prefix + message.replace("\n","".join( ("\r\n",prefix) ))
 
     if buglevel>=config.showLevel:
-        print message
+        print(message)
     if buglevel>=config.writeLevel:
         filename = dt.strftime("%y-%m-%d")+".log"
         if not os.path.exists(filename):
@@ -47,7 +47,7 @@ def log(moduleName, message, buglevel=0):
         try:
             logfile.write(message + '\n')
         except:
-            print dt.strftime("%x %X UTC")+" [DEBUG]:\tCan't write to file!"
+            print(dt.strftime("%x %X UTC")+" [DEBUG]:\tCan't write to file!")
         finally:
             logfile.close()
 

@@ -20,7 +20,7 @@
 # TODO: sprawdzanie, dla których wodowskazów możemy czytać komunikaty 
 
 import os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import re
 
 def format(s):
@@ -29,20 +29,20 @@ def format(s):
     rzeka Ślęza jak i Ślęża oznaczany jest każdy niełaciński
     znak"""
     if str(s.__class__)=="<type 'str'>":
-        s=unicode(s, 'utf-8')
-    return s.lower().replace(u'ą',u'a_').replace(u'ć',u'c_').\
-        replace(u'ę',u'e_').replace(u'ł',u'l_').\
-        replace(u'ń',u'n_').replace(u'ó',u'o_').\
-        replace(u'ś',u's_').replace(u'ź',u'x_').\
-        replace(u'ż',u'z_').replace(u' ',u'_').\
-        replace(u'-',u'_').replace(u'(',u'').\
-        replace(u')',u'')
+        s=str(s, 'utf-8')
+    return s.lower().replace('ą','a_').replace('ć','c_').\
+        replace('ę','e_').replace('ł','l_').\
+        replace('ń','n_').replace('ó','o_').\
+        replace('ś','s_').replace('ź','x_').\
+        replace('ż','z_').replace(' ','_').\
+        replace('-','_').replace('(','').\
+        replace(')','')
 
 
 wodowskazy={}
 
 _wodowskaz=re.compile('Stacja\:\ (.{1,}?)\<')
-_rzeka=re.compile(u"""Rzeka\:\ (.{1,}?)\<|(Jezioro\ .{1,}?)\<|(Zalew\ .{1,}?)|(Morze\ Ba..tyckie)""", re.MULTILINE)
+_rzeka=re.compile("""Rzeka\:\ (.{1,}?)\<|(Jezioro\ .{1,}?)\<|(Zalew\ .{1,}?)|(Morze\ Ba..tyckie)""", re.MULTILINE)
 _stan=re.compile('Stan\ Wody\ H\ \[cm\]\:\ (.{1,}?)\<')
 _nnw=re.compile('NNW\:(\d{1,})')
 _ssw=re.compile('SSW\:(\d{1,})')
@@ -54,7 +54,7 @@ _przekroczenieStanu=re.compile('stan\ (ostrzegawczy|alarmowy)')
 _przekroczenieStanuStan=re.compile('stan\ (?:ostrzegawczy|alarmowy)\</b\>\ \((\d{1,})cm\)')
 
 def getFile(url):
-    webFile = urllib.urlopen(url)
+    webFile = urllib.request.urlopen(url)
     contents = webFile.read()
     webFile.close()
     return contents
@@ -142,12 +142,12 @@ def getData(l):
             w['nazwa']=bezpiecznaNazwa(w['nazwa'])
 
             if w['przekroczenieStanu']=='ostrzegawczy':
-                if not stanyOstrzegawcze.has_key(w['rzeka']):
+                if w['rzeka'] not in stanyOstrzegawcze:
                     stanyOstrzegawcze[w['rzeka']]=[w['nazwa']]
                 else:
                     stanyOstrzegawcze[w['rzeka']].append(w['nazwa'])
             elif w['przekroczenieStanu']=='alarmowy':
-                if not stanyAlarmowe.has_key(w['rzeka']):
+                if w['rzeka'] not in stanyAlarmowe:
                     stanyAlarmowe[w['rzeka']]=[w['nazwa']]
                 else:
                     stanyAlarmowe[w['rzeka']].append(w['nazwa'])
@@ -178,7 +178,7 @@ def getData(l):
     return data
 
 def show_help():
-    print u"""
+    print("""
 Lista wodowskazów danej zlewni dostępna po podaniu parametru:
 
  1. Zlewnia Sanu
@@ -197,24 +197,24 @@ Lista wodowskazów danej zlewni dostępna po podaniu parametru:
 14. Zlewnia dolnej Odry do Kostrzynia i zalewu Szczecińskiego
 
 Mapę zlewni można zobaczyć na stronie:
-http://www.pogodynka.pl/polska/podest/"""
+http://www.pogodynka.pl/polska/podest/""")
 
 def bezpiecznaNazwa(s):
     """Zwraca "bezpieczną" nazwę dla nazwy danej rzeki/danego
     wodowskazu. Ze względu na to, że w Polsce zarówno płynie
     rzeka Ślęza jak i Ślęża oznaczany jest każdy niełaciński
     znak"""
-    return unicode(s, 'utf-8').lower().replace(u'ą',u'a_').replace(u'ć',u'c_').\
-        replace(u'ę',u'e_').replace(u'ł',u'l_').\
-        replace(u'ń',u'n_').replace(u'ó',u'o_').\
-        replace(u'ś',u's_').replace(u'ź',u'x_').\
-        replace(u'ż',u'z_').replace(u' ',u'_').\
-        replace(u'-',u'_').replace(u'(',u'').\
-        replace(u')',u'')
+    return str(s, 'utf-8').lower().replace('ą','a_').replace('ć','c_').\
+        replace('ę','e_').replace('ł','l_').\
+        replace('ń','n_').replace('ó','o_').\
+        replace('ś','s_').replace('ź','x_').\
+        replace('ż','z_').replace(' ','_').\
+        replace('-','_').replace('(','').\
+        replace(')','')
 
 def podajListeWodowskazow(region):
     rv = []
-    for wodowskaz in wodowskazy.keys():
+    for wodowskaz in list(wodowskazy.keys()):
         try:
             w = pobierzDaneWodowskazu(wodowskaz)
             rv.append(w)
@@ -237,7 +237,7 @@ if __name__ == '__main__':
         # generowanie listy słów słownika; ostatnie słowo (rozielone spacją)
         # jest nazwą pliku docelowego
     
-        print """#!/usr/bin/python
+        print("""#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Caution! I am not responsible for using these samples. Use at your own risk
@@ -253,14 +253,14 @@ END_MARKER = ' k'
 CUT_START = 0.9
 CUT_END=0.7
 
-download_list = [ """
-        frazy = [u'komunikat hydrologiczny imgw', 
-                u'przekroczenia stanów ostrzegawczych',
-                u'przekroczenia stanów alarmowych', u'rzeka', u'wodowskaz']
+download_list = [ """)
+        frazy = ['komunikat hydrologiczny imgw', 
+                'przekroczenia stanów ostrzegawczych',
+                'przekroczenia stanów alarmowych', 'rzeka', 'wodowskaz']
         for fraza in set(frazy):
             #print fraza.encode('utf-8')
-            print "\t['%s', '%s'],"%(fraza.encode('utf-8'),
-                    format(fraza).encode('utf-8'),)
+            print("\t['%s', '%s'],"%(fraza.encode('utf-8'),
+                    format(fraza).encode('utf-8'),))
 
         frazy=[]
         zaladujRegion(int(region))
@@ -268,16 +268,16 @@ download_list = [ """
             frazy.append(w['rzeka'])
             frazy.append(w['nazwa'])
         for fraza in set(frazy):
-            print "\t['ę. %s', '%s'],"%(fraza, str(bezpiecznaNazwa(fraza)),)
-        print ']'
+            print("\t['ę. %s', '%s'],"%(fraza, str(bezpiecznaNazwa(fraza)),))
+        print(']')
     elif len(sys.argv)==2 and int(sys.argv[1]) in range(1,14+1):
         # podaje listę wodowskazów w danym regionie (danej zlewni)
         region = sys.argv[1]
         zaladujRegion(int(region))
         for w in podajListeWodowskazow(int(region)):
-            print "'%s.%s',   # Nazwa: %s, rzeka: %s"%(region, w['numer'], w['nazwa'], w['rzeka'])
+            print("'%s.%s',   # Nazwa: %s, rzeka: %s"%(region, w['numer'], w['nazwa'], w['rzeka']))
     else:
         show_help()
 else:
-    import debug
+    from . import debug
     from config import imgw_podest as config

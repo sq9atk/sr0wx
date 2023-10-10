@@ -16,7 +16,7 @@
 #   limitations under the License.
 #
 
-import re, urllib
+import re, urllib.request, urllib.parse, urllib.error
 
 
 def between(a,b,c):
@@ -280,14 +280,14 @@ class taf:
         result = []
         for el in x:
             #if isinstance(el, (list, tuple)):
-            if hasattr(el, "__iter__") and not isinstance(el, basestring):
+            if hasattr(el, "__iter__") and not isinstance(el, str):
                 result.extend(self.flatten(el))
             else:
                 result.append(el)
         return result
 
     def getFile(self, url):
-        webFile = urllib.urlopen(url)
+        webFile = urllib.request.urlopen(url)
         contents = webFile.read()
         webFile.close()
         return contents
@@ -382,7 +382,7 @@ class taf:
                      int(wind[wind.index('V')-1]),
                      int(wind[wind.index('V')+1]) ]
         else:
-            if direction<>[] and direction[0]<>"VRB":
+            if direction!=[] and direction[0]!="VRB":
                 return ([int(direction[0])] or [None])
             else:
                 return ["VRB"]
@@ -406,7 +406,7 @@ class taf:
 
 
     def getTemperature(self):
-        print "---> lib/taf.py: temperature not supported", self.weather["temp"]
+        print("---> lib/taf.py: temperature not supported", self.weather["temp"])
         return None
 
     def getSkyConditions(self):
@@ -421,7 +421,7 @@ class taf:
         return None
     
     def getPressure(self):
-        print "---> lib/taf.py: pressure not supported", self.weather["press"]
+        print("---> lib/taf.py: pressure not supported", self.weather["press"])
         return None
 
     def getWeather(self):
@@ -433,12 +433,12 @@ class taf:
 
         for w in self.weather["weather"].strip().split():
             wx = ["", "", ""]
-            for k in self._WeatherConditions.keys():
+            for k in list(self._WeatherConditions.keys()):
                 if k in w:
                     for elem in self._WeatherConditions[k]: 
                         if elem in w:
                             if self._WeatherConditions[k][elem] == "%":
-                                print " ".join( ("---> lib/taf.py: couldn't interpret",elem,"in",self.weather["weather"].strip().split()) )
+                                print(" ".join( ("---> lib/taf.py: couldn't interpret",elem,"in",self.weather["weather"].strip().split()) ))
                             else:
                                 if self._WeatherConditions[k][elem][1]!="":
                                     wx = self._WeatherConditions[k][elem]

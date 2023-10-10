@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging, re, subprocess
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import time
 from pprint import pprint
 
@@ -36,11 +36,11 @@ class GeoMagneticSq9atk(SR0WXModule):
 
     def downloadDataFromUrl(self, url):
         self.__logger.info("::: Odpytuję adres: " + url)
-        opener = urllib2.build_opener()
+        opener = urllib.request.build_opener()
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:10.0.1) Gecko/20100101 Firefox/10.0.1',
         }
-        opener.addheaders = headers.items()
+        opener.addheaders = list(headers.items())
         response = opener.open(url)
 
         return response.read()
@@ -81,14 +81,14 @@ class GeoMagneticSq9atk(SR0WXModule):
             'value':0,
             'at':0,
         }
-        for key, row in data.iteritems():
+        for key, row in data.items():
             if row > maxValue['value']:
                 maxValue['value'] = row
                 maxValue['at'] = key
         return maxValue
 
     def getDailyFluctuation(self, data):
-        values = data.values()
+        values = list(data.values())
         return int(max(values)) - int(min(values))
 
     def get_data(self):
@@ -98,7 +98,7 @@ class GeoMagneticSq9atk(SR0WXModule):
         message = ' _ sytuacja_geomagnetyczna_w_regionie ';
 
         self.__logger.info("::: Przetwarzam dane...\n")
-        for d, day in daysValues.iteritems():
+        for d, day in daysValues.items():
             
             if len(day) > 0:
                 a=1

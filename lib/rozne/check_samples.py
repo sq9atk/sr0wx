@@ -28,5 +28,5 @@ for word in dictionary.download_list:
             replace("ź","z").replace("ż","z")
 
     if not os.path.exists("%s.ogg"%filename):
-        print "%s;%s"%(filename,word[0])
+        print("%s;%s"%(filename,word[0]))
 

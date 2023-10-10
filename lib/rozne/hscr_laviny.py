@@ -17,14 +17,14 @@
 #
 
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from config import hscr_laviny as config
 import datetime
 lang=None
 
 def downloadFile(url):
-	webFile = urllib.urlopen(url)
+	webFile = urllib.request.urlopen(url)
 	return webFile.read()
 
 def my_import(name):
@@ -45,7 +45,7 @@ def getAwareness(region):
 	url = "http://www.horskasluzba.cz/laviny/"
 
 	# We'll have to find link to the most actual info for the specified region:
-	r = u'id\=(\d{4,}).{10,}Lavinov.{5,}'+region # UGLY, but \" doesn't work...
+	r = 'id\=(\d{4,}).{10,}Lavinov.{5,}'+region # UGLY, but \" doesn't work...
 	_id = re.compile(r)
 	
 	for line in downloadFile(url).split('\n'):
@@ -66,7 +66,7 @@ def getAwareness(region):
 	level, tendention, exposition, date = False,False,False,False
 
 	for line in downloadFile(url).split('\n'):
-		line = unicode(line, "cp1250")
+		line = str(line, "cp1250")
 		level      = level      or last(_level.findall(line))
 		tendention = tendention or last(_tendention.findall(line))
 		exposition = exposition or last(_exposition.findall(line))
@@ -114,5 +114,5 @@ def getData(l):
 
 if __name__ == '__main__':
     lang = 'pl'
-    print getData('pl')
+    print(getData('pl'))
 

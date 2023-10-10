@@ -20,7 +20,7 @@ import base64
 import logging
 import json
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from sr0wx_module import SR0WXModule
 
@@ -81,8 +81,8 @@ Parameters:
 
 
         try:
-            request = urllib2.Request(url)
-            webFile = urllib2.urlopen(request, None, 5)
+            request = urllib.request.Request(url)
+            webFile = urllib.request.urlopen(request, None, 5)
             response = webFile.read()
 
             if response == 'OK':
@@ -92,10 +92,10 @@ Parameters:
                 self.__logger.error(log, url, response)
             return dict()
 
-        except urllib2.URLError, e:
-            print e
+        except urllib.error.URLError as e:
+            print(e)
         except socket.timeout:
-            print "Timed out!"
+            print("Timed out!")
 
 
 
