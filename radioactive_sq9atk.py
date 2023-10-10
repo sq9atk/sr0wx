@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import urllib.request, urllib.error, urllib.parse
-import re
 import logging
-import pytz
 import socket
 
-from datetime import datetime
 from sr0wx_module import SR0WXModule
 
 class RadioactiveSq9atk(SR0WXModule):
@@ -62,9 +59,10 @@ class RadioactiveSq9atk(SR0WXModule):
         return {"current":current, "average": average}
   
     def getSensorData(self, html):
-        dataArr = html.split("L.marker([")
+        dataArr = html.split(b"L.marker([")
         ret = {}
         for row in dataArr:
+            row = row.decode('utf-8')
             if self.isSensorRow(row):
                 if self.isSensorMatchedById(self.__sensor_id, row):
                     ret = self.extractSensorData(row)

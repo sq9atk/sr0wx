@@ -19,6 +19,7 @@
 import base64
 import logging
 import json
+import socket
 
 import urllib.request, urllib.error, urllib.parse
 
@@ -73,9 +74,9 @@ Parameters:
         }
 
         dump = json.dumps(station_info, separators=(',', ':'))
-        b64data = base64.urlsafe_b64encode(dump)
+        b64data = base64.urlsafe_b64encode(dump.encode('utf-8'))
 
-        url = self.__service_url + b64data
+        url = self.__service_url + b64data.decode('ascii')
 
         self.__logger.info("::: Odpytuję adres: " + url)
 
@@ -85,7 +86,7 @@ Parameters:
             webFile = urllib.request.urlopen(request, None, 5)
             response = webFile.read()
 
-            if response == 'OK':
+            if response == b'OK':
                 self.__logger.info("::: Dane wysłano, status OK\n")
             else:
                 log = "Non-OK response from %s, (%s)"

@@ -29,11 +29,10 @@ class CalendarSq9atk(SR0WXModule):
             print(e)
         except socket.timeout:
             print("Timed out!")
-        return ""
 
     def getSunsetSunrise(self):
         self.__logger.info("::: Pobieram dane o wschodzie i zachodzie słońca")
-        r = re.compile(r'<h1>(.*)(\d\d:\d\d)(.*)(\d\d:\d\d)</h1>')
+        r = re.compile(rb'<h1>(.*)(\d\d:\d\d)(.*)(\d\d:\d\d)</h1>')
         url = self.__service_url+str(self.__city_id)
         html = self.downloadFile(url)
         matches = r.findall(html)
@@ -43,7 +42,7 @@ class CalendarSq9atk(SR0WXModule):
         }
 
     def hourToNumbers(self, time="00:00"):
-        datetime_object = datetime.strptime(time, '%H:%M')
+        datetime_object = datetime.strptime(time.decode('ascii'), '%H:%M')
         time_words = self.__language.read_datetime(datetime_object, '%H %M')
         return time_words
 

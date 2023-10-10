@@ -45,7 +45,7 @@ class VhfTropoSq9atk(SR0WXModule):
             return None
 
     def findMapUrlInHtml(self, html, target_id):
-        pattern = r'<img\s+(?:[^>]*\s+)?id="' + re.escape(target_id) + r'"(?:[^>]*)\s+src="([^"]+)"'
+        pattern = rb'<img\s+(?:[^>]*\s+)?id="' + re.escape(target_id).encode('ascii') + rb'"(?:[^>]*)\s+src="([^"]+)"'
         match = re.search(pattern, html, re.IGNORECASE)
         if match:
             mapUrl = match.group(1)
@@ -55,7 +55,7 @@ class VhfTropoSq9atk(SR0WXModule):
 
     def downloadMapFile(self, mapUrl, targetFileName):
         try:
-            self.__logger.info("::: Odpytuję adres: " + mapUrl)
+            self.__logger.info("::: Odpytuję adres: " + mapUrl.decode('utf-8'))
             response = requests.get(mapUrl, timeout=30)
 
             with open(targetFileName, "wb") as mapFile:
