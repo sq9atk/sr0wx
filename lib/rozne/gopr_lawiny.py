@@ -17,14 +17,14 @@
 #
 
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from config import gopr_lawiny as config
 import datetime
 lang=None
 
 def downloadFile(url):
-    webFile = urllib.urlopen(url)
+    webFile = urllib.request.urlopen(url)
     return webFile.read()
 
 def my_import(name):
@@ -98,5 +98,5 @@ def getData(l):
 
 if __name__ == '__main__':
     lang = 'pl'
-    print getData(lang)
+    print(getData(lang))
 

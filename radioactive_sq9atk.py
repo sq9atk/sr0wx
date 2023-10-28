@@ -1,13 +1,10 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-import urllib2
-import re
+import urllib.request, urllib.error, urllib.parse
 import logging
-import pytz
 import socket
 
-from datetime import datetime
 from sr0wx_module import SR0WXModule
 
 class RadioactiveSq9atk(SR0WXModule):
@@ -22,12 +19,12 @@ class RadioactiveSq9atk(SR0WXModule):
     def downloadFile(self, url):
         try:
             self.__logger.info("::: Odpytuję adres: " + url)
-            webFile = urllib2.urlopen(url, None, 30)
+            webFile = urllib.request.urlopen(url, None, 30)
             return webFile.read()
-        except urllib2.URLError, e:
-            print e
+        except urllib.error.URLError as e:
+            print(e)
         except socket.timeout:
-            print "Timed out!"
+            print("Timed out!")
         return ""
 
     def isSensorMatchedById(self, sensorId, string):
@@ -62,9 +59,10 @@ class RadioactiveSq9atk(SR0WXModule):
         return {"current":current, "average": average}
   
     def getSensorData(self, html):
-        dataArr = html.split("L.marker([")
+        dataArr = html.split(b"L.marker([")
         ret = {}
         for row in dataArr:
+            row = row.decode('utf-8')
             if self.isSensorRow(row):
                 if self.isSensorMatchedById(self.__sensor_id, row):
                     ret = self.extractSensorData(row)

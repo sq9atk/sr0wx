@@ -1,3 +1,4 @@
+imieniny = {
 '01-01':'Mieczysław Mieszko Maria Mieczysława Masław Odyseusz Wilhelm',
 '01-02':'Abel Bazyli Narcyz Grzegorz Izydor Makary Odylon',
 '01-03':'Arleta Daniel Danuta Enoch Genowefa Piotr',
@@ -366,3 +367,4 @@
 '12-30':'Dawida Sewer Anizja Irmina Eugeniusz Rajner Sabin Katarzyna Dionizy Uniedrog Dawid',
 '12-31':'Korneliusz Sylwester Donata Mariusz Melania Saturnina Sebastian Tworzysław',
 
+}

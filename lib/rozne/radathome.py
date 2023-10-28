@@ -16,12 +16,12 @@
 #   limitations under the License.
 #
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import datetime
 from config import radAtHome as config
 import datetime
 import csv
-import debug
+from . import debug
 import sqlite3
 
 lang=None

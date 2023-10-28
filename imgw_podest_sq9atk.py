@@ -16,7 +16,7 @@
 #   limitations under the License.
 #
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import re
 import json
 import logging
@@ -48,14 +48,14 @@ class ImgwPodestSq9atk(SR0WXModule):
             s.__logger.info("Nie udało się pobrać danych o wodowskazach!")
 
     def bezpiecznaNazwa(s, nazwa):
-        return unicode(nazwa, 'utf-8').lower().\
-            replace(u'ą',u'a_').replace(u'ć',u'c_').\
-            replace(u'ę',u'e_').replace(u'ł',u'l_').\
-            replace(u'ń',u'n_').replace(u'ó',u'o_').\
-            replace(u'ś',u's_').replace(u'ź',u'z_').\
-            replace(u'ż',u'z_').replace(u' ',u'_').\
-            replace(u'-',u'_').replace(u'(',u'').\
-            replace(u')',u'')    
+        return str(nazwa, 'utf-8').lower().\
+            replace('ą','a_').replace('ć','c_').\
+            replace('ę','e_').replace('ł','l_').\
+            replace('ń','n_').replace('ó','o_').\
+            replace('ś','s_').replace('ź','z_').\
+            replace('ż','z_').replace(' ','_').\
+            replace('-','_').replace('(','').\
+            replace(')','')    
         
     def pobierzDaneWodowskazu(s, wodowskaz):
         global wodowskazy
@@ -119,7 +119,7 @@ class ImgwPodestSq9atk(SR0WXModule):
 
                 if w['przekroczenieStanu'] == 'ostrzegawczy':
                     s.__logger.info("::: Stan ostrzegawczy: " + wodowskaz + " - " + rzeka + ' - ' + w['nazwa_org'])
-                    if not stanyOstrzegawcze.has_key(w['rzeka']):
+                    if w['rzeka'] not in stanyOstrzegawcze:
                         stanyOstrzegawcze[w['rzeka']] = [w['nazwa']+ ' ' + w['tendencja'] + ' _ ']
                         
                     else:
@@ -127,7 +127,7 @@ class ImgwPodestSq9atk(SR0WXModule):
                         
                 elif w['przekroczenieStanu'] == 'alarmowy':
                     s.__logger.info("::: Stan alarmowy: "+ wodowskaz+" - " + rzeka + ' - ' + w['nazwa_org'])
-                    if not stanyAlarmowe.has_key(w['rzeka']):
+                    if w['rzeka'] not in stanyAlarmowe:
                         stanyAlarmowe[w['rzeka']] = [w['nazwa']+ ' ' + w['tendencja'] + ' _ ']
                         
                     else:

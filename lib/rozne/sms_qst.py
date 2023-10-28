@@ -79,7 +79,7 @@ def add_sms_to_db(sender, message, date_rcvd):
         message = message.split('.',1)[1]
 
     c = conn.cursor()
-    print (sender,message,date_rcvd,valid_until[1],)
+    print((sender,message,date_rcvd,valid_until[1],))
     c.execute("""insert into sms_rcvd(sender,message,date_rcvd,valid_until)
         values(?,?,?,?);""",(sender,message,date_rcvd,valid_until[1],))
     conn.commit()
@@ -119,7 +119,7 @@ def get_last_authorized_message():
 	order by date_rcvd desc;""")
 
     for sms in c.fetchall():
-        if sms[1] in config.authorized_senders.keys():
+        if sms[1] in list(config.authorized_senders.keys()):
             callsign = lang.readCallsign(\
                 config.authorized_senders[sms[1]])
             return {'id':sms[0], 'callsign':callsign, 'message':sms[2]}

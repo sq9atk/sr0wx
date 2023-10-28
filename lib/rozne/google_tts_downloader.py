@@ -14,7 +14,7 @@
 # This file is ugly, dirty, and probably useless when downloading
 # other samples than polish. But I will fix it one day.
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import os, sys
 import subprocess
 
@@ -49,7 +49,7 @@ for word in dictionary.download_list:
 
         #url = "\"http://translate.google.com/translate_tts?tl=pl&q=%s\""%urllib.quote_plus(phrase+" .")
         #os.system("wget -q -U \"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6\" -O %s.mp3 %s"%(filename,url))
-        url = u"\"http://translate.google.com/translate_tts?tl=%s&q=%s&total=1&idx=0&client=t\"" % (dictionary.LANGUAGE, urllib.quote_plus(phrase + " ."))
+        url = "\"http://translate.google.com/translate_tts?tl=%s&q=%s&total=1&idx=0&client=t\"" % (dictionary.LANGUAGE, urllib.parse.quote_plus(phrase + " ."))
         os.system("wget -q -U 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.107 Safari/537.36' -O %s.mp3 %s" % (filename, url))
 
         os.system("lame --decode %s.mp3 %s.wav"%(filename,filename))

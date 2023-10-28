@@ -114,11 +114,11 @@ def cw(text, wpm=25, farnsworth=None, weight=None, pitch=600, volume=0.1, sample
         if letter in morse:
             for beep in morse[letter]:
                 if beep==".":
-                    if letters.has_key(letter):
+                    if letter in letters:
                         letters[letter]=Numeric.concatenate( (letters[letter],dit) )
                     else: letters[letter]=dit
                 else:
-                    if letters.has_key(letter):
+                    if letter in letters:
                         letters[letter]=Numeric.concatenate( (letters[letter],dah) )
                     else: letters[letter]=dah
             letters[letter]=Numeric.concatenate( (letters[letter],interLetter) )

@@ -73,20 +73,20 @@
 #
 # This dictionary is used by all SR0WX modules.
 
-fake_gettext = lambda(s): s
+fake_gettext = lambda s: s
 _ = fake_gettext
 
 # Units and grammar cases
 hrs = ["","godziny","godzin"]
 hPa = ["hektopaskal", "hektopaskale", "hektopaskali"]
-percent = [u"procent",u"procent",u"procent"]
+percent = ["procent","procent","procent"]
 mPs    = ["metr_na_sekunde", "metry_na_sekunde", "metrow_na_sekunde"]
 kmPh   = ["kilometr_na_godzine", "kilometry_na_godzine", "kilometrow_na_godzine"]
 MiPh   = ["", "", ""] # miles per hour -- not used
 windStrength  = "sila_wiatru"
-deg = [u"stopien","stopnie","stopni"]
+deg = ["stopien","stopnie","stopni"]
 C   = ["stopien_celsjusza", "stopnie_celsjusza", "stopni_celsjusza"]
-km  = ["kilometr", "kilometry", u"kilometrow"]
+km  = ["kilometr", "kilometry", "kilometrow"]
 mns = ["minuta","minuty","minut"]
 tendention = ['tendencja_spadkowa','', 'tendencja_wzrostowa']
 
@@ -99,16 +99,16 @@ directions = { "N": ("północno ",   "północny"),
                "S": ("południowo ", "południowy") }
 
 # numbers
-jednostkiM = [u""] + u"jeden dwa trzy cztery pięć sześć siedem osiem dziewięć".split()
-jednostkiF = [u""] + u"jedną dwie trzy cztery pięć sześć siedem osiem dziewięć".split()
-dziesiatki = [u""] + u"""dziesięć dwadzieścia  trzydzieści czterdzieści
+jednostkiM = [""] + "jeden dwa trzy cztery pięć sześć siedem osiem dziewięć".split()
+jednostkiF = [""] + "jedną dwie trzy cztery pięć sześć siedem osiem dziewięć".split()
+dziesiatki = [""] + """dziesięć dwadzieścia  trzydzieści czterdzieści
      pięćdziesiąt sześćdziesiąt siedemdziesiąt osiemdziesiąt dziewięćdziesiąt""".split()
-nastki = u"""dziesięć jedenaście dwanaście trzynaście czternaście piętnaście
+nastki = """dziesięć jedenaście dwanaście trzynaście czternaście piętnaście
         szesnaście siedemnaście osiemnaście dziewiętnaście""".split()
-setki = [u""]+ u"""sto dwieście trzysta czterysta pięćset sześćset siedemset osiemset
+setki = [""]+ """sto dwieście trzysta czterysta pięćset sześćset siedemset osiemset
               dziewięćset""".split()
 
-ws=u"""x x x
+ws="""x x x
    tysiąc tysiące tysięcy
    milion miliony milionów
    miliard miliardy miliardów
@@ -163,7 +163,7 @@ def lslownie(liczba, plec='M'):
     """Liczba całkowita słownie"""
     trojki = []
     if liczba==0:
-        return u'zero'
+        return 'zero'
     while liczba>0:
         trojki.append(liczba % 1000)
         liczba = liczba // 1000
@@ -173,7 +173,7 @@ def lslownie(liczba, plec='M'):
             if i>0:
                 p = _przypadek(n)
                 w = wielkie[i][p]
-                slowa.append(_slownie3cyfry(n, plec)+u" "+w)
+                slowa.append(_slownie3cyfry(n, plec)+" "+w)
             else:
                 slowa.append(_slownie3cyfry(n, plec))
     slowa.reverse()
@@ -206,13 +206,13 @@ def cosslownie(liczba,cos, plec='M'):
 # As you remember, ``cardinal()`` must be defined, this is the function which
 # will be used by SR0WX modules. This functions was also written by dowgrid,
 # modified by me. (Is function's name proper?)
-def cardinal(no, units=[u"",u"",u""], gender='M'):
+def cardinal(no, units=["","",""], gender='M'):
     """Zamienia liczbę zapisaną cyframi na zapis słowny, opcjonalnie z jednostkami
 w odpowiednim przypadku. Obsługuje liczby ujemne."""
     if no<0:
-        return (u"minus " + cosslownie(-no, units, plec=gender)).replace(u"jeden tysiąc", u"tysiąc",1).encode("utf-8")
+        return ("minus " + cosslownie(-no, units, plec=gender)).replace("jeden tysiąc", "tysiąc",1).encode("utf-8")
     else:
-        return cosslownie(no, units, plec=gender).replace(u"jeden tysiąc", u"tysiąc",1).encode("utf-8")
+        return cosslownie(no, units, plec=gender).replace("jeden tysiąc", "tysiąc",1).encode("utf-8")
 
 # This one tiny simply removes diactrics (lower case only). This function
 # must be defined even if your language doesn't use diactrics (like English),

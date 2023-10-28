@@ -71,13 +71,15 @@ You can find full list of contributors on github.com/sq6jnx/sr0wx.py
 #
 # SR0WX (core) requires the following packages:
 
+import contextlib
 import getopt
 import os
 import pygame
 import sys
 import logging, logging.handlers
 import numpy
-import urllib2
+import urllib.request, urllib.error, urllib.parse
+import socket
 
 # ``os``, ``sys`` and ``time`` doesn't need further explanation, these are
 # syandard Python packages.
@@ -137,8 +139,9 @@ message = " "
 # Modules may be also given in commandline, separated by a comma.
 
 config = None
+test_mode = False
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "c:", ["config="])
+    opts, args = getopt.getopt(sys.argv[1:], "c:t", ["config=", "test"])
 except getopt.GetoptError:
     pass
 for opt, arg in opts:
@@ -146,6 +149,8 @@ for opt, arg in opts:
         if arg[-3:] == '.py':
             arg = arg[:-3]
         config = __import__(arg)
+    if opt in ("-t", "--test"):
+        test_mode = True
 
 if config is None:
     import config
@@ -154,6 +159,8 @@ logger = setup_logging(config)
 
 logger.info(COLOR_WARNING + "sr0wx.py started" + COLOR_ENDC)
 logger.info(LICENSE)
+if test_mode: 
+    logger.info("Test mode enabled, skipping serial port usage")
 
 
 if len(args) > 0:
@@ -162,8 +169,8 @@ else:
     modules = config.modules
 
 try:
-    dane = urllib2.urlopen('http://google.pl', None, 30);
-except urllib2.URLError, e:
+    dane = urllib.request.urlopen('http://google.pl', None, 30);
+except urllib.error.URLError as e:
     modules = []
     message += " ".join(config.data_sources_error_msg)
     logger.info(COLOR_FAIL + "Brak połączenia z internetem" + COLOR_ENDC + "\n")
@@ -252,19 +259,19 @@ for el in message:
 # Program should be able to "press PTT" via RSS232. See ``config`` for
 # details.
 
-if config.serial_port is not None:
+if not test_mode and config.serial_port is not None: 
     
     import serial
     try:
-		ser = serial.Serial(config.serial_port, config.serial_baud_rate)
-		if config.serial_signal == 'DTR':
-		    logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
-		    ser.setDTR(1)
-		    ser.setRTS(0)
-		else:
-		    logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
-		    ser.setDTR(0)
-		    ser.setRTS(1)
+        ser = serial.Serial(config.serial_port, config.serial_baud_rate)
+        if config.serial_signal == 'DTR':
+            logger.info(COLOR_OKGREEN + "DTR/PTT set to ON\n" + COLOR_ENDC)
+            ser.dtr = True
+            ser.rts = False
+        else:
+            logger.info(COLOR_OKGREEN + "RTS/PTT set to ON\n" + COLOR_ENDC)
+            ser.dtr = False
+            ser.rts = True
     except:
         log = COLOR_FAIL + "Failed to open serial port %s@%i\n" + COLOR_ENDC
         logger.error(log, config.serial_port, config.serial_baud_rate)
@@ -287,10 +294,9 @@ for el in message:
         pygame.time.wait(500)
     else:
         if "upper" in dir(el):
-            try:
+            with contextlib.suppress(Exception): 
                 voice_channel = sound_samples[el].play()
-            except:
-                a=1
+
 
         elif "upper" not in dir(el):
             sound = pygame.sndarray.make_sound(el)
@@ -313,7 +319,7 @@ pygame.time.delay(1000)
 
 # If we've opened serial it's now time to close it.
 try:
-    if config.serial_port is not None:
+    if not test_mode and config.serial_port is not None:
         ser.close()
         logger.info(COLOR_OKGREEN + "RTS/PTT set to OFF\n" + COLOR_ENDC)
 except NameError:

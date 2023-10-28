@@ -71,7 +71,7 @@ class debug():
 
         if buglevel>=config.showLevel:
             self.msgs = self.msgs + message
-            print formattedMessage 
+            print(formattedMessage) 
         if buglevel>=config.writeLevel:
             try:
                 if not os.path.exists(self.filename):
@@ -80,7 +80,7 @@ class debug():
                     logfile = open(self.filename, 'a+')
                 logfile.write(formattedMessage + '\n')
             except:
-                print dt.strftime("%x %X UTC")+" [DEBUG]:\tCan't write to file!"
+                print(dt.strftime("%x %X UTC")+" [DEBUG]:\tCan't write to file!")
             finally:
                 logfile.close()
 
@@ -88,14 +88,14 @@ class debug():
 # run gether(). Both functions do the same except 
     def gather(self):
         if not self.logGathered:
-            print "\n\nHash of traceback is %s. Hope it helps in debugging. You can find whole log at %s ."%\
-                ('%X'%(self.msgs.__hash__()+int('ffffffff',16)), "".join( (config.baseURI, self.filename) ) )
+            print("\n\nHash of traceback is %s. Hope it helps in debugging. You can find whole log at %s ."%\
+                ('%X'%(self.msgs.__hash__()+int('ffffffff',16)), "".join( (config.baseURI, self.filename) ) ))
             self.logGathered = True
 
     def __del__(self):
         if not self.logGathered:
-            print "\n\nHash of traceback is %s. Hope it helps in debugging. You can find whole log at %s ."%\
-                ('%X'%(self.msgs.__hash__()+int('ffffffff',16)), "".join( (config.baseURI, self.filename) ) )
+            print("\n\nHash of traceback is %s. Hope it helps in debugging. You can find whole log at %s ."%\
+                ('%X'%(self.msgs.__hash__()+int('ffffffff',16)), "".join( (config.baseURI, self.filename) ) ))
         pass
 
         

@@ -16,15 +16,15 @@
 #   limitations under the License.
 #
 
-fake_gettext = lambda(s): s
+fake_gettext = lambda s: s
 _ = fake_gettext
 
 from config import y_weather as config
 
 # For debugging purposes:
 
-import debug
-import urllib2
+from . import debug
+import urllib.request, urllib.error, urllib.parse
 
 lang = None
 
@@ -38,7 +38,7 @@ def my_import(name):
 # Taken from http://developer.yahoo.com/python/python-xml.html (SLIGHTLY modified)
 # simple and elegant, but I HATE XML!
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from xml.dom import minidom
 
 import datetime
@@ -53,7 +53,7 @@ def weather_for_zip(zip_code):
     WEATHER_NS = 'http://xml.weather.yahoo.com/ns/rss/1.0'
 
     url = WEATHER_URL % zip_code
-    dom = minidom.parse(urllib.urlopen(url))
+    dom = minidom.parse(urllib.request.urlopen(url))
     forecasts = []
     for node in dom.getElementsByTagNameNS(WEATHER_NS, 'forecast'):
         forecasts.append({

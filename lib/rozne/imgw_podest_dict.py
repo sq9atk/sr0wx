@@ -196,13 +196,13 @@ def bezpiecznaNazwa(s):
     wodowskazu. Ze względu na to, że w Polsce zarówno płynie
     rzeka Ślęza jak i Ślęża oznaczany jest każdy niełaciński
     znak"""
-    return unicode(s, 'utf-8').lower().replace(u'ą',u'a_').replace(u'ć',u'c_').\
-        replace(u'ę',u'e_').replace(u'ł',u'l_').\
-        replace(u'ń',u'n_').replace(u'ó',u'o_').\
-        replace(u'ś',u's_').replace(u'ź',u'x_').\
-        replace(u'ż',u'z_').replace(u' ',u'_').\
-        replace(u'-',u'_').replace(u'(',u'').\
-        replace(u')',u'')
+    return str(s, 'utf-8').lower().replace('ą','a_').replace('ć','c_').\
+        replace('ę','e_').replace('ł','l_').\
+        replace('ń','n_').replace('ó','o_').\
+        replace('ś','s_').replace('ź','x_').\
+        replace('ż','z_').replace(' ','_').\
+        replace('-','_').replace('(','').\
+        replace(')','')
 
 imgw_podest_sq9atk = [
     ['ę. ' + fraza, bezpiecznaNazwa(fraza)]

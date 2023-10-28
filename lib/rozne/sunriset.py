@@ -83,4 +83,4 @@ def getData(l):
 	return data
 
 if __name__ == '__main__':
-	print getData('pl')["data"]
+	print(getData('pl')["data"])

@@ -528,5 +528,5 @@ class Sun:
 if __name__ == "__main__":
 
     k = Sun()
-    print k.get_max_solar_flux(46.2, 2004, 01, 30)
+    print(k.get_max_solar_flux(46.2, 2004, 0o1, 30))
 #    print k.sunRiseSet(2002, 3, 22, 25.42, 62.15)

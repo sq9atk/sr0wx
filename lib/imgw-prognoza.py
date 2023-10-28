@@ -16,7 +16,7 @@
 #   limitations under the License.
 #
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import re
 import datetime
 
@@ -29,7 +29,7 @@ class imgw_prognoza:
 
 
     def downloadFile(self, url):
-        webFile = urllib.urlopen(url)
+        webFile = urllib.request.urlopen(url)
         return webFile.read()
 
     

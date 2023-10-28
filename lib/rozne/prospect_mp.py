@@ -17,10 +17,10 @@
 #
 
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from config import prospect_mp as config
 import datetime
-import debug
+from . import debug
 import json
 import os 
 lang=None
@@ -32,17 +32,17 @@ def bezpiecznaNazwa(s):
     rzeka Ślęza jak i Ślęża oznaczany jest każdy niełaciński
     znak"""
     if str(s.__class__)=="<type 'str'>":
-        s=unicode(s, 'utf-8')
-    return s.lower().replace(u'ą',u'a_').replace(u'ć',u'c_').\
-        replace(u'ę',u'e_').replace(u'ł',u'l_').\
-        replace(u'ń',u'n_').replace(u'ó',u'o_').\
-        replace(u'ś',u's_').replace(u'ź',u'x_').\
-        replace(u'ż',u'z_').replace(u' ',u'_').\
-        replace(u'-',u'_').replace(u'(',u'').\
-        replace(u')',u'')
+        s=str(s, 'utf-8')
+    return s.lower().replace('ą','a_').replace('ć','c_').\
+        replace('ę','e_').replace('ł','l_').\
+        replace('ń','n_').replace('ó','o_').\
+        replace('ś','s_').replace('ź','x_').\
+        replace('ż','z_').replace(' ','_').\
+        replace('-','_').replace('(','').\
+        replace(')','')
 
 def downloadFile(url):
-    webFile = urllib.urlopen(url)
+    webFile = urllib.request.urlopen(url)
     return webFile.read()
 
 def my_import(name):
@@ -73,11 +73,11 @@ def pobierzOstrzezenia(domena,stacja):
        elif wynik[0][1] in ('ostrzegawczy','alarmowy'):
            return wynik[0][1]
        else:
-           debug.log('PROSPECT-MP', u'Regex nie zwrócił oczekiwanych danych',\
+           debug.log('PROSPECT-MP', 'Regex nie zwrócił oczekiwanych danych',\
                    buglevel=5)
            return None
     except:
-        debug.log('PROSPECT-MP', u'Regex nie zwrócił oczekiwanych danych',\
+        debug.log('PROSPECT-MP', 'Regex nie zwrócił oczekiwanych danych',\
                 buglevel=5)
         pass
         return None
@@ -90,7 +90,7 @@ def getData(l):
     if not os.path.exists('prospect_mp.json'):
         stany = generuj_json(nie_zapisuj=True)
     else:
-        stany = json.loads(unicode(open('prospect_mp.json','r').read(),'utf-8'))
+        stany = json.loads(str(open('prospect_mp.json','r').read(),'utf-8'))
         
     if stany['ostrzegawczy']!={} or stany['alarmowy']!={}:
         data['data'] += 'lokalny_komunikat_hydrologiczny '
@@ -117,7 +117,7 @@ def getData(l):
     return data
 
 def show_help():
-    print u"""
+    print("""
 Uruchamiając ten skrypt z linii komend możesz wygenerować w łatwy sposób 
 fragment słownika sr0wx dla rzek i wodowskazów wskazanych w pliku config.py
 
@@ -129,13 +129,13 @@ a następnie
 
 python google_tts_downloader.py prospect_mp_dict.py
 
-aby dociągnąć niezbędne pliki."""
+aby dociągnąć niezbędne pliki.""")
 
 def generuj_slownik():
     # generowanie listy słów słownika; ostatnie słowo (rozielone spacją)
     # jest nazwą pliku docelowego
 
-    print """#!/usr/bin/python
+    print("""#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Caution! I am not responsible for using these samples. Use at your own risk
@@ -151,7 +151,7 @@ END_MARKER = ' k'
 CUT_START = 0.9
 CUT_END=0.7
 
-download_list = [ """
+download_list = [ """)
 
     frazy = []
     for wpis in config.wodowskazy:
@@ -159,14 +159,14 @@ download_list = [ """
         frazy.append(wpis[2])
 
     for fraza in set(frazy):
-        print "\t['ę. %s', '%s'],"%(fraza, str(bezpiecznaNazwa(fraza)),)
+        print("\t['ę. %s', '%s'],"%(fraza, str(bezpiecznaNazwa(fraza)),))
 
 
-    print """['lokalny komunikat hydrologiczny]', 
+    print("""['lokalny komunikat hydrologiczny]', 
         ['przekroczenia stanów ostrzegawczych'],
         ['przekroczenia stanów alarmowych'], ['rzeka'], ['wodowskaz'],
         ['err wu de prospekt','rwd_prospect']
-        ]"""
+        ]""")
 
 
 def generuj_json(nie_zapisuj=False):
@@ -191,13 +191,13 @@ def generuj_json(nie_zapisuj=False):
             # Koniec chłytu
 
             if stan in ('ostrzegawczy','alarmowy'):
-                if not stany[stan].has_key(rzeka):
+                if rzeka not in stany[stan]:
                     stany[stan][rzeka]=[]
                 stany[stan][rzeka].append(wodowskaz)
         except:
             raise
-            debug.log('PROSPECT-MP', u'Pobieranie danych zakończyło się '+\
-                   u'błędem', buglevel=5)
+            debug.log('PROSPECT-MP', 'Pobieranie danych zakończyło się '+\
+                   'błędem', buglevel=5)
             pass
 
     if nie_zapisuj==False:

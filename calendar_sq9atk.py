@@ -1,10 +1,9 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import re
 import logging
-import pytz
 import socket
 
 from datetime import datetime
@@ -23,17 +22,16 @@ class CalendarSq9atk(SR0WXModule):
     def downloadFile(self, url):
         try:
             self.__logger.info("::: Odpytuję adres: " + url)
-            webFile = urllib2.urlopen(url, None, 30)
+            webFile = urllib.request.urlopen(url, None, 30)
             return webFile.read()
-        except urllib2.URLError, e:
-            print e
+        except urllib.error.URLError as e:
+            print(e)
         except socket.timeout:
-            print "Timed out!"
-        return ""
+            print("Timed out!")
 
     def getSunsetSunrise(self):
         self.__logger.info("::: Pobieram dane o wschodzie i zachodzie słońca")
-        r = re.compile(r'<h1>(.*)(\d\d:\d\d)(.*)(\d\d:\d\d)</h1>')
+        r = re.compile(rb'<h1>(.*)(\d\d:\d\d)(.*)(\d\d:\d\d)</h1>')
         url = self.__service_url+str(self.__city_id)
         html = self.downloadFile(url)
         matches = r.findall(html)
@@ -43,7 +41,7 @@ class CalendarSq9atk(SR0WXModule):
         }
 
     def hourToNumbers(self, time="00:00"):
-        datetime_object = datetime.strptime(time, '%H:%M')
+        datetime_object = datetime.strptime(time.decode('ascii'), '%H:%M')
         time_words = self.__language.read_datetime(datetime_object, '%H %M')
         return time_words
 

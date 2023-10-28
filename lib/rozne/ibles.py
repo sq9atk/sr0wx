@@ -16,7 +16,7 @@
 #   limitations under the License.
 #
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import pygame
 import datetime
 import re
@@ -25,7 +25,7 @@ from config import ibles  as config
 lang=None
 
 def downloadFile(url):
-    webFile = urllib.urlopen(url)
+    webFile = urllib.request.urlopen(url)
     return webFile.read()
 
 def my_import(name):
@@ -88,7 +88,7 @@ def get_forecast_url():
     now = datetime.datetime.now()
     year, month, day, hour = now.year, now.month, now.day, now.hour
 
-    if month not in range(4,10):
+    if month not in list(range(4,10)):
         return None
     else:
         webfile = downloadFile('http://bazapozarow.ibles.pl/zagrozenie/')
@@ -118,7 +118,7 @@ def getData(l):
         zagrozenie=max(zagrozenie, poziomy[kolor])
 
     if zagrozenie>0:
-        print zagrozenie
+        print(zagrozenie)
         data['data']=' '.join( ('w_lasach_wystepuje ',
                 poziomy_nazwy[zagrozenie],
                 'zagrozenie_pozarowe',))

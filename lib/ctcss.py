@@ -46,9 +46,9 @@ def main():
     pygame.mixer.pre_init(44100,-16,2,1024)
     pygame.mixer.init(44100,-16,2,1024)
     #pygame.init()
-    print "Testing CTCSS capability"
+    print("Testing CTCSS capability")
     for tone in sorted(CTCSSTones.keys()):
-        print "Tone %s, %s Hz..."%(tone,CTCSSTones[tone])
+        print("Tone %s, %s Hz..."%(tone,CTCSSTones[tone]))
         s= pygame.sndarray.make_sound(getCTCSS(CTCSSTones[tone]))
         c=s.play(300)
         while c.get_busy():

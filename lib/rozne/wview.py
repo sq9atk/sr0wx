@@ -16,14 +16,14 @@
 #   limitations under the License.
 #
 
-fake_gettext = lambda(s): s
+fake_gettext = lambda s: s
 _ = fake_gettext
 
 from config import wview as config
 
 # For debugging purposes:
 
-import debug
+from . import debug
 import sqlite3
 
 lang = None

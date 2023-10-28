@@ -16,8 +16,8 @@
 #   limitations under the License.
 #
 
-import urllib
-import debug
+import urllib.request, urllib.parse, urllib.error
+from . import debug
 import json
 import os 
 import BeautifulSoup
@@ -32,21 +32,21 @@ def safe_name(s):
     I've no idea if such situation appears in czech, but... just in case..."""
 
     if str(s.__class__)=="<type 'str'>":
-        s=unicode(s, 'utf-8')
-    return s.replace(u'á','a_').replace(u'é','e_').\
-        replace(u'ě','e!').replace(u'í','i_').replace(u'ó','o_').\
-        replace(u'ú','o!').replace(u'ů','u_').replace(u'ý','y_').\
-        replace(u'ď','d_').replace(u'ť','t_').replace(u'ň','n_').\
-        replace(u'ř','r_').replace(u'š','s_').replace(u'č','c_').\
-        replace(u'ž','z_').replace(u'Á','a_').replace(u'É','e_').\
-        replace(u'Ě','e!').replace(u'Í','i_').replace(u'Ó','o_').\
-        replace(u'Ú','o!').replace(u'Ů','u_').replace(u'Ý','y_').\
-        replace(u'Ď','d_').replace(u'Ť','t_').replace(u'Ň','n_').\
-        replace(u'Ř','r_').replace(u'Š','s_').replace(u'Č','c_').\
-        replace(u'Ž','z_').lower().replace(' ','_').replace(u'–','_')
+        s=str(s, 'utf-8')
+    return s.replace('á','a_').replace('é','e_').\
+        replace('ě','e!').replace('í','i_').replace('ó','o_').\
+        replace('ú','o!').replace('ů','u_').replace('ý','y_').\
+        replace('ď','d_').replace('ť','t_').replace('ň','n_').\
+        replace('ř','r_').replace('š','s_').replace('č','c_').\
+        replace('ž','z_').replace('Á','a_').replace('É','e_').\
+        replace('Ě','e!').replace('Í','i_').replace('Ó','o_').\
+        replace('Ú','o!').replace('Ů','u_').replace('Ý','y_').\
+        replace('Ď','d_').replace('Ť','t_').replace('Ň','n_').\
+        replace('Ř','r_').replace('Š','s_').replace('Č','c_').\
+        replace('Ž','z_').lower().replace(' ','_').replace('–','_')
 
 def downloadFile(url):
-    webFile = urllib.urlopen(url)
+    webFile = urllib.request.urlopen(url)
     return webFile.read()
 
 def my_import(name):
@@ -63,20 +63,20 @@ def getData(l):
     regions = get_config_regions()
     
     if not os.path.exists('povodi_cz.json'):
-        regions = generate_json(regions=regions.keys(), dont_save=False)
+        regions = generate_json(regions=list(regions.keys()), dont_save=False)
     else:
-        regions = json.loads(unicode(open('povodi_cz.json','r').read(),'utf-8'))
+        regions = json.loads(str(open('povodi_cz.json','r').read(),'utf-8'))
 
     awarenesses = {}
 
-    for region in regions.keys():
+    for region in list(regions.keys()):
         for river in regions[region]:
-            for station in regions[region][river].keys():
+            for station in list(regions[region][river].keys()):
                 station_name, level = regions[region][river][station]
                 if [region,station] in config.stations and level>0:
-                    if not awarenesses.has_key(str(level)):
+                    if str(level) not in awarenesses:
                         awarenesses[str(level)]={}
-                    if not awarenesses[str(level)].has_key(safe_name(river)):
+                    if safe_name(river) not in awarenesses[str(level)]:
                         awarenesses[str(level)][safe_name(river)]=[]
                     awarenesses[str(level)][safe_name(river)].\
                           append(safe_name(regions[region][river][station][0]))
@@ -102,7 +102,7 @@ def getData(l):
     return data
 
 def show_help():
-    print u"""
+    print("""
 Uruchamiając ten skrypt z linii komend możesz wygenerować w łatwy sposób 
 fragment słownika sr0wx dla rzek i wodowskazów wskazanych w pliku config.py
 
@@ -114,7 +114,7 @@ a następnie
 
 python google_tts_downloader.py povodi_cz_dict.py
 
-aby dociągnąć niezbędne pliki."""
+aby dociągnąć niezbędne pliki.""")
 
 def get_region(region):
     """Returns dictionary with all rivers and stations with flood awareness
@@ -141,7 +141,7 @@ def get_region(region):
     #try:
     if 1==1:
         for station in html.findAll('div'):
-            if station.has_key('id') and 'text' in station['id']:
+            if 'id' in station and 'text' in station['id']:
                 r1, r2 = station.findAll('table')
                 stid= station['id'][4:] # station id
                 river=str(r1.findAll('tr')[0].findAll('td')[0].\
@@ -177,7 +177,7 @@ def get_region(region):
                
                 #print '|'.join( (region,_map, str(stid),river, station, level) )
 
-                if not rv.has_key(river):
+                if river not in rv:
                     rv[river]={}
                 rv[river][stid]=[station, level]
                 # debug trick: WE are steering water levels
@@ -228,15 +228,15 @@ def generate_json(regions=None, dont_save=False):
 def generate_config():
     regions=generate_json(dont_save=True)
 
-    print u'povodi_cz.stations = ['
+    print('povodi_cz.stations = [')
 
     for region in sorted(regions.keys()):
         for river in sorted(regions[region].keys()):
             for station in sorted(regions[region][river].keys()):
-                print u"    ['%s','%s'],\t# %s, station %s"%\
-                        (region,station,unicode(river,'utf-8'),\
-                        unicode(regions[region][river][station][0],'utf-8'),)
-    print u']'
+                print("    ['%s','%s'],\t# %s, station %s"%\
+                        (region,station,str(river,'utf-8'),\
+                        str(regions[region][river][station][0],'utf-8'),))
+    print(']')
 
 def get_config_regions():
     regions = {}
@@ -250,7 +250,7 @@ def generate_dictionary():
     regions = get_config_regions()
 
     phrases = []
-    for region in regions.keys():
+    for region in list(regions.keys()):
         region_data = get_region(region)
         for river in sorted(region_data.keys()):
             for station in sorted(region_data[river].keys()):
@@ -260,7 +260,7 @@ def generate_dictionary():
                      if river not in phrases:
                         phrases.append(river)
 
-    print u"""#!/usr/bin/python
+    print("""#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Caution! I am not responsible for using these samples. Use at your own risk
@@ -276,19 +276,19 @@ END_MARKER = '@'
 CUT_START = 0.9
 CUT_END=0.7
 
-download_list = [ """
+download_list = [ """)
 
     for phrase in phrases:
-        print u"    [\"%s\", \"%s\"], # %s"%\
-                (unicode(phrase,'utf-8'), safe_name(phrase),\
-                unicode(phrase,'utf-8'))
+        print("    [\"%s\", \"%s\"], # %s"%\
+                (str(phrase,'utf-8'), safe_name(phrase),\
+                str(phrase,'utf-8')))
 
-    print u']'
+    print(']')
 
 if __name__ == '__main__':
     class DummyDebug:
         def log(self,module,message,buglevel=None):
-            print message
+            print(message)
 
     debug = DummyDebug()
     import sys
