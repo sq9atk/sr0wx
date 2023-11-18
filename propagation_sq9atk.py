@@ -82,21 +82,26 @@ class PropagationSq9atk(SR0WXModule):
 
 
     def get_data(self):
-
         image = self.downloadImage(self.__service_url)
 
         self.__logger.info("::: Przetwarzam dane...\n")
 
-        message = " ".join([
-            " _ informacje_o_propagacji ",
-            " _ dzien _ ",
-            " _ pasma _ ",
-            " _ " .join( self.collectBandConditionsFromImage(image, 'day') ),
-            " _ noc _ ",
-            " _ pasma _ ",
-            " _ " .join( self.collectBandConditionsFromImage(image, 'night') ),
-            " _ "
-        ])
+        day = self.collectBandConditionsFromImage(image, 'day')
+        night = self.collectBandConditionsFromImage(image, 'night')
+
+        if len(day) and len(night):
+            message = " ".join([
+                " _ informacje_o_propagacji ",
+                " _ dzien _ ",
+                " _ pasma _ ",
+                " _ " .join( day ),
+                " _ noc _ ",
+                " _ pasma _ ",
+                " _ " .join( night ),
+                " _ "
+            ])
+        else:
+            message = ''
 
         return {
             "message": message,
