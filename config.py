@@ -55,7 +55,7 @@ log_handlers = [{
         }
     }]
 
-ctcss_tone = 88.5
+ctcss_tone = 0
 serial_port = '/dev/ttyS0'
 serial_baud_rate = 9600
 serial_signal = 'DTR' # lub 'RTS'
@@ -99,6 +99,34 @@ openweathersq9atk = OpenWeatherSq9atk(
     lon = 20,
     service_url = 'http://api.openweathermap.org/data/2.5/'
 )
+
+# ---------------
+# meteoalarm_sq9atk
+# ---------------
+from meteoalarm_sq9atk import MeteoalarmSq9atk
+meteoalarmsq9atk = MeteoalarmSq9atk(
+    language = pl_google,
+    service_url="https://www.meteoalarm.pl/index.php?w=",
+    region_id='12'
+)
+        # '14':'mazowieckie',
+        # '08':'lubuskie',
+        # '32':'zachodniopomorskie',
+        # '22':'pomorskie',
+        # '02':'dolnoslaskie',
+        # '16':'opolskie',
+        # '24':'slaskie',
+        # '12':'malopolskie',
+        # '18':'podkarpackie',
+        # '26':'swietokrzyskie',
+        # '10':'lodzkie',
+        # '14':'wielkopolskie',
+        # '04':'kujawsko-pomorskie',
+        # '28':'warminsko-mazurskie',
+        # '06':'lubelskie',
+        # '20':'podlaskie',
+
+
 
 # -------------
 # imgw_podest_sq9atk
@@ -375,6 +403,6 @@ modules = [
     vhftroposq9atk,        # vhf tropo propagacja
     propagationsq9atk,      # propagacja KF
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
-    radioactivesq9atk,      # promieniowanie jonizujące
+    #radioactivesq9atk,      # promieniowanie jonizujące
     calendarsq9atk,         # wschód słońca
 ]
