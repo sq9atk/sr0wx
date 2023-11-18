@@ -81,7 +81,7 @@ class VhfTropoSq9atk(SR0WXModule):
         return mapCropped
 
     def lonLatToMapXY(self, lon, lat, imgWidth, imgHeight):
-        self.__logger.info("::: Przetwarzam dane...")
+        self.__logger.info("::: Przetwarzam dane..\n.")
         imgWidth = float(imgWidth)
         imgHeight = float(imgHeight)
         lonRange =  self.__mapLonEnd - self.__mapLonStart
