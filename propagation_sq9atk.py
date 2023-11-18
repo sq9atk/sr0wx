@@ -44,9 +44,9 @@ class PropagationSq9atk(SR0WXModule):
             webFile.retrieve(url, "propagacja.png")
             return Image.open("propagacja.png",'r')
         except socket.timeout:
-            print "Timed out!"
+            print "Timed out!\n"
         except:
-            print "Data download error!"
+            print "Data download error!\n"
         return
 
     def collectBandConditionsFromImage(self, image, dayTime):
@@ -84,24 +84,24 @@ class PropagationSq9atk(SR0WXModule):
     def get_data(self):
         image = self.downloadImage(self.__service_url)
 
-        self.__logger.info("::: Przetwarzam dane...\n")
+        message = '';
+        if image:
+            self.__logger.info("::: Przetwarzam dane...\n")
 
-        day = self.collectBandConditionsFromImage(image, 'day')
-        night = self.collectBandConditionsFromImage(image, 'night')
+            day = self.collectBandConditionsFromImage(image, 'day')
+            night = self.collectBandConditionsFromImage(image, 'night')
 
-        if len(day) and len(night):
-            message = " ".join([
-                " _ informacje_o_propagacji ",
-                " _ dzien _ ",
-                " _ pasma _ ",
-                " _ " .join( day ),
-                " _ noc _ ",
-                " _ pasma _ ",
-                " _ " .join( night ),
-                " _ "
-            ])
-        else:
-            message = ''
+            if len(day) and len(night):
+                message = " ".join([
+                    " _ informacje_o_propagacji ",
+                    " _ dzien _ ",
+                    " _ pasma _ ",
+                    " _ " .join( day ),
+                    " _ noc _ ",
+                    " _ pasma _ ",
+                    " _ " .join( night ),
+                    " _ "
+                ])
 
         return {
             "message": message,
