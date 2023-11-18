@@ -127,7 +127,7 @@ class OpenWeatherSq9atk(SR0WXModule):
 
     def getWind(self, json):
         msg = ' _ ';
-        msg += ' predkosc_wiatru ' 
+        msg += ' predkosc_wiatru '
         msg += ' ' + self.__language.read_speed( int(json['speed']) )
         msg += ' ' + self.__language.read_speed( int(json['speed']/1000*3600),'kmph')
 
@@ -189,8 +189,6 @@ class OpenWeatherSq9atk(SR0WXModule):
                         self.getWind( forecastJson['wind'] ), \
                      ])
 
-        self.__logger.info("::: Przetwarzam dane...\n")
-                
         return {
             "message": message,
             "source": "open_weather_map",
