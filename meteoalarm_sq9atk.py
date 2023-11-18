@@ -52,7 +52,7 @@ class MeteoalarmSq9atk(SR0WXModule):
 
 
     def findDataInHtml(self, html):
-        self.__logger.info("::: przetwarzam dane...")
+        self.__logger.info("::: Przetwarzam dane...\n")
         patternTable = re.compile(r'<table[^>]*class="[^>]*meteo_table[^>]*"[^>]*>.*?</table>', re.DOTALL)
         matchTable = patternTable.search(html)
 

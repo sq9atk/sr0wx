@@ -94,9 +94,7 @@ class ImgwPodestSq9atk(SR0WXModule):
             'przekroczenieStanu': stan,
            # 'przekroczenieStanuStan': stan,
             'tendencja': tendencja }    
-        
-        
-        
+
     def get_data(s):
 
         stanyOstrzegawcze = {}
@@ -140,14 +138,10 @@ class ImgwPodestSq9atk(SR0WXModule):
                 s.__logger.info("::: Brak danych!!! "+ wodowskaz )
                 pass
 
-        message = "_ _ ";
         if stanyOstrzegawcze!={} or stanyAlarmowe!={}:
-            message += 'komunikat_hydrologiczny_imgw _ '
+            message = ' _ komunikat_hydrologiczny_imgw _ '
 
             if stanyAlarmowe!={}:
-                # Sprawdzenie dla których wodowskazów mamy przekroczone
-                # stany alarmowe -- włącz ctcss
-             
                 message +=' przekroczenia_stanow_alarmowych '
                 for rzeka in sorted(stanyAlarmowe.keys()):
                     message +=' rzeka %s wodowskaz %s '%(rzeka, \
@@ -158,10 +152,11 @@ class ImgwPodestSq9atk(SR0WXModule):
                 for rzeka in sorted(stanyOstrzegawcze.keys()):
                     message += 'rzeka %s wodowskaz %s '%(format(rzeka), \
                         " wodowskaz ".join([format(w) for w in sorted(stanyOstrzegawcze[rzeka])]),)
+            message += ' '
+        else:
+            message = ' '
 
         s.__logger.info("::: Przekazuję przetworzone dane...\n")
-
-        message += ' _ '
 
         return {
             "message": message,
