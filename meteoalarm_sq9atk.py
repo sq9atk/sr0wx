@@ -76,12 +76,11 @@ class MeteoalarmSq9atk(SR0WXModule):
         html = self.getHtmlFromUrl(self.__service_url + str(self.__region_id))
 
         data = self.findDataInHtml(html)
-        level = data[0]
-        warnings = data[1]
-
         message = ''
 
-        if level and len(warnings) > 0:
+        try:
+            level = data[0]
+            warnings = data[1]
             message += " ".join([
                 ' _ zagrozenia_meteorologiczne_dla_wojewodztwa ',
                 self.__regions[self.__region_id],
@@ -91,6 +90,8 @@ class MeteoalarmSq9atk(SR0WXModule):
                 ' '.join([self.__levels[level]]),
                 ' _ '
             ])
+        except:
+            None
 
         return {
             "message": message,

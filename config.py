@@ -397,6 +397,7 @@ calendarsq9atk = CalendarSq9atk(
 modules = [
     activitymap,            # marker na mapie wx.ostol.pl
     openweathersq9atk,      # prognoza pogody
+    meteoalarmsq9atk, 		# meteoalarm.pl
     imgwpodestsq9atk,       # wodowskazy
     airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
     #airlysq9atk,            # zanieczyszczenia powietrza z Airly
