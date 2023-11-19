@@ -401,8 +401,8 @@ modules = [
     imgwpodestsq9atk,       # wodowskazy
     airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
     #airlysq9atk,            # zanieczyszczenia powietrza z Airly
-    vhftroposq9atk,        # vhf tropo propagacja
     propagationsq9atk,      # propagacja KF
+    vhftroposq9atk,        # vhf tropo propagacja
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
     #radioactivesq9atk,      # promieniowanie jonizujące
     calendarsq9atk,         # wschód słońca
