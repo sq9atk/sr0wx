@@ -75,7 +75,7 @@ read_sources_msg = False
 # ------------
 from activity_map import ActivityMap
 activitymap = ActivityMap(
-    service_url="http://wx.ostol.pl/map_requests?base=",
+    service_url="http://wx.vhf.com.pl/map_requests?base=",
     callsign="TEST",
     latitude=54.655245,
     longitude=19.268097,
@@ -136,7 +136,7 @@ imgwpodestsq9atk = ImgwPodestSq9atk(
     wodowskazy = [
 
 ## MAPA WSZYSTKICH WODOWSKAZÓW W POLSCE Z NUMERAMI
-## http://wx.ostol.pl/wodowskazy/
+## http://wx.vhf.com.pl/wodowskazy/
 
         '2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
         '2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
@@ -395,7 +395,7 @@ calendarsq9atk = CalendarSq9atk(
 
 # WŁĄCZONE MODUŁY
 modules = [
-    activitymap,            # marker na mapie wx.ostol.pl
+    activitymap,            # marker na mapie wx.vhf.com.pl
     openweathersq9atk,      # prognoza pogody
     meteoalarmsq9atk, 		# meteoalarm.pl
     imgwpodestsq9atk,       # wodowskazy
