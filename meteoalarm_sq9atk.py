@@ -39,16 +39,16 @@ class MeteoalarmSq9atk(SR0WXModule):
     def getHtmlFromUrl(self, url):
         try:
             self.__logger.info("::: Odpytuję adres: " + url)
-            resp = requests.get(url)
-            if resp.status_code == 200:
-                return resp.content
-            else:
-                print("HTML response error")
-                return None
+            resp = requests.get(url, timeout=8)
+            if resp.status_code != 200:
+                self.__logger.error("::: Data response code error - %s \n" % resp.status_code)
+                return ''
+
+            return resp.content
 
         except requests.exceptions.RequestException as e:
-            print("HTML download error: %s" % e)
-            return None
+            self.__logger.error("::: Data download error - %s \n" % e)
+            return ''
 
 
     def findDataInHtml(self, html):
