@@ -65,6 +65,9 @@ class MeteoalarmSq9atk(SR0WXModule):
             imgMatch = re.search(r'<div class="zagrozenia-ikony">(.*?)</div>', tableHtml, re.DOTALL)
             images = re.findall(r'<img.*?src="images/(.*?).png"', imgMatch.group(1)) if imgMatch else []
 
+            # deduplicate values
+            images = list(set(images)) 
+            
             # Wypisujemy nazwy plików zamiast atrybutów alt
             return [level, images]
         else:
