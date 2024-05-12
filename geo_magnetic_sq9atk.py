@@ -1,6 +1,7 @@
 #!/usr/bin/python -tt
 # -*- coding: utf-8 -*-
 
+from pprint import pprint
 import logging, re, subprocess
 import urllib2
 import time
@@ -50,23 +51,25 @@ class GeoMagneticSq9atk(SR0WXModule):
         self.__logger.info("::: Pobieram informacje...")
 
         html = self.downloadDataFromUrl(self.__service_url)
+        r = re.compile(r'<use href="#gm_(\d+)".*?>')
 
-        #r = re.compile(r'<div class="widget__value w_gm__value(.*?)">(\d)</div>')
-        r = re.compile(r'<div class="value item-(\d)(.*?)"><svg>(.*?)</svg>(\d)</div>')
-        
-        return r.findall(html)
+        res = r.findall(html)
+        res = res[1:] # omijamy pierwszy element bo nie jest on częścią kontenera z danymi
+
+
+        return res
 
     def groupValuesByDays(self, data):
         hour = 0
         dayNum = 1
         current_hour = int(time.strftime("%H"))
-        
+
         output = {1:{},2:{},3:{}}
-    
+
         for i, val in enumerate(data):
             if dayNum > 1 or hour > current_hour-1: # omijamy godziny z przeszłości
                 if dayNum < 4 and i < 24:
-                    value = data[i+1][3]
+                    value = data[i+1]
                     output[dayNum][hour] = value
 
             hour += 3
@@ -99,12 +102,12 @@ class GeoMagneticSq9atk(SR0WXModule):
 
         self.__logger.info("::: Przetwarzam dane...\n")
         for d, day in daysValues.iteritems():
-            
+
             if len(day) > 0:
                 a=1
                 message += " _ "+self.__days[d-1] + " "
                 condition = self.getStrongestConditionOfDay(day)
-                
+
                 message += self.__seasons[condition['at']] + " "
                 message += self.__conditions[int(condition['value'])] + " "
                 message += self.__fluctuations[self.getDailyFluctuation(day)] + " wahania_dobowe "
