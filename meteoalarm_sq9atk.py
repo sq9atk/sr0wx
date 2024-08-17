@@ -22,10 +22,10 @@ class MeteoalarmSq9atk(SR0WXModule):
         self.__levels = { '1' : 'niski', '2' : 'sredni', '3' : 'wysoki' }
         self.__regions = {
             '14':'mazowieckiego',        '08':'lubuskiego',            '32':'zachodniopomorskiego',
-            '22':'pomorskiego',          '02':'dolnoslaskiego',        '16':'opolskiego',
-            '24':'slaskiego',            '12':'malopolskiego',         '18':'podkarpackiego',
-            '26':'swietokrzyskiego',     '10':'lodzkiego',             '14':'wielkopolskiego',
-            '04':'kujawsko-pomorskiego', '28':'warminsko-mazurskiego', '06':'lubelskiego',
+            '22':'pomorskiego',          '02':'dolnośląskiego',        '16':'opolskiego',
+            '24':'śląskiego',            '12':'małopolskiego',         '18':'podkarpackiego',
+            '26':'świętokrzyskiego',     '10':'łódzkiego',             '30':'wielkopolskiego',
+            '04':'kujawsko-pomorskiego', '28':'warmińsko-mazurskiego', '06':'lubelskiego',
             '20':'podlaskiego',
         }
         self.__warnings = {
