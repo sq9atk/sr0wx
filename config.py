@@ -109,22 +109,22 @@ meteoalarmsq9atk = MeteoalarmSq9atk(
     service_url="https://www.meteoalarm.pl/index.php?w=",
     region_id='12'
 )
-        # '14':'mazowieckie',
-        # '08':'lubuskie',
-        # '32':'zachodniopomorskie',
-        # '22':'pomorskie',
-        # '02':'dolnoslaskie',
-        # '16':'opolskie',
-        # '24':'slaskie',
-        # '12':'malopolskie',
-        # '18':'podkarpackie',
-        # '26':'swietokrzyskie',
-        # '10':'lodzkie',
-        # '14':'wielkopolskie',
-        # '04':'kujawsko-pomorskie',
-        # '28':'warminsko-mazurskie',
-        # '06':'lubelskie',
-        # '20':'podlaskie',
+        # '14': 'mazowieckie',
+        # '08': 'lubuskie',
+        # '32': 'zachodniopomorskie',
+        # '22': 'pomorskie',
+        # '02': 'dolnośląskie',
+        # '16': 'opolskie',
+        # '24': 'śląskie',
+        # '12': 'małopolskie',
+        # '18': 'podkarpackie',
+        # '26': 'świętokrzyskie',
+        # '10': 'łódzkie',
+        # '30': 'wielkopolskie',
+        # '04': 'kujawsko-pomorskie',
+        # '28': 'warmińsko-mazurskie',
+        # '06': 'lubelskie',
+        # '20': 'podlaskie'
 
 
 
