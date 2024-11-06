@@ -138,136 +138,137 @@ imgwpodestsq9atk = ImgwPodestSq9atk(
 ## MAPA WSZYSTKICH WODOWSKAZÓW W POLSCE Z NUMERAMI
 ## http://wx.vhf.com.pl/wodowskazy/
 
-        '2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
-        '2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
-        '2.149200370',   # Nazwa: Okocim, rzeka: Uszwica            - zrypany wodowskaz / tylko do testów
-        '2.149190350',   # Nazwa: Krzczonów, rzeka: Krzczonówka     - zrypany wodowskaz / tylko do testów
-        '2.150210200',   # Nazwa: Grebów, rzeka: Łęg                - zrypany wodowskaz / tylko do testów
-        '2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
+        #'2.149180210',   # Nazwa: Zabrzeg, rzeka: Wisła             - zrypany wodowskaz / tylko do testów
+        #'2.149200360',   # Nazwa: Lipnica Murowana, rzeka: Uszwica  - zrypany wodowskaz / tylko do testów
+        #'2.149200370',   # Nazwa: Okocim, rzeka: Uszwica            - zrypany wodowskaz / tylko do testów
+        #'2.149190350',   # Nazwa: Krzczonów, rzeka: Krzczonówka     - zrypany wodowskaz / tylko do testów
+        #'2.150210200',   # Nazwa: Grebów, rzeka: Łęg                - zrypany wodowskaz / tylko do testów
+        #'2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
+        #'2.149180090',   # Nazwa: Borki Mizerów, rzeka: Pszczynka   - zrypany wodowskaz / tylko do testów
 
+            
         '2.149210050',   # Nazwa: Krajowice, rzeka: Wisłoka
         '2.149200110',   # Nazwa: Trybsz, rzeka: Białka
         '2.149200290',   # Nazwa: Muszyna, rzeka: Poprad
         '2.149190230',   # Nazwa: Czernichów-Prom, rzeka: Wisła
-        '2.149180090',   # Nazwa: Borki Mizerów, rzeka: Pszczynka
         '2.150200100',   # Nazwa: Popędzynka, rzeka: Wisła
         '2.150210100',   # Nazwa: Połaniec, rzeka: Czarna Staszowska
         '2.149180250',   # Nazwa: Czechowice Dziedzice, rzeka: Iłowica
         '2.149200050',   # Nazwa: Nowy Targ Kowaniec, rzeka: Dunajec
         '2.150210060',   # Nazwa: Staszów, rzeka: Czarna Staszowska
-        '2.149190060',   # Nazwa: Jawiszowice, rzeka: Wisła
-        '2.149200190',   # Nazwa: Gołkowice, rzeka: Dunajec
-        '2.149190140',   # Nazwa: Łękawica, rzeka: Łękawka
-        '2.150200060',   # Nazwa: Sierosławice, rzeka: Wisła
-        '2.149180120',   # Nazwa: Górki Wielkie, rzeka: Brennica
-        '2.149210040',   # Nazwa: Łabuzie, rzeka: Wisłoka
-        '2.150210150',   # Nazwa: Koło, rzeka: Wisła
-        '2.149200100',   # Nazwa: Łysa Polana, rzeka: Białka
-        '2.150190120',   # Nazwa: Przeczyce, rzeka: Czarna Przemsza
-        '2.150210110',   # Nazwa: Głowaczowa, rzeka: Grabinianka
-        '2.150200070',   # Nazwa: Biskupice, rzeka: Szreniawa
-        '2.149200020',   # Nazwa: Szaflary, rzeka: Biały Dunajec
-        '2.149190070',   # Nazwa: Łodygowice, rzeka: Żylica
-        '2.150200170',   # Nazwa: Żabno, rzeka: Dunajec
-        '2.150210140',   # Nazwa: Brzeźnica, rzeka: Wielopolka
-        '2.149190170',   # Nazwa: Zator, rzeka: Skawa
-        '2.150190330',   # Nazwa: Ojców, rzeka: Prądnik
-        '2.150200080',   # Nazwa: Pińczów, rzeka: Nida
-        '2.150210120',   # Nazwa: Mielec, rzeka: Wisłoka
-        '2.149200130',   # Nazwa: Stradomka, rzeka: Stradomka
-        '2.149200220',   # Nazwa: Stary Sącz, rzeka: Poprad
-        '2.149200230',   # Nazwa: Czchów, rzeka: Dunajec
-        '2.149200030',   # Nazwa: Nowy Targ, rzeka: Czarny Dunajec
-        '2.149200330',   # Nazwa: Ciężkowice, rzeka: Biała
-        '2.150200160',   # Nazwa: Daleszyce, rzeka: Czarna Nida
-        '2.149190390',   # Nazwa: Ludźmierz, rzeka: Wielki Rogoźnik
-        '2.149210100',   # Nazwa: Zboiska, rzeka: Jasiołka
-        '2.149200270',   # Nazwa: Łabowa, rzeka: Kamienica
-        '2.150190340',   # Nazwa: Kraków-Bielany, rzeka: Wisła
-        '2.149200080',   # Nazwa: Mszana Dolna, rzeka: Mszanka
-        '2.149180100',   # Nazwa: Skoczów, rzeka: Wisła
-        '2.149200120',   # Nazwa: Niedzica, rzeka: Niedziczanka
-        '2.150190100',   # Nazwa: Niwka, rzeka: Biała Przemsza
-        '2.150200090',   # Nazwa: Słowik, rzeka: Bobrza
-        '2.150210130',   # Nazwa: Pustków, rzeka: Wisłoka
-        '2.149180220',   # Nazwa: Pszczyna, rzeka: Pszczynka
-        '2.149190050',   # Nazwa: Rajcza, rzeka: Soła
-        '2.150210030',   # Nazwa: Mocha, rzeka: Łagowica
-        '2.150190060',   # Nazwa: Bojszowy, rzeka: Gostynka
-        '2.149190100',   # Nazwa: Żywiec, rzeka: Soła
-        '2.150200010',   # Nazwa: Mniszek, rzeka: Biała Nida
-        '2.149190260',   # Nazwa: Osielec, rzeka: Skawa
-        '2.149200320',   # Nazwa: Koszyce Wielkie, rzeka: Biała
-        '2.149190380',   # Nazwa: Zakopane Harenda, rzeka: Cicha Woda
-        '2.150200150',   # Nazwa: Karsy, rzeka: Wisła
-        '2.150190190',   # Nazwa: Piwoń, rzeka: Czarna Przemsza
-        '2.150190210',   # Nazwa: Kuźnica Sulikowska, rzeka: Mitręga
-        '2.149190300',   # Nazwa: Kościelisko-Kiry, rzeka: Potok Kościeliski
-        '2.149210070',   # Nazwa: Żółków, rzeka: Wisłoka
-        '2.149200090',   # Nazwa: Dobczyce, rzeka: Raba
-        '2.149210010',   # Nazwa: Ropa, rzeka: Ropa
-        '2.149200150',   # Nazwa: Tylmanowa, rzeka: Ochotnica
-        '2.149190180',   # Nazwa: Wadowice, rzeka: Skawa
-        '2.150190070',   # Nazwa: Szabelnia, rzeka: Brynica
-        '2.149190340',   # Nazwa: Rabka, rzeka: Raba
-        '2.149190270',   # Nazwa: Radziszów, rzeka: Skawinka
-        '2.150190170',   # Nazwa: Pustynia, rzeka: Wisła
-        '2.150200020',   # Nazwa: Bocheniec, rzeka: Łososina
-        '2.149200010',   # Nazwa: Poronin, rzeka: Poroniec
-        '2.150210020',   # Nazwa: Szczucin, rzeka: Wisła
-        '2.150200140',   # Nazwa: Borzęcin, rzeka: Uszwica
-        '2.149190370',   # Nazwa: Lubień, rzeka: Lubieńka
-        '2.149200250',   # Nazwa: Nowy Sącz, rzeka: Kamienica
-        '2.149190020',   # Nazwa: Kamesznica, rzeka: Bystra
-        '2.149200310',   # Nazwa: Grybów, rzeka: Biała
-        '2.150190180',   # Nazwa: Jeleń, rzeka: Przemsza
-        '2.149180180',   # Nazwa: Wisła Czarne, rzeka: Biała Wisełka
-        '2.149210060',   # Nazwa: Topoliny, rzeka: Ropa
-        '2.150190260',   # Nazwa: Smolice, rzeka: Wisła
-        '2.149180200',   # Nazwa: Wisła Czarne, rzeka: Czarna Wisełka
-        '2.149200140',   # Nazwa: Sromowce Wyżne, rzeka: Dunajec
-        '2.150210010',   # Nazwa: Raków, rzeka: Czarna Staszowska
-        '2.150190160',   # Nazwa: Oświęcim, rzeka: Soła
-        '2.149200260',   # Nazwa: Nowy Sącz, rzeka: Łubinka
-        '2.150200030',   # Nazwa: Brzegi, rzeka: Nida
-        '2.149190200',   # Nazwa: Sucha Beskidzka, rzeka: Stryszawka
-        '2.149200240',   # Nazwa: Nowy Sącz, rzeka: Dunajec
-        '2.149190360',   # Nazwa: Ludźmierz, rzeka: Lepietnica
-        '2.149200060',   # Nazwa: Mszana Dolna, rzeka: Raba
-        '2.149180160',   # Nazwa: Wisła Czarne, rzeka: Wisła
-        '2.149210090',   # Nazwa: Krempna-Kotań, rzeka: Wisłoka
-        '2.149190310',   # Nazwa: Stróża, rzeka: Raba
-        '2.149190280',   # Nazwa: Koniówka, rzeka: Czarny Dunajec
-        '2.149190150',   # Nazwa: Pewel Mała, rzeka: Koszarawa
-        '2.149180110',   # Nazwa: Ustroń Obłaziec, rzeka: Wisła
-        '2.149200170',   # Nazwa: Proszówki, rzeka: Raba
-        '2.149210030',   # Nazwa: Klęczany, rzeka: Ropa
-        '2.150190010',   # Nazwa: Brynica, rzeka: Brynica
-        '2.149190080',   # Nazwa: Cięcina, rzeka: Soła
-        '2.149190120',   # Nazwa: Czaniec (Kobiernice), rzeka: Soła
-        '2.149190210',   # Nazwa: Sucha Beskidzka, rzeka: Skawa
-        '2.149190040',   # Nazwa: Ujsoły, rzeka: Woda Ujsolska
-        '2.150200120',   # Nazwa: Morawica, rzeka: Czarna Nida
-        '2.150200040',   # Nazwa: Tokarnia, rzeka: Czarna Nida
-        '2.149210080',   # Nazwa: Jasło, rzeka: Jasiołka
-        '2.149190290',   # Nazwa: Jordanów, rzeka: Skawa
-        '2.150190360',   # Nazwa: Gromiec, rzeka: Wisła
-        '2.150190080',   # Nazwa: Radocha, rzeka: Czarna Przemsza
-        '2.149190160',   # Nazwa: Rudze, rzeka: Wieprzówka
-        '2.149200160',   # Nazwa: Krościenko, rzeka: Dunajec
-        '2.149190090',   # Nazwa: Żabnica, rzeka: Żabniczanka
-        '2.150190140',   # Nazwa: Nowy Bieruń, rzeka: Wisła
-        '2.149200280',   # Nazwa: Zgłobice, rzeka: Dunajec
-        '2.149190220',   # Nazwa: Skawica Dolna, rzeka: Skawica
-        '2.150210170',   # Nazwa: Sandomierz, rzeka: Wisła
-        '2.150180270',   # Nazwa: Kozłowa Góra, rzeka: Brynica
-        '2.149190010',   # Nazwa: Czechowice-Bestwina, rzeka: Biała
-        '2.150210070',   # Nazwa: Wampierzów, rzeka: Breń
-        '2.149200200',   # Nazwa: Jakubkowice, rzeka: Łososina
-        '2.150200050',   # Nazwa: Michałów, rzeka: Mierzawa
-        '2.150210160',   # Nazwa: Koprzywnica, rzeka: Koprzywianka
-        '2.149200040',   # Nazwa: Kasinka Mała, rzeka: Raba
-        '2.150190310',   # Nazwa: Balice, rzeka: Rudawa
+        #'2.149190060',   # Nazwa: Jawiszowice, rzeka: Wisła
+        #'2.149200190',   # Nazwa: Gołkowice, rzeka: Dunajec
+        #'2.149190140',   # Nazwa: Łękawica, rzeka: Łękawka
+        #'2.150200060',   # Nazwa: Sierosławice, rzeka: Wisła
+        #'2.149180120',   # Nazwa: Górki Wielkie, rzeka: Brennica
+        #'2.149210040',   # Nazwa: Łabuzie, rzeka: Wisłoka
+        #'2.150210150',   # Nazwa: Koło, rzeka: Wisła
+        #'2.149200100',   # Nazwa: Łysa Polana, rzeka: Białka
+        #'2.150190120',   # Nazwa: Przeczyce, rzeka: Czarna Przemsza
+        #'2.150210110',   # Nazwa: Głowaczowa, rzeka: Grabinianka
+        #'2.150200070',   # Nazwa: Biskupice, rzeka: Szreniawa
+        #'2.149200020',   # Nazwa: Szaflary, rzeka: Biały Dunajec
+        #'2.149190070',   # Nazwa: Łodygowice, rzeka: Żylica
+        #'2.150200170',   # Nazwa: Żabno, rzeka: Dunajec
+        #'2.150210140',   # Nazwa: Brzeźnica, rzeka: Wielopolka
+        #'2.149190170',   # Nazwa: Zator, rzeka: Skawa
+        #'2.150190330',   # Nazwa: Ojców, rzeka: Prądnik
+        #'2.150200080',   # Nazwa: Pińczów, rzeka: Nida
+        #'2.150210120',   # Nazwa: Mielec, rzeka: Wisłoka
+        #'2.149200130',   # Nazwa: Stradomka, rzeka: Stradomka
+        #'2.149200220',   # Nazwa: Stary Sącz, rzeka: Poprad
+        #'2.149200230',   # Nazwa: Czchów, rzeka: Dunajec
+        #'2.149200030',   # Nazwa: Nowy Targ, rzeka: Czarny Dunajec
+        #'2.149200330',   # Nazwa: Ciężkowice, rzeka: Biała
+        #'2.150200160',   # Nazwa: Daleszyce, rzeka: Czarna Nida
+        #'2.149190390',   # Nazwa: Ludźmierz, rzeka: Wielki Rogoźnik
+        #'2.149210100',   # Nazwa: Zboiska, rzeka: Jasiołka
+        #'2.149200270',   # Nazwa: Łabowa, rzeka: Kamienica
+        #'2.150190340',   # Nazwa: Kraków-Bielany, rzeka: Wisła
+        #'2.149200080',   # Nazwa: Mszana Dolna, rzeka: Mszanka
+        #'2.149180100',   # Nazwa: Skoczów, rzeka: Wisła
+        #'2.149200120',   # Nazwa: Niedzica, rzeka: Niedziczanka
+        #'2.150190100',   # Nazwa: Niwka, rzeka: Biała Przemsza
+        #'2.150200090',   # Nazwa: Słowik, rzeka: Bobrza
+        #'2.150210130',   # Nazwa: Pustków, rzeka: Wisłoka
+        #'2.149180220',   # Nazwa: Pszczyna, rzeka: Pszczynka
+        #'2.149190050',   # Nazwa: Rajcza, rzeka: Soła
+        #'2.150210030',   # Nazwa: Mocha, rzeka: Łagowica
+        #'2.150190060',   # Nazwa: Bojszowy, rzeka: Gostynka
+        #'2.149190100',   # Nazwa: Żywiec, rzeka: Soła
+        #'2.150200010',   # Nazwa: Mniszek, rzeka: Biała Nida
+        #'2.149190260',   # Nazwa: Osielec, rzeka: Skawa
+        #'2.149200320',   # Nazwa: Koszyce Wielkie, rzeka: Biała
+        #'2.149190380',   # Nazwa: Zakopane Harenda, rzeka: Cicha Woda
+        #'2.150200150',   # Nazwa: Karsy, rzeka: Wisła
+        #'2.150190190',   # Nazwa: Piwoń, rzeka: Czarna Przemsza
+        #'2.150190210',   # Nazwa: Kuźnica Sulikowska, rzeka: Mitręga
+        #'2.149190300',   # Nazwa: Kościelisko-Kiry, rzeka: Potok Kościeliski
+        #'2.149210070',   # Nazwa: Żółków, rzeka: Wisłoka
+        #'2.149200090',   # Nazwa: Dobczyce, rzeka: Raba
+        #'2.149210010',   # Nazwa: Ropa, rzeka: Ropa
+        #'2.149200150',   # Nazwa: Tylmanowa, rzeka: Ochotnica
+        #'2.149190180',   # Nazwa: Wadowice, rzeka: Skawa
+        #'2.150190070',   # Nazwa: Szabelnia, rzeka: Brynica
+        #'2.149190340',   # Nazwa: Rabka, rzeka: Raba
+        #'2.149190270',   # Nazwa: Radziszów, rzeka: Skawinka
+        #'2.150190170',   # Nazwa: Pustynia, rzeka: Wisła
+        #'2.150200020',   # Nazwa: Bocheniec, rzeka: Łososina
+        #'2.149200010',   # Nazwa: Poronin, rzeka: Poroniec
+        #'2.150210020',   # Nazwa: Szczucin, rzeka: Wisła
+        #'2.150200140',   # Nazwa: Borzęcin, rzeka: Uszwica
+        #'2.149190370',   # Nazwa: Lubień, rzeka: Lubieńka
+        #'2.149200250',   # Nazwa: Nowy Sącz, rzeka: Kamienica
+        #'2.149190020',   # Nazwa: Kamesznica, rzeka: Bystra
+        #'2.149200310',   # Nazwa: Grybów, rzeka: Biała
+        #'2.150190180',   # Nazwa: Jeleń, rzeka: Przemsza
+        #'2.149180180',   # Nazwa: Wisła Czarne, rzeka: Biała Wisełka
+        #'2.149210060',   # Nazwa: Topoliny, rzeka: Ropa
+        #'2.150190260',   # Nazwa: Smolice, rzeka: Wisła
+        #'2.149180200',   # Nazwa: Wisła Czarne, rzeka: Czarna Wisełka
+        #'2.149200140',   # Nazwa: Sromowce Wyżne, rzeka: Dunajec
+        #'2.150210010',   # Nazwa: Raków, rzeka: Czarna Staszowska
+        #'2.150190160',   # Nazwa: Oświęcim, rzeka: Soła
+        #'2.149200260',   # Nazwa: Nowy Sącz, rzeka: Łubinka
+        #'2.150200030',   # Nazwa: Brzegi, rzeka: Nida
+        #'2.149190200',   # Nazwa: Sucha Beskidzka, rzeka: Stryszawka
+        #'2.149200240',   # Nazwa: Nowy Sącz, rzeka: Dunajec
+        #'2.149190360',   # Nazwa: Ludźmierz, rzeka: Lepietnica
+        #'2.149200060',   # Nazwa: Mszana Dolna, rzeka: Raba
+        #'2.149180160',   # Nazwa: Wisła Czarne, rzeka: Wisła
+        #'2.149210090',   # Nazwa: Krempna-Kotań, rzeka: Wisłoka
+        #'2.149190310',   # Nazwa: Stróża, rzeka: Raba
+        #'2.149190280',   # Nazwa: Koniówka, rzeka: Czarny Dunajec
+        #'2.149190150',   # Nazwa: Pewel Mała, rzeka: Koszarawa
+        #'2.149180110',   # Nazwa: Ustroń Obłaziec, rzeka: Wisła
+        #'2.149200170',   # Nazwa: Proszówki, rzeka: Raba
+        #'2.149210030',   # Nazwa: Klęczany, rzeka: Ropa
+        #'2.150190010',   # Nazwa: Brynica, rzeka: Brynica
+        #'2.149190080',   # Nazwa: Cięcina, rzeka: Soła
+        #'2.149190120',   # Nazwa: Czaniec (Kobiernice), rzeka: Soła
+        #'2.149190210',   # Nazwa: Sucha Beskidzka, rzeka: Skawa
+        #'2.149190040',   # Nazwa: Ujsoły, rzeka: Woda Ujsolska
+        #'2.150200120',   # Nazwa: Morawica, rzeka: Czarna Nida
+        #'2.150200040',   # Nazwa: Tokarnia, rzeka: Czarna Nida
+        #'2.149210080',   # Nazwa: Jasło, rzeka: Jasiołka
+        #'2.149190290',   # Nazwa: Jordanów, rzeka: Skawa
+        #'2.150190360',   # Nazwa: Gromiec, rzeka: Wisła
+        #'2.150190080',   # Nazwa: Radocha, rzeka: Czarna Przemsza
+        #'2.149190160',   # Nazwa: Rudze, rzeka: Wieprzówka
+        #'2.149200160',   # Nazwa: Krościenko, rzeka: Dunajec
+        #'2.149190090',   # Nazwa: Żabnica, rzeka: Żabniczanka
+        #'2.150190140',   # Nazwa: Nowy Bieruń, rzeka: Wisła
+        #'2.149200280',   # Nazwa: Zgłobice, rzeka: Dunajec
+        #'2.149190220',   # Nazwa: Skawica Dolna, rzeka: Skawica
+        #'2.150210170',   # Nazwa: Sandomierz, rzeka: Wisła
+        #'2.150180270',   # Nazwa: Kozłowa Góra, rzeka: Brynica
+        #'2.149190010',   # Nazwa: Czechowice-Bestwina, rzeka: Biała
+        #'2.150210070',   # Nazwa: Wampierzów, rzeka: Breń
+        #'2.149200200',   # Nazwa: Jakubkowice, rzeka: Łososina
+        #'2.150200050',   # Nazwa: Michałów, rzeka: Mierzawa
+        #'2.150210160',   # Nazwa: Koprzywnica, rzeka: Koprzywianka
+        #'2.149200040',   # Nazwa: Kasinka Mała, rzeka: Raba
+        #'2.150190310',   # Nazwa: Balice, rzeka: Rudawa
     ]
 )
 
