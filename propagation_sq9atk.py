@@ -4,113 +4,98 @@
 import urllib
 import logging
 import socket
+import subprocess
+import re
+import urllib2
 
-from PIL import Image
 from pprint import pprint
-
 from sr0wx_module import SR0WXModule
 
 class PropagationSq9atk(SR0WXModule):
-    """Klasa pobierająca dane kalendarzowe"""
+    """Klasa pobierająca dane o propagacji"""
 
     def __init__(self,language,service_url):
         self.__service_url = service_url
         self.__language = language
         self.__logger = logging.getLogger(__name__)
-        self.__pixels = {
-            # niepotrzebne pasma można zaremowac znakiem '#'
-            160 : {'day' :{'x':50, 'y':60},  'night':{'x':100, 'y':60}},
-            80 : {'day' :{'x':50, 'y':95},  'night':{'x':100, 'y':95}},
-            40 : {'day' :{'x':50, 'y':140}, 'night':{'x':100, 'y':140}},
-            20 : {'day' :{'x':50, 'y':185}, 'night':{'x':100, 'y':185}},
-            10 : {'day' :{'x':50, 'y':230}, 'night':{'x':100, 'y':230}},
-            6 : {'day' :{'x':50, 'y':270}, 'night':{'x':100, 'y':270}},
-        }
-
+        
         self.__levels = {
-            '#17e624':'warunki_podwyzszone', # zielony
-            '#e6bc17':'warunki_normalne', # żółty
-            '#e61717':'warunki_obnizone', # czerwony
-            '#5717e6':'pasmo_zamkniete', #fioletowy
+            'good': 'warunki_podwyzszone', 
+            'fair': 'warunki_normalne', 
+            'poor': 'warunki_obnizone', 
+            'closed': 'pasmo_zamkniete'
         }
 
-    def rgb2hex(self, rgb):
-        return '#%02x%02x%02x' % rgb
+    def downloadDataFromUrl(self, url):
+        self.__logger.info("::: Odpytuję adres: " + url)
+        opener = urllib2.build_opener()
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:10.0.1) Gecko/20100101 Firefox/10.0.1',
+        }
+        opener.addheaders = headers.items()
+        response = opener.open(url)
 
-    def downloadImage(self, url):
-        try:
-            self.__logger.info("::: Odpytuję adres: " + url)
-            webFile = urllib.URLopener()
-            webFile.retrieve(url, "propagacja.png")
-            return Image.open("propagacja.png",'r')
-        except socket.timeout:
-            print "Timed out!\n"
-        except:
-            print "Data download error!\n"
-        return
+        return response.read()
 
-    def collectBandConditionsFromImage(self, image, dayTime):
-        try:
-            imageData = image.load()
-            data = list()
-            for band in sorted(self.__pixels):
-                x = self.__pixels[band][dayTime]['x']
-                y = self.__pixels[band][dayTime]['y']
-                rgba = imageData[x,y]
-                color = self.rgb2hex(( rgba[0],rgba[1],rgba[2] ));
+    def collectBandConditions (self, html):
+        r = re.compile(r'<table.*?>.*?</table>', re.DOTALL)
+        tables = r.findall(html)
+        # bierzemy drugą tabelkę ze strony bo w niej są dane
+        tableHtml = tables[1] 
 
-                # można zaremowac wybraną grupę aby nie podawać info o konkretnych warunkach
-                if self.__levels[color] == 'warunki_podwyzszone':
-                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                    data[:0] = [string]
+        r = re.compile(r'<tbody>(.*?)</tbody>', re.DOTALL)
+        tbody_content = r.search(tableHtml)
+        tbody_html = tbody_content.group(1)
 
-                if self.__levels[color] == 'warunki_normalne':
-                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                    data[:0] = [string]
+        r_rows = re.compile(r'<tr>.*?<td>(.*?)</td>.*?<td>(.*?)</td>.*?<td>(.*?)</td>.*?</tr>', re.DOTALL)
+        matches = r_rows.findall(tbody_html)
 
-                if self.__levels[color] == 'warunki_obnizone':
-                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                    data[:0] = [string]
+        bands_data = []
+        for match in matches:
+            day = match[1].split()[0].split()[0].lower()
+            night = match[2].split()[0].split()[0].lower()
 
-                if self.__levels[color] == 'pasmo_zamkniete':
-                    string = str(band) + '_metrow' + ' ' + self.__levels[color]
-                    data[:0] = [string]
+            bands_data.append({
+                'band': match[0].strip().split()[0],
+                'day': self.__levels[ day ],
+                'night': self.__levels[ night ]
+            })
 
-            return data
-        except:
-            return list()
-
+        return bands_data
+        
+    def prepareData(self, data, dayTime):
+        result = list()
+        for row in data:
+            if row['band'] == '600': # pasmo 136kHz pomijamy
+                continue
+            string = row['band'] + '_metrow' + ' ' + row[dayTime]
+            result[:0] = [string]
+        return result
 
     def get_data(self):
-        image = self.downloadImage(self.__service_url)
-
+        html = self.downloadDataFromUrl(self.__service_url)
+        
+        self.__logger.info("::: Przetwarzam dane...\n")
+        
+        data = self.collectBandConditions (html)
+        day = self.prepareData(data, 'day')
+        night = self.prepareData(data, 'night')
+        
         message = '';
-        if image:
-            self.__logger.info("::: Przetwarzam dane...\n")
-
-            day = self.collectBandConditionsFromImage(image, 'day')
-            night = self.collectBandConditionsFromImage(image, 'night')
-
-            if len(day) and len(night):
-                message = " ".join([
-                    " _ informacje_o_propagacji ",
-                    " _ dzien _ ",
-                    " _ pasma _ ",
-                    " _ " .join( day ),
-                    " _ noc _ ",
-                    " _ pasma _ ",
-                    " _ " .join( night ),
-                    " _ "
-                ])
+        if len(day) and len(night):        
+            message = " ".join([
+                " _ informacje_o_propagacji ",
+                " _ dzien _ ",
+                " _ pasma _ ",
+                " _ " .join( day ),
+                " _ noc _ ",
+                " _ pasma _ ",
+                " _ " .join( night ),
+                " _ "
+            ])
 
         return {
             "message": message,
             "source": "noaa",
         }
-
-
-
-
-
-
 
