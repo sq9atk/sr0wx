@@ -366,7 +366,7 @@ vhftroposq9atk = VhfTropoSq9atk(
 from propagation_sq9atk import PropagationSq9atk
 propagationsq9atk = PropagationSq9atk(
     language=pl_google,
-    service_url="https://rigreference.com/solar/img/tall",
+    service_url="https://rigreference.com/solar",
 )
 
 # ---------------
