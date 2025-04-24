@@ -51,10 +51,13 @@ class AirPollutionSq9atk(SR0WXModule):
     def getSensorValue(self, sensorId):
         url = self.__service_url + self.__sensor_url + str(sensorId)
         data = self.getJson(url)
-        if data['values'][0]['value'] > 0: # czasem tu schodzi null
-            value = data['values'][0]['value'] 
-        else:
-            value = data['values'][1]['value']
+        value = None
+        for item in data.get('values', []):
+            val = item.get('value')
+            if isinstance(val, (int, float)):
+                value = val
+                break
+
         return [
             data['key'],
             value
@@ -136,4 +139,3 @@ class AirPollutionSq9atk(SR0WXModule):
             replace(u'-',u'_').replace(u'(',u'').\
             replace(u')',u'').replace(u'.',u'').\
             replace(u',',u'')
-
