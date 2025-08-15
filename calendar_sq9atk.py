@@ -23,7 +23,14 @@ class CalendarSq9atk(SR0WXModule):
     def downloadFile(self, url):
         try:
             self.__logger.info("::: Odpytuję adres: " + url)
-            webFile = urllib2.urlopen(url, None, 30)
+
+            # Tworzymy obiekt request z nagłówkiem User-Agent
+            request = urllib2.Request(url)
+            request.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                                             '(KHTML, like Gecko) Chrome/115.0 Safari/537.36')
+
+            # Otwieramy URL z timeoutem 30 sekund
+            webFile = urllib2.urlopen(request, timeout=30)
             return webFile.read()
         except urllib2.URLError, e:
             print e
