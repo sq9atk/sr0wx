@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 include('slownik.php'); // $slownik
 #include('slownik_rzeki.php'); // $slownik rzeki
@@ -36,16 +36,33 @@ function getMpg($word, $filename)
 
     $key = readKey();
 
-	# Żeński
+    # Żeński
     $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key='.$key.'&gender=female&text='.urlencode($word);
     # Męski
     #$url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.56&volume=1&key='.$key.'&gender=male&text='.urlencode($word);
 
-    $audio = file_get_contents_curl($url);
+    // cURL – udajemy przeglądarkę
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
+        "AppleWebKit/537.36 (KHTML, like Gecko) ".
+        "Chrome/124.0.0.0 Safari/537.36",
+        "Accept: */*",
+        "Accept-Language: pl,en-US;q=0.9,en;q=0.8",
+        "Referer: https://responsivevoice.org/"
+    ]);
 
-    file_put_contents('mpg/'.$filename.'.mpg', $audio);
+    $audio = curl_exec($ch);
+    if (curl_errno($ch)) {
+        throw new Exception("Curl error: " . curl_error($ch));
+    }
+    curl_close($ch);
 
-    shell_exec ( "ffmpeg -y -i mpg/$filename.mpg   -ar 32000  -ab 48000 -acodec libvorbis ogg/$filename.ogg");
+    file_put_contents("mpg/$filename.mpg", $audio);
+
+    shell_exec("ffmpeg -y -i mpg/$filename.mpg -ar 32000 -ab 48000 -acodec libvorbis ogg/$filename.ogg");
     unlink("mpg/$filename.mpg");
 }
 
