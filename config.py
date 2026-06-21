@@ -400,8 +400,8 @@ modules = [
     openweathersq9atk,      # prognoza pogody
     meteoalarmsq9atk, 		# meteoalarm.pl
     imgwpodestsq9atk,       # wodowskazy
-    airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ
-    #airlysq9atk,            # zanieczyszczenia powietrza z Airly
+    #airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ, zmienili API, trzeba to kiedyś przerobić
+    airlysq9atk,            # zanieczyszczenia powietrza z Airly
     propagationsq9atk,      # propagacja KF
     vhftroposq9atk,        # vhf tropo propagacja
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
