@@ -41,7 +41,7 @@ class PropagationSq9atk(SR0WXModule):
         r = re.compile(r'<table.*?>.*?</table>', re.DOTALL)
         tables = r.findall(html)
         # bierzemy drugą tabelkę ze strony bo w niej są dane
-        tableHtml = tables[1] 
+        tableHtml = tables[3] 
 
         r = re.compile(r'<tbody>(.*?)</tbody>', re.DOTALL)
         tbody_content = r.search(tableHtml)
