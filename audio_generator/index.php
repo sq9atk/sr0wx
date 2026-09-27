@@ -1,21 +1,14 @@
- <?php
+<?php
 
 include('slownik.php'); // $slownik
-#include('slownik_rzeki.php'); // $slownik rzeki
-#include('slownik_wodowskazy.php'); // $slownik wodowskazy
 
-function file_get_contents_curl( $url ) {
-  $ch = curl_init();
-  curl_setopt( $ch, CURLOPT_AUTOREFERER, TRUE );
-  curl_setopt( $ch, CURLOPT_HEADER, 0 );
-  curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-  curl_setopt( $ch, CURLOPT_URL, $url );
-  curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, TRUE );
-  $data = curl_exec( $ch );
-  curl_close( $ch );
+// Skrypt korzysta z api ze strony responsivevoice.org
+// aby dostać klucz i secret wystarczy się zarejestrować i kupić najtańszy pakiet za 9$ na miesiąc
+// pamiętaj o anulowaniu subskrypcji po wygenerowaniu sampli!
 
-  return $data;
-}
+define('RV_API_KEY', getenv('RESPONSIVEVOICE_API_KEY') ?: 'YOUR_API_KEY');
+define('RV_API_SECRET', getenv('RESPONSIVEVOICE_API_SECRET') ?: 'YOUR_API_SECRET');
+define('RV_ENDPOINT', 'https://texttospeech.responsivevoice.org/v2/text/synthesize');
 
 function azAZ09($string)
 {
@@ -23,66 +16,58 @@ function azAZ09($string)
     $miedzyn = array('e_','e_','o_','o_','a_','a_','s_','s_','l_','l_','z_','z_','z_','z_','c_','c_','n_','n_');
 
     $string = str_replace($polskie, $miedzyn, $string);
-
     $string = str_replace(' ', '_', $string);
 
     return $string;
 }
 
-function getMpg($word, $filename)
+function getOgg($word, $filename)
 {
+    @mkdir('mp3');
     @mkdir('ogg');
-    @mkdir('mpg');
 
-    $key = readKey();
-
-    # Żeński
-    $url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.5&volume=1&key='.$key.'&gender=female&text='.urlencode($word);
-    # Męski
-    #$url = 'https://texttospeech.responsivevoice.org/v1/text:synthesize?lang=pl&engine=g1&name=&pitch=0.5&rate=0.56&volume=1&key='.$key.'&gender=male&text='.urlencode($word);
-
-    // cURL – udajemy przeglądarkę
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
-        "AppleWebKit/537.36 (KHTML, like Gecko) ".
-        "Chrome/124.0.0.0 Safari/537.36",
-        "Accept: */*",
-        "Accept-Language: pl,en-US;q=0.9,en;q=0.8",
-        "Referer: https://responsivevoice.org/"
+    $payload = json_encode([
+        'text'   => $word,
+        'lang'   => 'pl-PL', 
+        'gender' => 'female',
+        'format' => 'mp3',
+        'pitch'  => 1,
+        'rate'   => 1,
+        'volume' => 1,
     ]);
+
+    $ch = curl_init(RV_ENDPOINT);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'X-API-Key: ' . RV_API_KEY,
+        'X-API-Secret: ' . RV_API_SECRET,
+    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $audio = curl_exec($ch);
     if (curl_errno($ch)) {
-        throw new Exception("Curl error: " . curl_error($ch));
+        curl_close($ch);
+        throw new Exception("Błąd cURL: " . curl_error($ch));
     }
+
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    file_put_contents("mpg/$filename.mpg", $audio);
+    if ($httpCode !== 200) {
+        throw new Exception("Błąd HTTP $httpCode dla słowa '$word': $audio");
+    }
 
-    shell_exec("ffmpeg -y -i mpg/$filename.mpg -ar 32000 -ab 48000 -acodec libvorbis ogg/$filename.ogg");
-    unlink("mpg/$filename.mpg");
-}
+    file_put_contents("mp3/$filename.mp3", $audio);
 
-function readKey() {
-
-    $dom = new DomDocument();
-    @$dom->loadHTML(file_get_contents('https://responsivevoice.org/'));
-
-    $elem = $dom->getElementById('responsive-voice-js');
-	
-	$url = $elem->getAttribute('src');
-	$parts = parse_url($url);
-	parse_str($parts['query'], $params);
-	
-	return $params['key'];
+    shell_exec("ffmpeg -y -i mp3/$filename.mp3 -ar 32000 -ab 48000 -acodec libvorbis ogg/$filename.ogg");
+    unlink("mp3/$filename.mp3");
 }
 
 echo "\n-- początek generowania --\n\n";
 
-foreach($slownik as $row){
+foreach ($slownik as $row) {
 
     if (!is_array($row)) continue;
 
@@ -95,10 +80,10 @@ foreach($slownik as $row){
     $filename = strtolower($filename);
     $word = strtolower(trim($row[0]));
 
-    print_r($word.' - '.$filename);
+    print_r($word . ' - ' . $filename);
     echo "\n";
 
-    getMpg($word, $filename);
+    getOgg($word, $filename);
 }
 
 echo "\n-- koniec generowania --\n\n";
