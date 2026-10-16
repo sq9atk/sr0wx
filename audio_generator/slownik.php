@@ -6,6 +6,8 @@
 # TYLKO Z TEJ TABLICY GENEROWANE SĄ SAMPLE
 $slownik = array(
     array('tekst do przeczytana ', 'nazwa_pliku_bez_rozszerzenia'),
+    array('stefan roman zero wanda ksawery', 'sr0wx'),
+    array('tu stefan roman zero wanda ksawery', 'tu_sr0wx'),
 );
 
 
@@ -15,35 +17,49 @@ $slownik = array(
 
 
 # TA TABLICA TO TYLKO PRZECHOWALNIA
-$slownik_wszystkie = array(
+$slownikXXX = array(
+
+    array('Katowice ulica kossuta','katowice_ul_kossutha'),
+    array('Stan ogólny','ogolny_stan_powietrza'),
+    array('tlenek azotu','tlenek_azotu'),
+    array('tlenki azotu','tlenki_azotu'),
+    array('Świętochłowice', 'swietochlowice'),
+    array('Świętochłowice - Chropaczów', 'swietochlowice_chropaczow'),
+    array('pogoda kosmiczna', 'pogoda_kosmiczna'),
+    array('indeks ka pe', 'indeks_ka_pe'),
+    array('aktywność geomagnetyczna', 'aktywnosc_geomagnetyczna'),
+    array('warunki spokojne', 'warunki_spokojne'),
+    array('zaburzenia', 'zaburzenia'),
+    array('burza magnetyczna', 'burza_magnetyczna'),
+
     /*
      *
      *
      * VHF TROPO
      */
-    array("propagacja w paśmie fał ha ef", "vhf_propagacja_w_pasmie_vhf"),
-    array("deiks info senter", "vhf_dx_info_center"),
-    array("uwaga", "vhf_uwaga"),
-    array("warunki podwyższone", "vhf_warunki_podwyzszone"),
+    array('propagacja w paśmie fał ha ef', 'vhf_propagacja_w_pasmie_vhf'),
+    array('deiks info senter', 'vhf_dx_info_center'),
+    array('uwaga', 'vhf_uwaga'),
+    array('warunki podwyższone', 'vhf_warunki_podwyzszone'),
 
-    array("brak szans na łączność troposferyczną", "vhf_brak_szans_na_lacznosc_troposferyczna"),
-    array("minimalne szanse na łączność troposferyczną", "vhf_minimalne_szanse_na_lacznosc_troposferyczna"),
-    array("niewielkie szanse na łączność troposferyczną", "vhf_niewielkie_szanse_na_lacznosc_troposferyczna"),
-    array("spore szanse na łączność troposferyczną", "vhf_spore_szanse_na_lacznosc_troposferyczna"),
-    array("duże szanse na łączność troposferyczną", "vhf_duze_szanse_na_lacznosc_troposferyczna"),
-    array("bardzo duże szanse na łączność troposferyczną", "vhf_bardzo_duze_szanse_na_lacznosc_troposferyczna"),
-    array("wyjątkowo duże szanse na łączność troposferyczną", "vhf_wyjatkowo_duze_szanse_na_lacznosc_troposferyczna"),
+    array('brak szans na łączność troposferyczną', 'vhf_brak_szans_na_lacznosc_troposferyczna'),
+    array('minimalne szanse na łączność troposferyczną', 'vhf_minimalne_szanse_na_lacznosc_troposferyczna'),
+    array('niewielkie szanse na łączność troposferyczną', 'vhf_niewielkie_szanse_na_lacznosc_troposferyczna'),
+    array('spore szanse na łączność troposferyczną', 'vhf_spore_szanse_na_lacznosc_troposferyczna'),
+    array('duże szanse na łączność troposferyczną', 'vhf_duze_szanse_na_lacznosc_troposferyczna'),
+    array('bardzo duże szanse na łączność troposferyczną', 'vhf_bardzo_duze_szanse_na_lacznosc_troposferyczna'),
+    array('wyjątkowo duże szanse na łączność troposferyczną', 'vhf_wyjatkowo_duze_szanse_na_lacznosc_troposferyczna'),
 
-    array("najlepsze warunki w kierunku", "vhf_najlepsze_warunki_w_kierunku"),
-    array("oraz", "vhf_oraz"),
-    array("północnym", "vhf_n"),
-    array("północno-wschodnim", "vhf_ne"),
-    array("wschodnim", "vhf_e"),
-    array("połódniowo-wschodnim", "vhf_se"),
-    array("połódniowym", "vhf_s"),
-    array("połódniowo-zachodnim", "vhf_sw"),
-    array("zachodnim", "vhf_w"),
-    array("północno-zachodnim", "vhf_nw"),
+    array('najlepsze warunki w kierunku', 'vhf_najlepsze_warunki_w_kierunku'),
+    array('oraz', 'vhf_oraz'),
+    array('północnym', 'vhf_n'),
+    array('północno-wschodnim', 'vhf_ne'),
+    array('wschodnim', 'vhf_e'),
+    array('połódniowo-wschodnim', 'vhf_se'),
+    array('połódniowym', 'vhf_s'),
+    array('połódniowo-zachodnim', 'vhf_sw'),
+    array('zachodnim', 'vhf_w'),
+    array('północno-zachodnim', 'vhf_nw'),
 
 
     /*
@@ -52,6 +68,7 @@ $slownik_wszystkie = array(
      */
     # rozne
     array('tu eksperymentalna automatyczna stacja pogodowa'),
+    array('tu eksperymentalna stacja pogodowa'),
     array('Stanisław Kłebek 9 adam tadeusz karol', 'sq9atk'),
     array('tu Stanisław Kłebek 9 adam tadeusz karol', 'tu_sq9atk'),
     array('stan pogody z dnia'),
@@ -74,13 +91,13 @@ $slownik_wszystkie = array(
     # airly
     array('pył zawieszony Pe eM 1', 'pyl__zawieszony_pm1'),
     array('pył zawieszony Pe eM 10', 'pyl__zawieszony_pm10'),
-    array('pył zawieszony Pe eM 2 i pięć dziesiątych', 'pyl__zawieszony_pm25'),
+    array('pył zawieszony Pe eM 2 i pół', 'pyl__zawieszony_pm25'),
     array('bardzo dobry', 'bardzo_dobry'),
     array('dobry', 'dobry'),
     array('umiarkowany', 'umiarkowany'),
     array('zly', 'zły'),
     array('bardzo zły', 'bardzo_zly'),
-    array('stan_ogólny ', 'stan_ogolny'),
+    array('stan ogólny ', 'stan_ogolny'),
     array('airly', 'airly'),
     array('godzina', 'godzina'),
     /*
@@ -533,7 +550,7 @@ $slownik_wszystkie = array(
     array('paweł', 'p'),
     array('kłebek', 'q'), # wł. Quebec
     array('roman', 'r'),
-    array('stefan', 's'),
+    array('stanisław', 's'),
     array('tadeusz', 't'),
     array('urszula', 'u'),
     array('violetta', 'v'),
@@ -1537,7 +1554,7 @@ $slownik_wszystkie = array(
     array('pył zawieszony Pe eM 10', 'pyl__zawieszony_pm10'),
     array('benzen', 'benzen'),
     array('dwutlenek azotu', 'dwutlenek_azotu'),
-    array('pył zawieszony Pe eM 2.5', 'pyl__zawieszony_pm25'),
+    array('pył zawieszony Pe eM 2 i pół', 'pyl__zawieszony_pm25'),
     array('dwutlenek siarki', 'dwutlenek_siarki'),
     array('ozon', 'ozon'),
     array('Wrocław - Bartnicza', 'wrocl_aw___bartnicza'),

@@ -32,7 +32,7 @@ function getOgg($word, $filename)
         'gender' => 'female',
         'format' => 'mp3',
         'pitch'  => 1,
-        'rate'   => 1,
+        'rate'   => 1.04,
         'volume' => 1,
     ]);
 
@@ -56,12 +56,12 @@ function getOgg($word, $filename)
     curl_close($ch);
 
     if ($httpCode !== 200) {
-        throw new Exception("Błąd HTTP $httpCode dla słowa '$word': $audio");
+        throw new Exception("API zwróciło błąd HTTP $httpCode dla słowa '$word': $audio");
     }
 
     file_put_contents("mp3/$filename.mp3", $audio);
 
-    shell_exec("ffmpeg -y -i mp3/$filename.mp3 -ar 32000 -ab 48000 -acodec libvorbis ogg/$filename.ogg");
+    shell_exec("ffmpeg -y -i mp3/$filename.mp3 -af silenceremove=start_periods=0:stop_periods=1:stop_threshold=-40dB:stop_duration=0.2 -ar 32000 -ab 48000 -acodec libvorbis ogg/$filename.ogg");
     unlink("mp3/$filename.mp3");
 }
 
