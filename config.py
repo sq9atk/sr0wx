@@ -146,7 +146,7 @@ imgwpodestsq9atk = ImgwPodestSq9atk(
         #'2.149180080',   # Nazwa: Drogomyśl, rzeka: Wisła           - zrypany wodowskaz / tylko do testów
         #'2.149180090',   # Nazwa: Borki Mizerów, rzeka: Pszczynka   - zrypany wodowskaz / tylko do testów
 
-            
+
         '2.149210050',   # Nazwa: Krajowice, rzeka: Wisłoka
         '2.149200110',   # Nazwa: Trybsz, rzeka: Białka
         '2.149200290',   # Nazwa: Muszyna, rzeka: Poprad
@@ -279,7 +279,7 @@ from datetime import datetime
 from air_pollution_sq9atk import AirPollutionSq9atk
 airpollutionsq9atk = AirPollutionSq9atk(
     language=pl_google,
-    service_url="http://api.gios.gov.pl/pjp-api/rest/",
+    service_url="https://api.gios.gov.pl/pjp-api/v1/rest/",
     station_id = 402,
 
         # LISTA STACJI Z NUMERAMI Z CAŁEJ POLSKI
@@ -338,16 +338,6 @@ geomagneticsq9atk = GeoMagneticSq9atk(
         # https://www.gismeteo.pl/weather-ptakowice-280575/gm/
         # więcej miejscowości po wejściu na dowolny z powyższych adresów w przeglądarce...
 
-# ---------------
-# radioactive_sq9atk
-# ---------------
-from radioactive_sq9atk import RadioactiveSq9atk
-radioactivesq9atk = RadioactiveSq9atk(
-    language=pl_google,
-    service_url="http://radioactiveathome.org/map/",
-    sensor_id=35167 #czujnik w centrum Krakowa
-    ## więcej czujników na stronie http://radioactiveathome.org/map/
-)
 
 # ---------------
 # vhf_propagation_sq9atk
@@ -400,11 +390,10 @@ modules = [
     openweathersq9atk,      # prognoza pogody
     meteoalarmsq9atk, 		# meteoalarm.pl
     imgwpodestsq9atk,       # wodowskazy
-    #airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ, zmienili API, trzeba to kiedyś przerobić
+    airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ, zmienili API, trzeba to kiedyś przerobić
     airlysq9atk,            # zanieczyszczenia powietrza z Airly
     propagationsq9atk,      # propagacja KF
     vhftroposq9atk,        # vhf tropo propagacja
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
-    #radioactivesq9atk,      # promieniowanie jonizujące
     calendarsq9atk,         # wschód słońca
 ]
