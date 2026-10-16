@@ -31,6 +31,29 @@ $slownikXXX = array(
     array('warunki spokojne', 'warunki_spokojne'),
     array('zaburzenia', 'zaburzenia'),
     array('burza magnetyczna', 'burza_magnetyczna'),
+    
+    
+    /* 
+	 *
+	 * 
+	 * COSMOS WEATHER
+	 * 
+	 *  
+	 */
+    array('pogoda kosmiczna', 'pogoda_kosmiczna'),
+    array('indeks ka pe', 'indeks_ka_pe'),
+    array('zero', '0'),
+    array('jeden', '1'),
+    array('dwa', '2'),
+    array('trzy', '3'),
+    array('cztery', '4'),
+    array('pięć', '5'),
+    array('sześć', '6'),
+    array('siedem', '7'),
+    array('osiem', '8'),
+    array('dziewięć', '9'),
+    
+    
 
     /*
      *

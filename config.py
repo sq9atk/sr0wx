@@ -359,6 +359,18 @@ propagationsq9atk = PropagationSq9atk(
     service_url="https://rigreference.com/solar",
 )
 
+
+# ---------------
+# space_weather_sq9atk
+# ---------------
+from cosmos_weather_sq9atk import CosmosWeatherSq9atk
+cosmosweathersq9atk = CosmosWeatherSq9atk(
+    language=pl_google,
+    service_url="https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
+    muf_url="https://www.hamqsl.com/solarxml.php",   # <-- to musi tu być
+)
+
+
 # ---------------
 # calendar_sq9atk
 # ---------------
@@ -393,7 +405,8 @@ modules = [
     airpollutionsq9atk,     # zanieczyszczenia powietrza z GIOŚ, zmienili API, trzeba to kiedyś przerobić
     airlysq9atk,            # zanieczyszczenia powietrza z Airly
     propagationsq9atk,      # propagacja KF
-    vhftroposq9atk,        # vhf tropo propagacja
+    vhftroposq9atk,         # vhf tropo propagacja
+    cosmosweathersq9atk,    # pogoda kosmiczna
     geomagneticsq9atk,      # zaburzenia geomagnetyczne
     calendarsq9atk,         # wschód słońca
 ]
